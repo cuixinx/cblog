@@ -5,8 +5,8 @@
   
   <entry>
     <title>jieba分词</title>
-    <link href="/cuixinx/cblog.git/2023/11/19/jieba%E5%88%86%E8%AF%8D/"/>
-    <url>/cuixinx/cblog.git/2023/11/19/jieba%E5%88%86%E8%AF%8D/</url>
+    <link href="/2023/11/19/jieba%E5%88%86%E8%AF%8D/"/>
+    <url>/2023/11/19/jieba%E5%88%86%E8%AF%8D/</url>
     
     <content type="html"><![CDATA[]]></content>
     
@@ -18,8 +18,8 @@
   
   <entry>
     <title>PicGo下载、安装、配置</title>
-    <link href="/cuixinx/cblog.git/2023/11/15/PicGo%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E3%80%81%E9%85%8D%E7%BD%AE/"/>
-    <url>/cuixinx/cblog.git/2023/11/15/PicGo%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E3%80%81%E9%85%8D%E7%BD%AE/</url>
+    <link href="/2023/11/15/PicGo%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E3%80%81%E9%85%8D%E7%BD%AE/"/>
+    <url>/2023/11/15/PicGo%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E3%80%81%E9%85%8D%E7%BD%AE/</url>
     
     <content type="html"><![CDATA[]]></content>
     
@@ -31,10 +31,10 @@
   
   <entry>
     <title>hexo博客部署到gitee</title>
-    <link href="/cuixinx/cblog.git/2023/11/15/hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0gitee/"/>
-    <url>/cuixinx/cblog.git/2023/11/15/hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0gitee/</url>
+    <link href="/2023/11/15/hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0gitee/"/>
+    <url>/2023/11/15/hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0gitee/</url>
     
-    <content type="html"><![CDATA[<h1 id="本地博客部署到gitee"><a href="#本地博客部署到gitee" class="headerlink" title="本地博客部署到gitee"></a>本地博客部署到gitee</h1><p>hexo在本地创建了博客</p><h2 id="1-注册gitee账号"><a href="#1-注册gitee账号" class="headerlink" title="1.注册gitee账号"></a>1.注册gitee账号</h2><h2 id="2-新建仓库"><a href="#2-新建仓库" class="headerlink" title="2.新建仓库"></a>2.新建仓库</h2><p><img src="C:\Users\cuixin\AppData\Roaming\Typora\typora-user-images\image-20231119214707744.png" alt="image-20231119214707744"></p><h2 id="3-填写信息创建仓库"><a href="#3-填写信息创建仓库" class="headerlink" title="3.填写信息创建仓库"></a>3.填写信息创建仓库</h2><ol><li><p>公有</p></li><li><p>使用Readme文件初始化这个仓库</p></li></ol><p><img src="C:\Users\cuixin\AppData\Roaming\Typora\typora-user-images\image-20231119214731197.png" alt="image-20231119214731197"></p><h2 id="4-打开Git-Pages"><a href="#4-打开Git-Pages" class="headerlink" title="4.打开Git Pages"></a>4.打开Git Pages</h2><p>部署静态服务</p><p><img src="C:\Users\cuixin\AppData\Roaming\Typora\typora-user-images\image-20231119215015137.png" alt="image-20231119215015137"></p><h2 id="5-修改本地配置"><a href="#5-修改本地配置" class="headerlink" title="5.修改本地配置"></a>5.修改本地配置</h2><p>找到根目录下的_config.yml中的url 和 root</p><p>url修改为你码云中的地址</p><p>root修改为仓库名 我的为  cblog</p><p><img src="C:\Users\cuixin\AppData\Roaming\Typora\typora-user-images\image-20231120144224537.png" alt="image-20231120144224537"></p><h2 id="7-安装淘宝镜像"><a href="#7-安装淘宝镜像" class="headerlink" title="7.安装淘宝镜像"></a>7.安装淘宝镜像</h2><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript">$ <span class="hljs-built_in">npm</span> install -g cnpm --registry=https://registry.<span class="hljs-built_in">npm</span>.taobao.org<br></code></pre></td></tr></table></figure><h2 id="8-安装hexo-deployer-git插件"><a href="#8-安装hexo-deployer-git插件" class="headerlink" title="8.安装hexo-deployer-git插件"></a>8.安装<code>hexo-deployer-git</code>插件</h2><p><img src="C:\Users\cuixin\AppData\Roaming\Typora\typora-user-images\image-20231120151716400.png" alt="image-20231120151716400"></p><h2 id="9-生成私人令牌"><a href="#9-生成私人令牌" class="headerlink" title="9.生成私人令牌"></a>9.生成私人令牌</h2><p><img src="C:\Users\cuixin\AppData\Roaming\Typora\typora-user-images\image-20231120144707237.png" alt="image-20231120144707237"></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="本地博客部署到gitee"><a href="#本地博客部署到gitee" class="headerlink" title="本地博客部署到gitee"></a>本地博客部署到gitee</h1><p>hexo在本地创建了博客</p><h2 id="1-注册gitee账号"><a href="#1-注册gitee账号" class="headerlink" title="1.注册gitee账号"></a>1.注册gitee账号</h2><h2 id="2-新建仓库"><a href="#2-新建仓库" class="headerlink" title="2.新建仓库"></a>2.新建仓库</h2><p><img src="C:\Users\cuixin\AppData\Roaming\Typora\typora-user-images\image-20231119214707744.png" alt="image-20231119214707744"></p><h2 id="3-填写信息创建仓库"><a href="#3-填写信息创建仓库" class="headerlink" title="3.填写信息创建仓库"></a>3.填写信息创建仓库</h2><ol><li><p>公有</p></li><li><p>使用Readme文件初始化这个仓库</p></li></ol><p><img src="C:\Users\cuixin\AppData\Roaming\Typora\typora-user-images\image-20231119214731197.png" alt="image-20231119214731197"></p><h2 id="4-打开Git-Pages"><a href="#4-打开Git-Pages" class="headerlink" title="4.打开Git Pages"></a>4.打开Git Pages</h2><p>部署静态服务</p><p><img src="C:\Users\cuixin\AppData\Roaming\Typora\typora-user-images\image-20231119215015137.png" alt="image-20231119215015137"></p><h2 id="5-修改本地配置"><a href="#5-修改本地配置" class="headerlink" title="5.修改本地配置"></a>5.修改本地配置</h2><p>找到根目录下的_config.yml中的url 和 root</p><p>url修改为你码云中的地址</p><p>root修改为仓库名 我的为  cblog</p><p><img src="C:\Users\cuixin\AppData\Roaming\Typora\typora-user-images\image-20231120144224537.png" alt="image-20231120144224537"></p><h2 id="7-安装淘宝镜像"><a href="#7-安装淘宝镜像" class="headerlink" title="7.安装淘宝镜像"></a>7.安装淘宝镜像</h2><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript">$ <span class="hljs-built_in">npm</span> install -g cnpm --registry=https://registry.<span class="hljs-built_in">npm</span>.taobao.org<br></code></pre></td></tr></table></figure><h2 id="8-安装hexo-deployer-git插件"><a href="#8-安装hexo-deployer-git插件" class="headerlink" title="8.安装hexo-deployer-git插件"></a>8.安装<code>hexo-deployer-git</code>插件</h2><p><img src="C:\Users\cuixin\AppData\Roaming\Typora\typora-user-images\image-20231120151716400.png" alt="image-20231120151716400"></p><h2 id="9-部署"><a href="#9-部署" class="headerlink" title="9.部署"></a>9.部署</h2><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs ada">hexo clean<br>hexo g<br>hexo d  <span class="hljs-comment">--推送到远程仓库 </span><br></code></pre></td></tr></table></figure><h2 id="9-生成私人令牌"><a href="#9-生成私人令牌" class="headerlink" title="9.生成私人令牌"></a>9.生成私人令牌</h2><p><img src="C:\Users\cuixin\AppData\Roaming\Typora\typora-user-images\image-20231120144707237.png" alt="image-20231120144707237"></p>]]></content>
     
     
     
@@ -50,8 +50,8 @@
   
   <entry>
     <title>CKD-TransBTS</title>
-    <link href="/cuixinx/cblog.git/2023/11/14/CKD-TransBTS/"/>
-    <url>/cuixinx/cblog.git/2023/11/14/CKD-TransBTS/</url>
+    <link href="/2023/11/14/CKD-TransBTS/"/>
+    <url>/2023/11/14/CKD-TransBTS/</url>
     
     <content type="html"><![CDATA[<h1 id="CKD-TransBTS-Clinical-Knowledge-Driven-Hybrid-Transformer-With-Modality-Correlated-Cross-Attention-for-Brain-Tumor-Segmentation"><a href="#CKD-TransBTS-Clinical-Knowledge-Driven-Hybrid-Transformer-With-Modality-Correlated-Cross-Attention-for-Brain-Tumor-Segmentation" class="headerlink" title="CKD-TransBTS: Clinical Knowledge-Driven Hybrid Transformer With Modality-Correlated Cross-Attention for Brain Tumor Segmentation"></a>CKD-TransBTS: Clinical Knowledge-Driven Hybrid Transformer With Modality-Correlated Cross-Attention for Brain Tumor Segmentation</h1><p>CKD-TransBTS：临床知识驱动的混合Transformer和模态相关交叉注意的脑肿瘤分割</p>]]></content>
     
@@ -75,8 +75,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="/cuixinx/cblog.git/2023/11/14/hello-world/"/>
-    <url>/cuixinx/cblog.git/2023/11/14/hello-world/</url>
+    <link href="/2023/11/14/hello-world/"/>
+    <url>/2023/11/14/hello-world/</url>
     
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
     
