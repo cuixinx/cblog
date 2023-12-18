@@ -4,6 +4,63 @@
   
   
   <entry>
+    <title>MB-FSGAN</title>
+    <link href="/cblog/2023/12/18/MB-FSGAN/"/>
+    <url>/cblog/2023/12/18/MB-FSGAN/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>肾肿瘤概念</title>
+    <link href="/cblog/2023/12/17/%E8%82%BE%E8%82%BF%E7%98%A4/"/>
+    <url>/cblog/2023/12/17/%E8%82%BE%E8%82%BF%E7%98%A4/</url>
+    
+    <content type="html"><![CDATA[<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs">皮质醇：属于肾上腺分泌的肾上腺皮质激素之中的糖皮质激素，在应付压力中扮演重要角色，故又被称为“压力荷尔蒙”。皮质醇会提高血压、血糖水平和产生免疫抑制作用。<br><br>醛固酮：是一种类固醇类激素（盐皮质激素家族），由肾上腺皮质所产生，主要作用于肾脏，进行钠离子及水分的再吸收，以维持血压的稳定。整体来说，醛固酮为一种增进肾脏对于离子及水分再吸收作用的一种激素，为肾素-血管紧张素系统的一部分。<br><br>无功能腺瘤：无功能腺瘤，主要是良性肿瘤，与激素分泌过多综合征无关。<br></code></pre></td></tr></table></figure><p>分类：</p><p>分割：</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>肾肿瘤</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>误差基本概念</title>
+    <link href="/cblog/2023/11/22/%E8%AF%AF%E5%B7%AE%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"/>
+    <url>/cblog/2023/11/22/%E8%AF%AF%E5%B7%AE%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</url>
+    
+    <content type="html"><![CDATA[<h1 id="测量方法分类"><a href="#测量方法分类" class="headerlink" title="测量方法分类"></a>测量方法分类</h1><ol><li>直接测量</li><li>间接测量</li><li>组合测量</li></ol><h1 id="误差定义及其基本概念"><a href="#误差定义及其基本概念" class="headerlink" title="误差定义及其基本概念"></a>误差定义及其基本概念</h1><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">误差<span class="hljs-operator">=</span>测量结果-被测量的真值<br></code></pre></td></tr></table></figure><p>真值的特性：（1）近似可知性  （2）可变性</p><p>真值类型：<font color=red>（1）理论类型   （2）约定真值</font></p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs awk">测量误差的基本方法<br><span class="hljs-number">1</span>.绝对误差 = 测量结果 - 真值  （有单位）<br>  修正值 = -绝对误差<br>  测量结果 + 修正值 = 真值<br><span class="hljs-number">2</span>.相对误差（无单位）<br>  相对误差 = 绝对误差<span class="hljs-regexp">/真值 = 绝对误差/</span>约定真值<br>  相对误差 = 绝对误差/测量结果<br><span class="hljs-number">3</span>.引用误差 = 示值误差/特定值<br>  引用误差 = 示值误差/特定值<br>  <br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>误差</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>期末复习</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>jieba分词</title>
     <link href="/cblog/2023/11/19/jieba%E5%88%86%E8%AF%8D/"/>
     <url>/cblog/2023/11/19/jieba%E5%88%86%E8%AF%8D/</url>
