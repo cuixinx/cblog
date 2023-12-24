@@ -8,9 +8,21 @@
     <link href="/cblog/2023/12/18/MB-FSGAN/"/>
     <url>/cblog/2023/12/18/MB-FSGAN/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<h1 id="MB-FSGAN-Joint-segmentation-and-quantification-of-kidney-tumor-on-CT-by-the-multi-branch-feature-sharing-generative-adversarial-network"><a href="#MB-FSGAN-Joint-segmentation-and-quantification-of-kidney-tumor-on-CT-by-the-multi-branch-feature-sharing-generative-adversarial-network" class="headerlink" title="MB-FSGAN: Joint segmentation and quantification of kidney tumor on CT by the multi-branch feature sharing generative adversarial network"></a>MB-FSGAN: Joint segmentation and quantification of kidney tumor on CT by the multi-branch feature sharing generative adversarial network</h1><h1 id="MB-FSGAN：基于多分支特征共享生成对抗网络的CT肾脏肿瘤联合分割和量化"><a href="#MB-FSGAN：基于多分支特征共享生成对抗网络的CT肾脏肿瘤联合分割和量化" class="headerlink" title="MB-FSGAN：基于多分支特征共享生成对抗网络的CT肾脏肿瘤联合分割和量化"></a>MB-FSGAN：基于多分支特征共享生成对抗网络的CT肾脏肿瘤联合分割和量化</h1>]]></content>
     
     
+    <categories>
+      
+      <category>文献</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>肾肿瘤分割</tag>
+      
+    </tags>
     
   </entry>
   
@@ -21,7 +33,7 @@
     <link href="/cblog/2023/12/17/%E8%82%BE%E8%82%BF%E7%98%A4/"/>
     <url>/cblog/2023/12/17/%E8%82%BE%E8%82%BF%E7%98%A4/</url>
     
-    <content type="html"><![CDATA[<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs">皮质醇：属于肾上腺分泌的肾上腺皮质激素之中的糖皮质激素，在应付压力中扮演重要角色，故又被称为“压力荷尔蒙”。皮质醇会提高血压、血糖水平和产生免疫抑制作用。<br><br>醛固酮：是一种类固醇类激素（盐皮质激素家族），由肾上腺皮质所产生，主要作用于肾脏，进行钠离子及水分的再吸收，以维持血压的稳定。整体来说，醛固酮为一种增进肾脏对于离子及水分再吸收作用的一种激素，为肾素-血管紧张素系统的一部分。<br><br>无功能腺瘤：无功能腺瘤，主要是良性肿瘤，与激素分泌过多综合征无关。<br></code></pre></td></tr></table></figure><p>分类：</p><p>分割：</p>]]></content>
+    <content type="html"><![CDATA[<p>数据详情：无功能   125人       有功能  70人</p><p>皮质醇激素很高的（300左右）   5人；  醛固酮激素100+   4人</p><p>方案：激素水平分类       醛固酮，皮质醇，无功能</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs">皮质醇：属于肾上腺分泌的肾上腺皮质激素之中的糖皮质激素，在应付压力中扮演重要角色，故又被称为“压力荷尔蒙”。皮质醇会提高血压、血糖水平和产生免疫抑制作用。<br><br>醛固酮：是一种类固醇类激素（盐皮质激素家族），由肾上腺皮质所产生，主要作用于肾脏，进行钠离子及水分的再吸收，以维持血压的稳定。整体来说，醛固酮为一种增进肾脏对于离子及水分再吸收作用的一种激素，为肾素-血管紧张素系统的一部分。<br><br>无功能腺瘤：无功能腺瘤，主要是良性肿瘤，与激素分泌过多综合征无关。<br></code></pre></td></tr></table></figure><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs">皮质醇偏高：<br>1、慢性病：长期增加皮质醇可能会增加患高血压、心脏病、2 型糖尿病、骨质疏松症和其他慢性疾病的风险。<br>2、体重增加：皮质醇可能会增加食欲，向身体发出信号，改变代谢以储存脂肪。<br>3、缺乏能量/难以入睡：会干扰睡眠激素，可能会影响睡眠质量和长度。<br>4、难以集中注意力：也被称为“脑雾”，有些人报告说难以集中注意力和缺乏清晰思路。<br>5、免疫系统受损：皮质醇增加会阻碍免疫系统，更难抵抗感染。<br>6、库欣综合征：在极少数情况下，非常高的皮质醇水平会导致库欣综合征，这是一种罕见但严重的疾病。<br></code></pre></td></tr></table></figure><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs">醛固酮是由肾上腺皮质球状带分泌的一种激素，以调节水、盐代谢为主，醛固酮具有保钠排钾的作用。醛固酮增高的危害主要有以下几点：<br>1、高血压。长期醛固酮增多、保钠作用增强、血容量负荷过重容易引起高血压，而且常规降压药物效果不明显。<br>2、低血钾。醛固酮具有促进尿钾排泄的作用，可以出现低钾血症，临床表现为肌无力、发作性软瘫甚至是低钾性麻痹。严重的低钾血症影响心脏呼吸肌，可以导致心跳、呼吸骤停。<br>3、长期低钾可以影响糖代谢甚至发生糖尿病。<br>4、长期低钾可以形成低钾性肾病，容易形成尿路感染等。<br></code></pre></td></tr></table></figure>]]></content>
     
     
     <categories>
