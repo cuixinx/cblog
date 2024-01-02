@@ -44,7 +44,7 @@
 <meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240102192337029.png">
 <meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240102192349274.png">
 <meta property="article:published_time" content="2024-01-02T08:27:52.000Z">
-<meta property="article:modified_time" content="2024-01-02T11:32:33.875Z">
+<meta property="article:modified_time" content="2024-01-02T11:39:48.493Z">
 <meta property="article:author" content="CuiXin">
 <meta property="article:tag" content="文献">
 <meta name="twitter:card" content="summary_large_image">
@@ -317,12 +317,12 @@
 <h3 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h3><h4 id="基本的KD模块"><a href="#基本的KD模块" class="headerlink" title="基本的KD模块"></a>基本的KD模块</h4><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240102165931770.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240102165931770"></p>
 <p>P表示学生网络的softmax预测，QS和QT分别表示教师和学生的软概率图。</p>
 <p>其中Lce和Ldice分别是交叉熵（CE）损失和Dice损失。Lkd是通过CE损失实现的QS和QT之间的知识蒸馏损失。Lsup是P和实际分割图Y之间的标准监督损失。λ ∈ [0，1]是调整Lkd和Lsup的贡献的权重。</p>
-<h3 id="类亲和知识蒸馏"><a href="#类亲和知识蒸馏" class="headerlink" title="类亲和知识蒸馏"></a>类亲和知识蒸馏</h3><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240102171618845.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240102171618845"></p>
+<h4 id="类亲和知识蒸馏"><a href="#类亲和知识蒸馏" class="headerlink" title="类亲和知识蒸馏"></a>类亲和知识蒸馏</h4><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240102171618845.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240102171618845"></p>
 <p>假设有K个类别进行分割，教师QT的软预测图具有K × W × H × D的形状。它首先被整形为K ×（WHD），然后乘以它的转置版本，其形状为（WHD）× K，导致类亲和矩阵MT ∈ RK×K，如图1（d）所示。类似地，学生模型的类亲和度矩阵也可以表示为MS ∈ RK×K。对于多类分割任务，矩阵表示任何一对不同类之间的关系。建议CAKD损失以鼓励学生生成类似于教师的类亲和矩阵。CAKD损失的提出是为了鼓励学生生成一个类似于教师的类亲和矩阵。其中sim表示余弦相似度。</p>
-<h3 id="多尺度知识蒸馏"><a href="#多尺度知识蒸馏" class="headerlink" title="多尺度知识蒸馏"></a>多尺度知识蒸馏</h3><p>设S 表示解码器中考虑的全部尺度数(本文中 S &#x3D; 4)。请注意，s &#x3D; 0 表示网络的最末端，s 越大，说明我们越接近瓶颈。教师和学生的软预测图分别表示为 QsS 和QsT。我们用MSs和MTs 分别表示相应的类亲和映射。多尺度KD损失为</p>
+<h4 id="多尺度知识蒸馏"><a href="#多尺度知识蒸馏" class="headerlink" title="多尺度知识蒸馏"></a>多尺度知识蒸馏</h4><p>设S 表示解码器中考虑的全部尺度数(本文中 S &#x3D; 4)。请注意，s &#x3D; 0 表示网络的最末端，s 越大，说明我们越接近瓶颈。教师和学生的软预测图分别表示为 QsS 和QsT。我们用MSs和MTs 分别表示相应的类亲和映射。多尺度KD损失为</p>
 <p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240102175436446.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240102175436446"></p>
 <p>γs 为尺度 s 的损失权重，s &#x3D; 0表示最高分辨率，即最终输出，s &gt; 0表示较低分辨率。</p>
-<h3 id="总损失函数"><a href="#总损失函数" class="headerlink" title="总损失函数"></a>总损失函数</h3><p>Lsup是P和Ground Truth分割图Y之间的标准监督损失。</p>
+<h4 id="总损失函数"><a href="#总损失函数" class="headerlink" title="总损失函数"></a>总损失函数</h4><p>Lsup是P和Ground Truth分割图Y之间的标准监督损失。</p>
 <p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240102175619117.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240102175619117"></p>
 <p>最终的损失函数    λ是超参数，平衡两个损失函数</p>
 <p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240102181422289.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240102181422289"></p>
