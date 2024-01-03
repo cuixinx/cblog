@@ -44,7 +44,7 @@
 <meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240102192337029.png">
 <meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240102192349274.png">
 <meta property="article:published_time" content="2024-01-02T08:27:52.000Z">
-<meta property="article:modified_time" content="2024-01-02T11:39:48.493Z">
+<meta property="article:modified_time" content="2024-01-03T07:24:15.630Z">
 <meta property="article:author" content="CuiXin">
 <meta property="article:tag" content="文献">
 <meta name="twitter:card" content="summary_large_image">
@@ -241,7 +241,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.4k 字
+          4.6k 字
         
       </span>
     
@@ -252,7 +252,7 @@
         
         
         
-          38 分钟
+          39 分钟
         
       </span>
     
@@ -353,6 +353,7 @@
 <p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240102192009738.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240102192009738"></p>
 <p>表II显示了这些方法之间平均Dice、HD95和ASSD的比较。在WORD数据集上，与不使用KD相比，我们的方法将平均HD95从10.16 mm减少到5.96 mm，平均ASSD从2.94 mm减少到1.86 mm，并且优于Attention KD [46]，在现有KD方法中实现了最佳性能。</p>
 <p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240102192028033.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240102192028033"></p>
+<p>T是控制输出概率的软度的参数</p>
 <p>我们的KD方法的消融研究：为了验证我们提出的KD方法的每个组成部分（等式1）。10)将CAKD和MSKD与FNKD组合（等式11）。6），我们将其与使用这些组件的一部分的不同变体进行了比较。</p>
 <p>定量结果见表III。可以观察到，初始KD [14]和FNKD [39]分别将平均Dice从83.90%提高到84.32%和84.93%。FNKD和MSKD的平均Dice提高到84.96%。最后，FNKD + MSKD + CAKD的方法导致最高的性能</p>
 <p>FNKD ：特征归一化KD（FNKD）     q中T被设置为z的L2范数，以获得可靠的软预测，而不管特征的规模如何。</p>
@@ -373,6 +374,8 @@
 <li>精简模型训练: 训练”Student模型”, 简称为Net-S，它是参数量较小、模型结构相对简单的单模型。同样的，对于输入X，其都能输出Y，Y经过softmax映射后同样能输出对应相应类别的概率值。</li>
 <li>Teacher学习能力强，可以将它学到的知识迁移给学习能力相对弱的Student模型，以此来增强Student模型的泛化能力。复杂笨重但是效果好的Teacher模型不上线，就单纯是个导师角色，真正部署上线进行预测任务的是灵活轻巧的Student小模型。</li>
 </ol>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">liver:肝<br>duodenum：十二指肠<br>spleen：脾<br>colon：结肠<br>kidney：肾<br><span class="hljs-built_in">int</span>estine：肠<br>adrenal：肾上腺<br>stomach：胃<br>rectum：直肠<br>gallbladder：胆囊<br>bladder：膀胱<br>head femur：头股骨<br>pancreas：胰腺<br>esophagus：食管<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
