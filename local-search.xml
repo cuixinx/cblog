@@ -4,6 +4,44 @@
   
   
   <entry>
+    <title>Confusion Matrix</title>
+    <link href="/cblog/2024/01/21/Confusion-Matrix/"/>
+    <url>/cblog/2024/01/21/Confusion-Matrix/</url>
+    
+    <content type="html"><![CDATA[<h4 id="混淆矩阵（Confusion-Matrix）"><a href="#混淆矩阵（Confusion-Matrix）" class="headerlink" title="混淆矩阵（Confusion Matrix）"></a>混淆矩阵（Confusion Matrix）</h4><p>在机器学习领域，混淆矩阵（Confusion Matrix），又称为可能性矩阵或错误矩阵。混淆矩阵是可视化工具，特别用于监督学习，在无监督学习一般叫做匹配矩阵。在图像精度评价中，主要用于比较分类结果和实际测得值，可以把分类结果的精度显示在一个混淆矩阵里面。</p><h4 id="混淆矩阵要表达的含义："><a href="#混淆矩阵要表达的含义：" class="headerlink" title="混淆矩阵要表达的含义："></a>混淆矩阵要表达的含义：</h4><ul><li>混淆矩阵的每一列代表了预测类别，每一列的总数表示预测为该类别的数据的数目；</li><li>每一行代表了数据的真实归属类别，每一行的数据总数表示该类别的数据实例的数目；每一列中的数值表示真实数据被预测为该类的数目。</li></ul><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/2020032322325750.jfif" alt="img"></p><p>True Positive（TP）：真正类。样本的真实类别是正类，并且模型识别的结果也是正类。</p><p> False Negative（FN）：假负类。样本的真实类别是正类，但是模型将其识别为负类。</p><p> False Positive（FP）：假正类。样本的真实类别是负类，但是模型将其识别为正类。</p><p> True Negative（TN）：真负类。样本的真实类别是负类，并且模型将其识别为负类。 </p>]]></content>
+    
+    
+    <categories>
+      
+      <category>machine learning</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>1.1 语义分割与实例分割</title>
+    <link href="/cblog/2024/01/20/1-1-%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%B8%8E%E5%AE%9E%E4%BE%8B%E5%88%86%E5%89%B2/"/>
+    <url>/cblog/2024/01/20/1-1-%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%B8%8E%E5%AE%9E%E4%BE%8B%E5%88%86%E5%89%B2/</url>
+    
+    <content type="html"><![CDATA[<p>链接：<a href="https://www.bilibili.com/video/BV1U94y1R71P/?spm_id_from=333.337.search-card.all.click&vd_source=f4ba3dd772b06290b305fb6123f66e1d">稀缺！人工智能必备【图像分割+语义分割】经典项目实战，同济大牛手把手教你做unet医学细胞分割实战，草履虫都说简单！-人工智能&#x2F;计算机视觉&#x2F;深度学习&#x2F;AI_哔哩哔哩_bilibili</a></p><p>语义分割：将每个像素都打上标签（语义分割只区分类别，不区分类别中的具体单位）</p><p>实例分割：不仅要区分类别，还要区分类别中的每一个个体</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>图像分割</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>基于轻量级网络和知识蒸馏的腹部CT三维图像多器官分割</title>
     <link href="/cblog/2024/01/02/%E5%9F%BA%E4%BA%8E%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%BD%91%E7%BB%9C%E5%92%8C%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F%E7%9A%84%E8%85%B9%E9%83%A8CT%E4%B8%89%E7%BB%B4%E5%9B%BE%E5%83%8F%E5%A4%9A%E5%99%A8%E5%AE%98%E5%88%86%E5%89%B2/"/>
     <url>/cblog/2024/01/02/%E5%9F%BA%E4%BA%8E%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%BD%91%E7%BB%9C%E5%92%8C%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F%E7%9A%84%E8%85%B9%E9%83%A8CT%E4%B8%89%E7%BB%B4%E5%9B%BE%E5%83%8F%E5%A4%9A%E5%99%A8%E5%AE%98%E5%88%86%E5%89%B2/</url>
