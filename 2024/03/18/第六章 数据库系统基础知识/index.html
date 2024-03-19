@@ -16,31 +16,46 @@
   <meta name="author" content="CuiXin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一、计算机网络分类 二、七层网络体系结构 三、网络的设备 四、TCP&#x2F;IP协议族  五、IP地址和IPv6简介  六、Internet服务">
+    <meta name="description" content="基本概念 基本概念——DBMS的特征与分类 数据库三级模式两级映像 外模式（也称子模式或用户模式） 数据库用户使用的局部数据的逻辑结构和特征的描述 外模时通常是模式的自己、一个模式可以有多个外模式 一个数据库可以有多个外模式，一个应用程序只能使用一个外模式  模式（也称概念模式） 数据库中全体数据的逻辑结构和特征的描述 所有用户的公共数据视图 一个数据库只有一个概念模式  内模式 是数据物理结构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第五章 计算机网络基础">
-<meta property="og:url" content="http://cuixinx.gitee.io/cblog/2024/03/18/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:title" content="第六章 数据库系统基础知识">
+<meta property="og:url" content="http://cuixinx.gitee.io/cblog/2024/03/18/%E7%AC%AC%E5%85%AD%E7%AB%A0%20%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="一、计算机网络分类 二、七层网络体系结构 三、网络的设备 四、TCP&#x2F;IP协议族  五、IP地址和IPv6简介  六、Internet服务">
+<meta property="og:description" content="基本概念 基本概念——DBMS的特征与分类 数据库三级模式两级映像 外模式（也称子模式或用户模式） 数据库用户使用的局部数据的逻辑结构和特征的描述 外模时通常是模式的自己、一个模式可以有多个外模式 一个数据库可以有多个外模式，一个应用程序只能使用一个外模式  模式（也称概念模式） 数据库中全体数据的逻辑结构和特征的描述 所有用户的公共数据视图 一个数据库只有一个概念模式  内模式 是数据物理结构">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403181917799.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403181943593.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403181943794.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403181944306.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403181945686.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403181946229.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403181949747.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403181949645.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403181951182.png">
-<meta property="article:published_time" content="2024-03-18T09:57:41.000Z">
-<meta property="article:modified_time" content="2024-03-18T11:51:54.207Z">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403181954729.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403190936516.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403190938484.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403190949147.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403190954744.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403190956934.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191000363.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191001158.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191006024.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191037231.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191043361.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191043198.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191045425.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191050332.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191052834.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191053768.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191054758.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191057213.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191058141.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191106134.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191107103.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191109585.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191109369.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191110692.png">
+<meta property="article:published_time" content="2024-03-18T11:52:57.000Z">
+<meta property="article:modified_time" content="2024-03-19T03:11:24.030Z">
 <meta property="article:author" content="CuiXin">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403181917799.png">
+<meta name="twitter:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403181954729.png">
   
   
   
-  <title>第五章 计算机网络基础 - Hexo</title>
+  <title>第六章 数据库系统基础知识 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -206,7 +221,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="第五章 计算机网络基础"></span>
+            <span id="subtitle" data-typed-text="第六章 数据库系统基础知识"></span>
           
         </div>
 
@@ -217,8 +232,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-03-18 17:57" pubdate>
-          2024年3月18日 下午
+        <time datetime="2024-03-18 19:52" pubdate>
+          2024年3月18日 晚上
         </time>
       </span>
     
@@ -229,7 +244,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          67 字
+          690 字
         
       </span>
     
@@ -240,7 +255,7 @@
         
         
         
-          1 分钟
+          6 分钟
         
       </span>
     
@@ -277,21 +292,62 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">第五章 计算机网络基础</h1>
+            <h1 id="seo-header">第六章 数据库系统基础知识</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="一、计算机网络分类"><a href="#一、计算机网络分类" class="headerlink" title="一、计算机网络分类"></a>一、计算机网络分类</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403181917799.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240318191725712"></p>
-<h1 id="二、七层网络体系结构"><a href="#二、七层网络体系结构" class="headerlink" title="二、七层网络体系结构"></a>二、七层网络体系结构</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403181943593.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240318194303395"></p>
-<h1 id="三、网络的设备"><a href="#三、网络的设备" class="headerlink" title="三、网络的设备"></a>三、网络的设备</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403181943794.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240318194332726"></p>
-<h1 id="四、TCP-IP协议族"><a href="#四、TCP-IP协议族" class="headerlink" title="四、TCP&#x2F;IP协议族"></a>四、TCP&#x2F;IP协议族</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403181944306.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240318194400973"></p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403181945686.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240318194515411"></p>
-<h1 id="五、IP地址和IPv6简介"><a href="#五、IP地址和IPv6简介" class="headerlink" title="五、IP地址和IPv6简介"></a>五、IP地址和IPv6简介</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403181946229.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240318194635046"></p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403181949747.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240318194901603"></p>
-<h1 id="六、Internet服务"><a href="#六、Internet服务" class="headerlink" title="六、Internet服务"></a>六、Internet服务</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403181949645.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240318194951440"></p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403181951182.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240318195134076"></p>
-
+                <p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403181954729.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240318195443468"></p>
+<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403190936516.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240319093604432"></p>
+<h1 id="基本概念——DBMS的特征与分类"><a href="#基本概念——DBMS的特征与分类" class="headerlink" title="基本概念——DBMS的特征与分类"></a>基本概念——DBMS的特征与分类</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403190938484.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240319093835529"></p>
+<h1 id="数据库三级模式两级映像"><a href="#数据库三级模式两级映像" class="headerlink" title="数据库三级模式两级映像"></a>数据库三级模式两级映像</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403190949147.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240319094937874"></p>
+<h2 id="外模式（也称子模式或用户模式）"><a href="#外模式（也称子模式或用户模式）" class="headerlink" title="外模式（也称子模式或用户模式）"></a>外模式（也称子模式或用户模式）</h2><ul>
+<li>数据库用户使用的局部数据的逻辑结构和特征的描述</li>
+<li>外模时通常是模式的自己、一个模式可以有多个外模式</li>
+<li>一个数据库可以有多个外模式，一个应用程序只能使用一个外模式</li>
+</ul>
+<h2 id="模式（也称概念模式）"><a href="#模式（也称概念模式）" class="headerlink" title="模式（也称概念模式）"></a>模式（也称概念模式）</h2><ul>
+<li>数据库中全体数据的逻辑结构和特征的描述</li>
+<li>所有用户的公共数据视图</li>
+<li>一个数据库只有一个概念模式</li>
+</ul>
+<h2 id="内模式"><a href="#内模式" class="headerlink" title="内模式"></a>内模式</h2><ul>
+<li>是数据物理结构和存储方式的描述</li>
+<li>是数在数据库内部的表示方式</li>
+<li>一个数据库只有一个内模式</li>
+</ul>
+<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403190954744.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240319095441983"></p>
+<h2 id="三级模式的关系"><a href="#三级模式的关系" class="headerlink" title="三级模式的关系"></a>三级模式的关系</h2><p>（1）模式是数据库的中心与关键。<br>（2）内模式依赖于模式，独立于外模式和存储设备。<br>（3）外模式面向具体的应用，独立于内模式和存储设备。<br>（4）应用程序依赖于外模式，独立于模式和内模式。</p>
+<h1 id="数据库的分析与设计过程"><a href="#数据库的分析与设计过程" class="headerlink" title="数据库的分析与设计过程"></a>数据库的分析与设计过程</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403190956934.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240319095646691"></p>
+<h1 id="数据模型——基本概念"><a href="#数据模型——基本概念" class="headerlink" title="数据模型——基本概念"></a>数据模型——基本概念</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191000363.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240319100015616"></p>
+<h1 id="数据模型——E-R模型"><a href="#数据模型——E-R模型" class="headerlink" title="数据模型——E-R模型"></a>数据模型——E-R模型</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191001158.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240319100149461"></p>
+<h1 id="数据模型——关系模型"><a href="#数据模型——关系模型" class="headerlink" title="数据模型——关系模型"></a>数据模型——关系模型</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191006024.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240319100626607"></p>
+<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191037231.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240319103745313"></p>
+<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191043361.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240319104259998"></p>
+<h1 id="关系代数——关系模式相关名词"><a href="#关系代数——关系模式相关名词" class="headerlink" title="关系代数——关系模式相关名词"></a>关系代数——关系模式相关名词</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191043198.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240319104345503"></p>
+<h1 id="数据库完整性约束"><a href="#数据库完整性约束" class="headerlink" title="数据库完整性约束"></a>数据库完整性约束</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191045425.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240319104537550"></p>
+<ol>
+<li>实体完整性：规定表的每一行在表中是唯一的实体。</li>
+<li>参照完整性：是指两个表的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%B8%BB%E5%85%B3%E9%94%AE%E5%AD%97/0?fromModule=lemma_inlink">主关键字</a>和<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%A4%96%E5%85%B3%E9%94%AE%E5%AD%97/1239625?fromModule=lemma_inlink">外关键字</a>的数据应一致，保证了表之间的数据的一致性，防止了数据丢失或无意义的数据在数据库中扩散。</li>
+<li>用户定义完整性：不同的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/0?fromModule=lemma_inlink">关系数据库系统</a>根据其应用环境的不同，往往还需要一些特殊的约束条件。用户定义的完整性即是针对某个特定关系数据库的约束条件，它反映某一具体应用必须满足的语义要求。</li>
+</ol>
+<h1 id="关系代数——关系的三种类型"><a href="#关系代数——关系的三种类型" class="headerlink" title="关系代数——关系的三种类型"></a>关系代数——关系的三种类型</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191050332.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240319105017021"></p>
+<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191052834.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240319105236216"></p>
+<h1 id="关系代数——其中基本运算"><a href="#关系代数——其中基本运算" class="headerlink" title="关系代数——其中基本运算"></a>关系代数——其中基本运算</h1><h2 id="并、交、差"><a href="#并、交、差" class="headerlink" title="并、交、差"></a>并、交、差</h2><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191053768.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240319105359066"></p>
+<h2 id="笛卡尔积"><a href="#笛卡尔积" class="headerlink" title="笛卡尔积"></a>笛卡尔积</h2><p>笛卡尔积不会去掉重复的</p>
+<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191054758.png" srcset="/cblog/img/loading.gif" lazyload></p>
+<h2 id="投影、选择"><a href="#投影、选择" class="headerlink" title="投影、选择"></a>投影、选择</h2><p>投影操作是对列的操作</p>
+<p>选择操作是对行的操作</p>
+<p>区分符号</p>
+<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191057213.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240319105737600"></p>
+<h2 id="联接"><a href="#联接" class="headerlink" title="联接"></a>联接</h2><p><strong>联接是在笛卡尔积中进行。</strong></p>
+<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191058141.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240319105836412"></p>
+<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191106134.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240319110646519"></p>
+<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191107103.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240319110724459"></p>
+<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191109585.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240319110905240"></p>
+<h1 id="关系型数据库SQL简介"><a href="#关系型数据库SQL简介" class="headerlink" title="关系型数据库SQL简介"></a>关系型数据库SQL简介</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191109369.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240319110935850"></p>
+<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403191110692.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240319111034227"></p>
+<h1 id="关系数据库的规范化"><a href="#关系数据库的规范化" class="headerlink" title="关系数据库的规范化"></a>关系数据库的规范化</h1><h1 id="数据库的控制功能"><a href="#数据库的控制功能" class="headerlink" title="数据库的控制功能"></a>数据库的控制功能</h1><h1 id="数据仓库与数据挖掘基础"><a href="#数据仓库与数据挖掘基础" class="headerlink" title="数据仓库与数据挖掘基础"></a>数据仓库与数据挖掘基础</h1><h1 id="大数据基本概念"><a href="#大数据基本概念" class="headerlink" title="大数据基本概念"></a>大数据基本概念</h1>
                 
               </div>
             
@@ -329,8 +385,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>第五章 计算机网络基础</div>
-      <div>http://cuixinx.gitee.io/cblog/2024/03/18/第五章-计算机网络基础/</div>
+      <div>第六章 数据库系统基础知识</div>
+      <div>http://cuixinx.gitee.io/cblog/2024/03/18/第六章 数据库系统基础知识/</div>
     </div>
     <div class="license-meta">
       
@@ -378,8 +434,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/cblog/2024/03/13/%E7%AC%AC%E5%9B%9B%E7%AB%A0%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/" title="第四章 操作系统基本原理">
-                        <span class="hidden-mobile">第四章 操作系统基本原理</span>
+                      <a href="/cblog/2024/03/18/%E7%AC%AC%E4%BA%94%E7%AB%A0%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/" title="第五章 计算机网络基础">
+                        <span class="hidden-mobile">第五章 计算机网络基础</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
