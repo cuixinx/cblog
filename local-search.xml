@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Applications of deep learning to reduce the need for iodinated contrast media for CT</title>
+    <link href="/cblog/2024/03/20/Applications-of-deep-learning-to-reduce-the-need-for-iodinated-contrast-media-for-CT/"/>
+    <url>/cblog/2024/03/20/Applications-of-deep-learning-to-reduce-the-need-for-iodinated-contrast-media-for-CT/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Applications-of-deep-learning-to-reduce-the-need-for-iodinated-contrast-media-for-CT-imaging-a-systematic-review"><a href="#Applications-of-deep-learning-to-reduce-the-need-for-iodinated-contrast-media-for-CT-imaging-a-systematic-review" class="headerlink" title="Applications of deep learning to reduce the need for iodinated contrast media for CT imaging: a systematic review"></a>Applications of deep learning to reduce the need for iodinated contrast media for CT imaging: a systematic review</h1><h1 id="深度学习在减少-CT-成像中对碘造影剂需求的应用：系统评价"><a href="#深度学习在减少-CT-成像中对碘造影剂需求的应用：系统评价" class="headerlink" title="深度学习在减少 CT 成像中对碘造影剂需求的应用：系统评价"></a>深度学习在减少 CT 成像中对碘造影剂需求的应用：系统评价</h1><h2 id="现状"><a href="#现状" class="headerlink" title="现状"></a>现状</h2><p>ICM 给药的不良反应可能包括肾损伤、危及生命的过敏样反应和环境污染。</p><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>检索发现18篇文献  从2016到2022</p><h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p>18篇论文符合分析的纳入标准。其中，10 例从真正的非增强 CT 中产生了合成全剂量 （100%） ICM，而 4 例从低剂量到全剂量的 ICM CT 增强了。三篇论文使用DL从真实的100%ICM CT创建合成的非增强CT，而一篇论文使用DL将100%ICM转换为非增强CT。</p><p>通用网络：生成对抗网络</p><h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202403202051069.png" alt="image-20240320205153920"></p><ol><li>第一行：100次三期肺部CT扫描，共37290张图像，均为成年女性，包括非造影、动脉和静脉期。</li><li>第二行：50例成人患者，胸部60层非增强和60层增强CT血管造影。</li><li>第三行：266例成人急性腹痛患者动脉晚期及门静脉早期CT扫描。</li><li>第四行：将非配对对比增强CT扫描转换为非对比CT扫描或相反的新方法。</li><li>第五行：基于多对抗学习的血管造影重建（MALAR）框架，以增强血管强度</li></ol><p>一到三行是三个公开可用的配对增强CT和非增强CT数据集。</p><p>四五行是目前公开的源代码。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>文献</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>平扫CT合成增强CT</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>第六章 数据库系统基础知识</title>
     <link href="/cblog/2024/03/18/%E7%AC%AC%E5%85%AD%E7%AB%A0%20%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
     <url>/cblog/2024/03/18/%E7%AC%AC%E5%85%AD%E7%AB%A0%20%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
