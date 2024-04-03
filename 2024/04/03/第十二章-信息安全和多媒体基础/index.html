@@ -16,37 +16,41 @@
   <meta name="author" content="CuiXin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一、概述UML三要素 UML的基本构造块 支配这些构造块如何放置在一起的规则 运用于整个语言的一些公共机制  UML词汇表包括三种构造块事物、关系、图     二、类图 考察方式  三、用例图 四、顺序图  五、活动图  六、状态图 七、通信图 八、构件图">
+    <meta name="description" content="一、网络安全概念  二、网络安全威胁   三、网络攻击   四、防火墙技术   五、加密与数字签名   六、各个网络层次的安全保障 七、音频相关概念 八、图像相关概念 九、多媒体种类 十、多媒体的计算问题 例题 D C D">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第十章 UML建模">
-<meta property="og:url" content="http://cuixinx.gitee.io/cblog/2024/04/03/%E7%AC%AC%E5%8D%81%E7%AB%A0-UML%E5%BB%BA%E6%A8%A1/index.html">
+<meta property="og:title" content="第十二章 信息安全和多媒体基础">
+<meta property="og:url" content="http://cuixinx.gitee.io/cblog/2024/04/03/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%92%8C%E5%A4%9A%E5%AA%92%E4%BD%93%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="一、概述UML三要素 UML的基本构造块 支配这些构造块如何放置在一起的规则 运用于整个语言的一些公共机制  UML词汇表包括三种构造块事物、关系、图     二、类图 考察方式  三、用例图 四、顺序图  五、活动图  六、状态图 七、通信图 八、构件图">
+<meta property="og:description" content="一、网络安全概念  二、网络安全威胁   三、网络攻击   四、防火墙技术   五、加密与数字签名   六、各个网络层次的安全保障 七、音频相关概念 八、图像相关概念 九、多媒体种类 十、多媒体的计算问题 例题 D C D">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403181502463.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403181544223.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403183656481.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403184251410.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403190556422.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403190651061.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403190857148.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403191007840.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403192235191.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403192340348.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403192511490.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403193246289.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403193307001.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403193507402.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403193555180.png">
-<meta property="article:published_time" content="2024-04-03T10:04:17.000Z">
-<meta property="article:modified_time" content="2024-04-03T11:36:35.869Z">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403205541548.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403205555043.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403205613604.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403205722371.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403205831072.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403205913691.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403205936118.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403210012220.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403210058585.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403210208137.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403210239129.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403210315347.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403210350841.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403212257336.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403212313872.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403212332591.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403212349110.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403212411261.png">
+<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403212507630.png">
+<meta property="article:published_time" content="2024-04-03T12:53:18.000Z">
+<meta property="article:modified_time" content="2024-04-03T13:30:07.988Z">
 <meta property="article:author" content="CuiXin">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403181502463.png">
+<meta name="twitter:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403205541548.png">
   
   
   
-  <title>第十章 UML建模 - Hexo</title>
+  <title>第十二章 信息安全和多媒体基础 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -212,7 +216,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="第十章 UML建模"></span>
+            <span id="subtitle" data-typed-text="第十二章 信息安全和多媒体基础"></span>
           
         </div>
 
@@ -223,7 +227,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-04-03 18:04" pubdate>
+        <time datetime="2024-04-03 20:53" pubdate>
           2024年4月3日 晚上
         </time>
       </span>
@@ -235,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          108 字
+          89 字
         
       </span>
     
@@ -283,32 +287,31 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">第十章 UML建模</h1>
+            <h1 id="seo-header">第十二章 信息安全和多媒体基础</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h1><h2 id="UML三要素"><a href="#UML三要素" class="headerlink" title="UML三要素"></a>UML三要素</h2><ol>
-<li>UML的基本构造块</li>
-<li>支配这些构造块如何放置在一起的规则</li>
-<li>运用于整个语言的一些公共机制</li>
-</ol>
-<h2 id="UML词汇表包括三种构造块"><a href="#UML词汇表包括三种构造块" class="headerlink" title="UML词汇表包括三种构造块"></a>UML词汇表包括三种构造块</h2><p>事物、关系、图</p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403181502463.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403181502463"></p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403181544223.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403181544223"></p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403183656481.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403183656481"></p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403184251410.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403184251410"></p>
-<h1 id="二、类图"><a href="#二、类图" class="headerlink" title="二、类图"></a>二、类图</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403190556422.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403190556422"></p>
-<h2 id="考察方式"><a href="#考察方式" class="headerlink" title="考察方式"></a>考察方式</h2><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403190651061.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403190651061"></p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403190857148.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403190857148"></p>
-<h1 id="三、用例图"><a href="#三、用例图" class="headerlink" title="三、用例图"></a>三、用例图</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403191007840.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403191007840"></p>
-<h1 id="四、顺序图"><a href="#四、顺序图" class="headerlink" title="四、顺序图"></a>四、顺序图</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403192235191.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403192235191"></p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403192340348.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403192340348"></p>
-<h1 id="五、活动图"><a href="#五、活动图" class="headerlink" title="五、活动图"></a>五、活动图</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403192511490.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403192511490"></p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403193246289.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403193246289"></p>
-<h1 id="六、状态图"><a href="#六、状态图" class="headerlink" title="六、状态图"></a>六、状态图</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403193307001.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403193307001"></p>
-<h1 id="七、通信图"><a href="#七、通信图" class="headerlink" title="七、通信图"></a>七、通信图</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403193507402.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403193507402"></p>
-<h1 id="八、构件图"><a href="#八、构件图" class="headerlink" title="八、构件图"></a>八、构件图</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403193555180.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403193555180"></p>
+                <h1 id="一、网络安全概念"><a href="#一、网络安全概念" class="headerlink" title="一、网络安全概念"></a>一、网络安全概念</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403205541548.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403205541548"></p>
+<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403205555043.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403205555043"></p>
+<h1 id="二、网络安全威胁"><a href="#二、网络安全威胁" class="headerlink" title="二、网络安全威胁"></a>二、网络安全威胁</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403205613604.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403205613604"></p>
+<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403205722371.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403205722371"></p>
+<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403205831072.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403205831072"></p>
+<h1 id="三、网络攻击"><a href="#三、网络攻击" class="headerlink" title="三、网络攻击"></a>三、网络攻击</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403205913691.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403205913691"></p>
+<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403205936118.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403205936118"></p>
+<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403210012220.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403210012220"></p>
+<h1 id="四、防火墙技术"><a href="#四、防火墙技术" class="headerlink" title="四、防火墙技术"></a>四、防火墙技术</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403210058585.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403210058585"></p>
+<img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403210208137.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403210208137" style="zoom:67%;" />
+
+<h1 id="五、加密与数字签名"><a href="#五、加密与数字签名" class="headerlink" title="五、加密与数字签名"></a>五、加密与数字签名</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403210239129.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403210239129"></p>
+<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403210315347.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403210315347"></p>
+<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403210350841.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403210350841"></p>
+<h1 id="六、各个网络层次的安全保障"><a href="#六、各个网络层次的安全保障" class="headerlink" title="六、各个网络层次的安全保障"></a>六、各个网络层次的安全保障</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403212257336.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403212257336"></p>
+<h1 id="七、音频相关概念"><a href="#七、音频相关概念" class="headerlink" title="七、音频相关概念"></a>七、音频相关概念</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403212313872.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403212313872"></p>
+<h1 id="八、图像相关概念"><a href="#八、图像相关概念" class="headerlink" title="八、图像相关概念"></a>八、图像相关概念</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403212332591.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403212332591"></p>
+<h1 id="九、多媒体种类"><a href="#九、多媒体种类" class="headerlink" title="九、多媒体种类"></a>九、多媒体种类</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403212349110.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403212349110"></p>
+<h1 id="十、多媒体的计算问题"><a href="#十、多媒体的计算问题" class="headerlink" title="十、多媒体的计算问题"></a>十、多媒体的计算问题</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403212411261.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403212411261"></p>
+<h2 id="例题-D-C-D"><a href="#例题-D-C-D" class="headerlink" title="例题 D C D"></a>例题 D C D</h2><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240403212507630.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240403212507630"></p>
 
                 
               </div>
@@ -347,8 +350,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>第十章 UML建模</div>
-      <div>http://cuixinx.gitee.io/cblog/2024/04/03/第十章-UML建模/</div>
+      <div>第十二章 信息安全和多媒体基础</div>
+      <div>http://cuixinx.gitee.io/cblog/2024/04/03/第十二章-信息安全和多媒体基础/</div>
     </div>
     <div class="license-meta">
       
@@ -392,9 +395,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/cblog/2024/04/03/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%8A%80%E6%9C%AF/" title="第十一章 面向对象技术">
+                      <a href="/cblog/2024/04/03/%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0-%E6%B3%95%E5%BE%8B%E6%B3%95%E8%A7%84%E4%B8%8E%E6%A0%87%E5%87%86%E5%8C%96%E7%9F%A5%E8%AF%86/" title="第十三章 法律法规与标准化知识">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">第十一章 面向对象技术</span>
+                        <span class="hidden-mobile">第十三章 法律法规与标准化知识</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -402,8 +405,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/cblog/2024/04/03/%E7%AC%AC%E4%B9%9D%E7%AB%A0%20%E7%BB%93%E6%9E%84%E5%8C%96%E5%BC%80%E5%8F%91%E6%96%B9%E6%B3%95-%E6%95%B0%E6%8D%AE%E6%B5%81%E5%9B%BE/" title="第九章 结构化开发方法(数据流图)">
-                        <span class="hidden-mobile">第九章 结构化开发方法(数据流图)</span>
+                      <a href="/cblog/2024/04/03/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%8A%80%E6%9C%AF/" title="第十一章 面向对象技术">
+                        <span class="hidden-mobile">第十一章 面向对象技术</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
