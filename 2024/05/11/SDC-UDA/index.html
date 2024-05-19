@@ -23,23 +23,23 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="题目SDC-UDA: Volumetric Unsupervised Domain Adaptation Framework for Slice-Direction Continuous Cross-Modality Medical Image Segmentation SDC-UDA：用于切片方向连续跨模态医学图像分割的体积无监督域自适应框架  会议：2023 IEEE&#x2F;CVF 计算机">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202405122138093.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202405122141222.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202405122142106.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202405122143361.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202405122144793.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202405122145278.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202405122147415.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202405122210189.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202405122210864.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202405122214165.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202405122216576.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202405122225444.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122138093.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122141222.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122142106.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122143361.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122144793.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122145278.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122147415.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122210189.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122210864.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122214165.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122216576.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122225444.png">
 <meta property="article:published_time" content="2024-05-11T09:45:23.000Z">
-<meta property="article:modified_time" content="2024-05-13T01:20:43.372Z">
+<meta property="article:modified_time" content="2024-05-19T07:49:49.332Z">
 <meta property="article:author" content="CuiXin">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/202405122138093.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122138093.png">
   
   
   
@@ -308,17 +308,17 @@
 <p><strong>方法是将一堆源域图像转换为目标域，同时使用切片内和切片间自注意力模块。</strong>利用了切片方向上相邻切片的信息。</p>
 <h2 id="3-2-基于不确定性约束的伪标签细化的体积自训练"><a href="#3-2-基于不确定性约束的伪标签细化的体积自训练" class="headerlink" title="3.2. 基于不确定性约束的伪标签细化的体积自训练"></a>3.2. 基于不确定性约束的伪标签细化的体积自训练</h2><p>即使源到目标转换的图像生成良好，与真实目标域数据仍可能存在一定的分布差距，难以完全替代。通过自训练，可以获取未标记目标域数据的伪标签，并用于对目标域数据进行监督，从而从模型的角度缩小域差距。我们建议利用体积自训练来缩小领域差距，采用简单新颖的伪标签细化策略，以最大限度地发挥自我训练的效果。</p>
 <h3 id="3-2-1使用标记合成扫描进行训练分割"><a href="#3-2-1使用标记合成扫描进行训练分割" class="headerlink" title="3.2.1使用标记合成扫描进行训练分割"></a>3.2.1使用标记合成扫描进行训练分割</h3><p>利用从源域转换的合成数据Xxt和源扫描上的注释ys（即，标记的合成数据集），我们首先训练一个教师分割网络fteacher，使分割损失最小化：</p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202405122138093.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512213836909"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122138093.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512213836909"></p>
 <h3 id="3-2-2在未标记的目标域数据上推断伪标记"><a href="#3-2-2在未标记的目标域数据上推断伪标记" class="headerlink" title="3.2.2在未标记的目标域数据上推断伪标记"></a>3.2.2在未标记的目标域数据上推断伪标记</h3><p>一旦训练了教师模型，就可以通过将真实的目标扫描传递给训练的分割模型fteacher来获得未注释的真实的数据xt的伪标记fteacher。</p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202405122141222.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512214146196"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122141222.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512214146196"></p>
 <h3 id="3-2-3用于灵敏度-特异性增强的不确定性约束伪标记细化"><a href="#3-2-3用于灵敏度-特异性增强的不确定性约束伪标记细化" class="headerlink" title="3.2.3用于灵敏度&#x2F;特异性增强的不确定性约束伪标记细化"></a>3.2.3用于灵敏度&#x2F;特异性增强的不确定性约束伪标记细化</h3><p><strong>灵敏度增强伪标签细化。</strong>利用伪标签的推断，不确定性（即，根据以下等式计算对应于每个类别的（熵）图：</p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202405122142106.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512214247073"></p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202405122143361.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512214350323"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122142106.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512214247073"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122143361.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512214350323"></p>
 <p><strong>特异性增强伪标签细化。</strong>为了增强伪标记的特异性，检测伪标记范围内的高度不确定区域。然后，如果该区域中的像素强度在包括在当前伪标签中的图像强度的特定范围之外，则将其从当前伪标签中排除。</p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202405122144793.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512214417747"></p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202405122145278.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512214516196"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122144793.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512214417747"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122145278.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512214516196"></p>
 <h3 id="3-2-4-使用组合数据重新训练分割"><a href="#3-2-4-使用组合数据重新训练分割" class="headerlink" title="3.2.4.使用组合数据重新训练分割"></a>3.2.4.使用组合数据重新训练分割</h3><p>合成目标扫描与真实的目标扫描具有分布间隙，但它们与完美的注释配对。另一方面，真实的靶扫描与伪标记配对，伪标记还不完整。我们将这两个对自我训练，以最大限度地提高泛化能力，并尽量减少由于分布的差异造成的性能下降。利用标记的合成目标扫描（xt，ys）和伪标记的真实的目标扫描（xt，yt r）的组合数据，我们训练学生分割fstudent以最小化</p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202405122147415.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512214733378"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122147415.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512214733378"></p>
 <p>尽管不是地面真值标签，但在先前的文献中已经报道了自训练方案和伪标签通过利用未标记的数据进行训练来提高模型在未知数据上的性能和泛化能力</p>
 <h1 id="四、实验"><a href="#四、实验" class="headerlink" title="四、实验"></a>四、实验</h1><h2 id="4-1-数据集"><a href="#4-1-数据集" class="headerlink" title="4.1.数据集"></a>4.1.数据集</h2><h3 id="CrossMoDA-dataset"><a href="#CrossMoDA-dataset" class="headerlink" title="CrossMoDA dataset."></a>CrossMoDA dataset.</h3><p>前庭神经鞘瘤和耳蜗分割的CrossMoDA数据集[7]由105个标记的对比增强T1（ceT1）MRI扫描和105个未标记的高分辨率T2（hrT2）MRI扫描组成。域适应的方向是从ceT1到hrT2，因为hrT2扫描的注释不公开。</p>
 <h3 id="Cardiac-structure-segmentation-dataset"><a href="#Cardiac-structure-segmentation-dataset" class="headerlink" title="Cardiac structure segmentation dataset."></a>Cardiac structure segmentation dataset.</h3><p>心脏结构分割数据集。</p>
@@ -327,14 +327,14 @@
 <p>不确定性约束的伪标签精化。对于每个类别，进行网格搜索，以确定如何设置用于掩蔽高不确定性区域的阈值，以及是否使用灵敏度和特异性增强细化中的一种或两种。对于CrossMoDA数据集，在两个类中组合灵敏度和特异性增强细化（即，VS和CODEa），不确定性阈值为0.3，结果最好。对于心脏数据集，使用相同的阈值，并且对于除一个类别之外的所有类别仅使用特异性增强细化（即，AA）导致了最好的结果。这是由于心脏CT中相邻子结构之间的对比度差异非常弱，这导致使用灵敏度增强模块时伪标记噪声更大。消融结果请参见补充材料中的表格。α和β分别设定为0.6和1.4。</p>
 <p>体积的自我训练。对于体积分割自训练，使用从nnU-Net [14]构建的基于3D U-Net的架构。使用Dice和交叉熵损失与随机梯度下降优化器的组合对分割进行了100个时期的训练。初始学习率和批量大小分别为1 e-2和2。</p>
 <h2 id="4-3结果"><a href="#4-3结果" class="headerlink" title="4.3结果"></a>4.3结果</h2><h3 id="片内和片间自注意力模块在图像翻译中的作用"><a href="#片内和片间自注意力模块在图像翻译中的作用" class="headerlink" title="片内和片间自注意力模块在图像翻译中的作用"></a>片内和片间自注意力模块在图像翻译中的作用</h3><p>由于使用2D网络（蓝色箭头）逐切片预测产生的变化，在翻译图像中观察到像素强度的切片方向不一致。即使使用将两个相邻切片放在网络中的2.5D网络，这也没有完全克服。此外，在2D和2.5D网络中，发现源图像的解剖结构在转换图像中失真（红色和绿色箭头）。另一方面，观察到当利用有效地考虑相邻解剖结构的切片内和切片间自注意模块时，上述问题得到缓解。表1示出了通过在图像平移网络中结合切片内和切片间自注意力，与利用纯未配对图像平移随后是3D分割网络的基线相比，最终分割性能的提高。</p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202405122210189.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512221012057"></p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202405122210864.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512221024819"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122210189.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512221012057"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122210864.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512221024819"></p>
 <h3 id="不确定性约束伪标签细化和体积自训练的影响"><a href="#不确定性约束伪标签细化和体积自训练的影响" class="headerlink" title="不确定性约束伪标签细化和体积自训练的影响"></a>不确定性约束伪标签细化和体积自训练的影响</h3><p>不确定性约束的伪标签细化和体积自训练的效果。由于CrossMoDA数据集无法获得目标域的真实数据，因此通过比较伪标签细化前后的自训练性能来验证伪标签细化的有效性。对于可获得基础事实的心脏数据集，通过比较伪标签细化前后的骰子系数与标签进行验证（请参阅补充材料）。表1显示了通过在CrossMoDA数据集上应用所提出的不确定性约束伪标签细化来提高目标域分割性能。可以看出，体积自训练与所提出的不确定性约束伪标签细化相结合，大幅提高了VS和C中的定量指标，而纯自训练仅提高了VS中的性能。</p>
 <h3 id="比较研究"><a href="#比较研究" class="headerlink" title="比较研究"></a>比较研究</h3><p>比较研究。该方法与六种流行的UDA方法进行了比较，它们是CycleGAN [38]，CyCADA [12]，ADVENT [34]，FDA [36]，SIFA [4]和PSIGAN [15]。前四种方法是从自然图像领域，而最后两个是UDA的医学图像分割方法。完全监督和无适应的结果分别提供上限和下限。请注意，CrossMoDA数据集的全监督结果（其真实分割掩码不可用）来自数据集所有者的论文[7]。表2和图6显示了所提出的方法与先前方法之间的比较研究的定量和定性结果。SDC-UDA在非医学领域的语义分割研究中远远超过了UDA的结果，并且与最近在医学领域的研究相比，在多个任务中显示出更好的结果。特别是，与心脏数据集相比，在CrossMoDA数据集中提出的方法和比较方法之间存在显著的性能差距。这可能是由于以前的医学UDA研究致力于数据集，其中数据被裁剪在目标器官周围，前景对象占据了大部分数据。相比之下，SDC-UDA显示CrossMoDA数据集中的两个目标结构都以高精度分割。</p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202405122214165.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512221401093"></p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202405122216576.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512221656454"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122214165.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512221401093"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122216576.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512221656454"></p>
 <h3 id="与先前研究相比，分割的切片方向连续性"><a href="#与先前研究相比，分割的切片方向连续性" class="headerlink" title="与先前研究相比，分割的切片方向连续性"></a>与先前研究相比，分割的切片方向连续性</h3><p>与以前的研究相比，分割的切片方向连续性。图7显示了与MMWHS心脏数据集上的先前研究相比，所提出的方法的分割的出色切片方向连续性。图7-（a）、（B）、（c）和（d）分别绘制了AA、LAC、LVC和MYO代表性病例的切片Dice值。我们的SDC-UDA在切片方向上表现出渐进和一致的分割性能，而最近提出的医学UDA方法SIFA和PSIGAN在切片方向上表现出非常不一致的分割性能，有时会突然波动。这表明所提出的方法在临床实践中是有用的，其中需要精确的体积分割来分析患者的状态具有高置信度的潜力。</p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/202405122225444.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512222529361"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122225444.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512222529361"></p>
 <h1 id="五、结论"><a href="#五、结论" class="headerlink" title="五、结论"></a>五、结论</h1><p>在这项研究中，我们提出了SDC-UDA，一种新的体积UDA框架切片方向连续跨模态医学图像分割，并验证了它在多个公共数据集。SDC-UDA通过切片内和切片间的自我关注有效地转换医学体积，并通过简单而有效的伪标签细化策略（利用不确定性图）增强的体积自训练更好地适应目标域。消融研究证明了每个组件的有效性和比较研究表明所提出的方法的上级性能。</p>
 
                 
@@ -418,6 +418,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/cblog/2024/05/19/hello-world/" title="Hello World">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

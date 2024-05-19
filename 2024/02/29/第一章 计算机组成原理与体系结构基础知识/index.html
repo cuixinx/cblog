@@ -23,55 +23,55 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="1.1数据的表示和校验码低电平：0 高电平：1 数据的表示进制的转换 ：任意进制转化为十进制  二进制转八进制：三位一组 二进制转十六进制：四位一组 十进制转二进制：短除法  真值：符合人类习惯的数字 机器数：数字实际存到机器里的形式，正负号需要被“数字化” 定点数：小数点的位置固定  浮点数：小数点的位置不固定   定点数原码：用数值部分表示真值的绝对值，符号位“0&#x2F;1”对应“正&amp;#x">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240229205341108.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240229205553401.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240229210013784.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240229210045209.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240229210106394.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302173448590.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302173534826.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302173731770.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302173836884.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302174052910.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302174608641.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302175351354.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302175512012.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302181208464.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302181258266.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302181427773.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302181545252.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302183620331.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302193206601.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302193321339.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302193921567.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302194758440.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302194924283.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302195327805.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302195411787.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302195742525.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302200846922.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302201217170.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302202903975.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240229205341108.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240229205553401.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240229210013784.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240229210045209.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240229210106394.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302173448590.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302173534826.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302173731770.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302173836884.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302174052910.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302174608641.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302175351354.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302175512012.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302181208464.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302181258266.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302181427773.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302181545252.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302183620331.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302193206601.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302193321339.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302193921567.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302194758440.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302194924283.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302195327805.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302195411787.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302195742525.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302200846922.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302201217170.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302202903975.png">
 <meta property="og:image" content="https://github.com/cblog/">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302204116163.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302204116163.png">
 <meta property="og:image" content="https://github.com/cblog/">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302204358990.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302204516454.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302204651524.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302204801322.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302204909710.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302205217437.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302212247094.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302214135757.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302214249995.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302214330843.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302214354111.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302214849493.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302204358990.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302204516454.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302204651524.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302204801322.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302204909710.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302205217437.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302212247094.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302214135757.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302214249995.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302214330843.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302214354111.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302214849493.png">
 <meta property="article:published_time" content="2024-02-29T12:25:45.000Z">
-<meta property="article:modified_time" content="2024-03-02T13:50:23.783Z">
+<meta property="article:modified_time" content="2024-05-19T07:49:49.337Z">
 <meta property="article:author" content="CuiXin">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240229205341108.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240229205341108.png">
   
   
   
@@ -320,91 +320,91 @@
                 <h1 id="1-1数据的表示和校验码"><a href="#1-1数据的表示和校验码" class="headerlink" title="1.1数据的表示和校验码"></a>1.1数据的表示和校验码</h1><p>低电平：0</p>
 <p>高电平：1</p>
 <h2 id="数据的表示"><a href="#数据的表示" class="headerlink" title="数据的表示"></a>数据的表示</h2><p>进制的转换 ：任意进制转化为十进制</p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240229205341108.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240229205341108"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240229205341108.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240229205341108"></p>
 <p>二进制转八进制：三位一组</p>
 <p>二进制转十六进制：四位一组</p>
 <p>十进制转二进制：短除法</p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240229205553401.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240229205553401"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240229205553401.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240229205553401"></p>
 <p>真值：符合人类习惯的数字</p>
 <p>机器数：数字实际存到机器里的形式，正负号需要被“数字化”</p>
 <p>定点数：小数点的位置固定</p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240229210013784.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240229210013784"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240229210013784.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240229210013784"></p>
 <p>浮点数：小数点的位置不固定</p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240229210045209.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240229210045209"></p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240229210106394.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240229210106394"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240229210045209.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240229210045209"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240229210106394.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240229210106394"></p>
 <h3 id="定点数"><a href="#定点数" class="headerlink" title="定点数"></a>定点数</h3><p>原码：用数值部分表示真值的绝对值，符号位“0&#x2F;1”对应“正&#x2F;负”    0正1负</p>
 <p>真值有+0和-0两种形式</p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302173448590.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302173448590"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302173448590.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302173448590"></p>
 <p>反码：若符号位为0，则反码和原码相同，若符号位为1，则数值位全部取反。</p>
 <p>补码：正数的补码&#x3D;原码</p>
 <p>​           负数的补码&#x3D;反码末位+1</p>
 <p>​          将负数补码转回原码，尾数取反，末位加一</p>
 <p>正0和负0的补码只有一种表现形式</p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302173534826.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302173534826"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302173534826.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302173534826"></p>
 <p>移码：补码的基础上将符号位取反。注意：移码只能用于表示整数。</p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302173731770.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302173731770"></p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302173836884.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302173836884"></p>
-<h3 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h3><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302174052910.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302174052910"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302173731770.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302173731770"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302173836884.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302173836884"></p>
+<h3 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h3><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302174052910.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302174052910"></p>
 <p>其中，M称为尾数，R称为基数，E称为阶码</p>
 <p>阶码：决定浮点数所能表示的数值范围</p>
 <p>尾数：决定浮点数所能表示的数值精度</p>
 <h3 id="校验码"><a href="#校验码" class="headerlink" title="校验码"></a>校验码</h3><h4 id="奇偶校验码"><a href="#奇偶校验码" class="headerlink" title="奇偶校验码"></a>奇偶校验码</h4><p>常用的奇偶校验码：水平奇偶校验码、垂直奇偶校验码、水平垂直奇偶校验码</p>
 <h4 id="循环冗余校验码"><a href="#循环冗余校验码" class="headerlink" title="循环冗余校验码"></a>循环冗余校验码</h4><h4 id="海明码"><a href="#海明码" class="headerlink" title="海明码"></a>海明码</h4><p>海明码构成方法：在数据位之间插入k个校验码，通过扩大码距实现检错和纠错。</p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302174608641.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302174608641"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302174608641.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302174608641"></p>
 <h1 id="1-2计算机体系结构和指令系统"><a href="#1-2计算机体系结构和指令系统" class="headerlink" title="1.2计算机体系结构和指令系统"></a>1.2计算机体系结构和指令系统</h1><p>计算机体系结构——五大部件：</p>
 <p>1、输入设备</p>
 <p>2、输出设备</p>
 <p>3、运算器</p>
 <p>4、存储器</p>
 <p>5、控制器</p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302175351354.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302175351354"><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302175512012.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302175512012"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302175351354.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302175351354"><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302175512012.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302175512012"></p>
 <h2 id="计算机体系结构——主存储器"><a href="#计算机体系结构——主存储器" class="headerlink" title="计算机体系结构——主存储器"></a>计算机体系结构——主存储器</h2><p>存储单元：每个存储单元存放一串二进制代码</p>
 <p>存储字：存储单元中二进制代码的组合</p>
 <p>存储字长：存储单元中二进制代码的位数</p>
 <p>存储元：存储二进制的电子元件，每个存储元可存储1bit</p>
 <p><font color='red'>MAR：</font>地址寄存器</p>
 <p><font color='red'>MAR：</font>数据寄存器</p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302181208464.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302181208464"></p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302181258266.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302181258266"></p>
-<h2 id="计算机体系结构——运算器"><a href="#计算机体系结构——运算器" class="headerlink" title="计算机体系结构——运算器"></a>计算机体系结构——运算器</h2><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302181427773.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302181427773"></p>
-<h2 id="计算机体系结构——控制器"><a href="#计算机体系结构——控制器" class="headerlink" title="计算机体系结构——控制器"></a>计算机体系结构——控制器</h2><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302181545252.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302181545252"></p>
-<h2 id="计算机体系结构——Flynn分类法"><a href="#计算机体系结构——Flynn分类法" class="headerlink" title="计算机体系结构——Flynn分类法"></a>计算机体系结构——Flynn分类法</h2><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302183620331.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302183620331"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302181208464.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302181208464"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302181258266.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302181258266"></p>
+<h2 id="计算机体系结构——运算器"><a href="#计算机体系结构——运算器" class="headerlink" title="计算机体系结构——运算器"></a>计算机体系结构——运算器</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302181427773.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302181427773"></p>
+<h2 id="计算机体系结构——控制器"><a href="#计算机体系结构——控制器" class="headerlink" title="计算机体系结构——控制器"></a>计算机体系结构——控制器</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302181545252.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302181545252"></p>
+<h2 id="计算机体系结构——Flynn分类法"><a href="#计算机体系结构——Flynn分类法" class="headerlink" title="计算机体系结构——Flynn分类法"></a>计算机体系结构——Flynn分类法</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302183620331.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302183620331"></p>
 <h2 id="指令系统——指令"><a href="#指令系统——指令" class="headerlink" title="指令系统——指令"></a>指令系统——指令</h2><p>指令：是指示计算机执行某种操作的命令，是计算机运行的最小功能单位。</p>
 <p>一台计算机的所有指令的集合构成该机的<font color='red'>指令系统</font>，也称指令集。</p>
 <h2 id="指令系统——指令格式"><a href="#指令系统——指令格式" class="headerlink" title="指令系统——指令格式"></a>指令系统——指令格式</h2><p>一条指令就是机器语言的一个语句，它是一组<font color='red'>有意义</font>的二进制代码。</p>
 <p>一条指令包括<font color='red'>操作码字段</font>和<font color='red'>地址码字段</font></p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302193206601.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302193206601"></p>
-<h2 id="指令系统——寻址方式"><a href="#指令系统——寻址方式" class="headerlink" title="指令系统——寻址方式"></a>指令系统——寻址方式</h2><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302193321339.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302193321339"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302193206601.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302193206601"></p>
+<h2 id="指令系统——寻址方式"><a href="#指令系统——寻址方式" class="headerlink" title="指令系统——寻址方式"></a>指令系统——寻址方式</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302193321339.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302193321339"></p>
 <p>数据寻址</p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302193921567.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302193921567"></p>
-<h2 id="指令系统——CISC和RISC"><a href="#指令系统——CISC和RISC" class="headerlink" title="指令系统——CISC和RISC"></a>指令系统——CISC和RISC</h2><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302194758440.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302194758440"></p>
-<h2 id="指令系统——指令的流水处理"><a href="#指令系统——指令的流水处理" class="headerlink" title="指令系统——指令的流水处理"></a>指令系统——指令的流水处理</h2><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302194924283.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302194924283"></p>
-<h2 id="指令系统——流水线的计算"><a href="#指令系统——流水线的计算" class="headerlink" title="指令系统——流水线的计算"></a>指令系统——流水线的计算</h2><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302195327805.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302195327805"></p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302195411787.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302195411787"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302193921567.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302193921567"></p>
+<h2 id="指令系统——CISC和RISC"><a href="#指令系统——CISC和RISC" class="headerlink" title="指令系统——CISC和RISC"></a>指令系统——CISC和RISC</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302194758440.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302194758440"></p>
+<h2 id="指令系统——指令的流水处理"><a href="#指令系统——指令的流水处理" class="headerlink" title="指令系统——指令的流水处理"></a>指令系统——指令的流水处理</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302194924283.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302194924283"></p>
+<h2 id="指令系统——流水线的计算"><a href="#指令系统——流水线的计算" class="headerlink" title="指令系统——流水线的计算"></a>指令系统——流水线的计算</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302195327805.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302195327805"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302195411787.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302195411787"></p>
 <p>加速比</p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302195742525.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302195742525"></p>
-<h1 id="1-3存储系统、总线系统、输入输出和可靠性"><a href="#1-3存储系统、总线系统、输入输出和可靠性" class="headerlink" title="1.3存储系统、总线系统、输入输出和可靠性"></a>1.3存储系统、总线系统、输入输出和可靠性</h1><h2 id="存储系统的层次结构"><a href="#存储系统的层次结构" class="headerlink" title="存储系统的层次结构"></a>存储系统的层次结构</h2><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302200846922.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302200846922"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302195742525.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302195742525"></p>
+<h1 id="1-3存储系统、总线系统、输入输出和可靠性"><a href="#1-3存储系统、总线系统、输入输出和可靠性" class="headerlink" title="1.3存储系统、总线系统、输入输出和可靠性"></a>1.3存储系统、总线系统、输入输出和可靠性</h1><h2 id="存储系统的层次结构"><a href="#存储系统的层次结构" class="headerlink" title="存储系统的层次结构"></a>存储系统的层次结构</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302200846922.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302200846922"></p>
 <p>cache：处理cpu和主存之间速度不匹配的问题  </p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302201217170.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302201217170"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302201217170.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302201217170"></p>
 <p>cache由硬件自动完成。</p>
-<h2 id="存储系统——存储器分类"><a href="#存储系统——存储器分类" class="headerlink" title="存储系统——存储器分类"></a>存储系统——存储器分类</h2><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302202903975.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302202903975"></p>
+<h2 id="存储系统——存储器分类"><a href="#存储系统——存储器分类" class="headerlink" title="存储系统——存储器分类"></a>存储系统——存储器分类</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302202903975.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302202903975"></p>
 <p><img src="/cblog/" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302202945235"></p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302204116163.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302204116163"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302204116163.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302204116163"></p>
 <p><img src="/cblog/" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302204149037"></p>
-<h2 id="存储系统——高速缓存Cache"><a href="#存储系统——高速缓存Cache" class="headerlink" title="存储系统——高速缓存Cache"></a>存储系统——高速缓存Cache</h2><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302204358990.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302204358990"></p>
-<h3 id="直接映像"><a href="#直接映像" class="headerlink" title="直接映像"></a>直接映像</h3><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302204516454.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302204516454"></p>
-<h3 id="全相联映像"><a href="#全相联映像" class="headerlink" title="全相联映像"></a>全相联映像</h3><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302204651524.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302204651524"></p>
-<h3 id="组相联映像"><a href="#组相联映像" class="headerlink" title="组相联映像"></a>组相联映像</h3><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302204801322.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302204801322"></p>
-<h3 id="选择替换算法"><a href="#选择替换算法" class="headerlink" title="选择替换算法"></a>选择替换算法</h3><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302204909710.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302204909710"></p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302205217437.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302205217437"></p>
+<h2 id="存储系统——高速缓存Cache"><a href="#存储系统——高速缓存Cache" class="headerlink" title="存储系统——高速缓存Cache"></a>存储系统——高速缓存Cache</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302204358990.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302204358990"></p>
+<h3 id="直接映像"><a href="#直接映像" class="headerlink" title="直接映像"></a>直接映像</h3><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302204516454.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302204516454"></p>
+<h3 id="全相联映像"><a href="#全相联映像" class="headerlink" title="全相联映像"></a>全相联映像</h3><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302204651524.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302204651524"></p>
+<h3 id="组相联映像"><a href="#组相联映像" class="headerlink" title="组相联映像"></a>组相联映像</h3><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302204801322.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302204801322"></p>
+<h3 id="选择替换算法"><a href="#选择替换算法" class="headerlink" title="选择替换算法"></a>选择替换算法</h3><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302204909710.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302204909710"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302205217437.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302205217437"></p>
 <p>cache对程序员来说是透明的，内容是主存内容的副本，既可以存放程序，又可以存放数据。  </p>
-<h2 id="存储系统——主存的编址"><a href="#存储系统——主存的编址" class="headerlink" title="存储系统——主存的编址"></a>存储系统——主存的编址</h2><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302212247094.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302212247094"></p>
+<h2 id="存储系统——主存的编址"><a href="#存储系统——主存的编址" class="headerlink" title="存储系统——主存的编址"></a>存储系统——主存的编址</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302212247094.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302212247094"></p>
 <p>​                                                                                                               位扩展                             字扩展</p>
-<h2 id="存储系统——硬盘（磁盘）"><a href="#存储系统——硬盘（磁盘）" class="headerlink" title="存储系统——硬盘（磁盘）"></a>存储系统——硬盘（磁盘）</h2><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302214135757.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302214135757"></p>
-<h2 id="总线系统"><a href="#总线系统" class="headerlink" title="总线系统"></a>总线系统</h2><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302214249995.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302214249995"></p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302214330843.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302214330843"></p>
-<h2 id="输入输出技术"><a href="#输入输出技术" class="headerlink" title="输入输出技术"></a>输入输出技术</h2><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302214354111.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302214354111"></p>
-<h2 id="可靠性（计算）"><a href="#可靠性（计算）" class="headerlink" title="可靠性（计算）"></a>可靠性（计算）</h2><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240302214849493.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302214849493"></p>
+<h2 id="存储系统——硬盘（磁盘）"><a href="#存储系统——硬盘（磁盘）" class="headerlink" title="存储系统——硬盘（磁盘）"></a>存储系统——硬盘（磁盘）</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302214135757.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302214135757"></p>
+<h2 id="总线系统"><a href="#总线系统" class="headerlink" title="总线系统"></a>总线系统</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302214249995.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302214249995"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302214330843.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302214330843"></p>
+<h2 id="输入输出技术"><a href="#输入输出技术" class="headerlink" title="输入输出技术"></a>输入输出技术</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302214354111.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302214354111"></p>
+<h2 id="可靠性（计算）"><a href="#可靠性（计算）" class="headerlink" title="可靠性（计算）"></a>可靠性（计算）</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302214849493.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302214849493"></p>
 
                 
               </div>

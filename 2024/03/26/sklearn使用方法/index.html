@@ -23,28 +23,28 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="sklearn核心概念与快速使用方法 sklearn核心对象类型：评估器评估器：一个一个的机器学习模型 导入评估器的三种方法   默认使用第三种方法  模型训练model.fit(X,y)  查看模型自变量参数1model.coef_  查看模型截距1model.intercept_   sklearn中的实用函数计算MSE 修改参数 sklearn六大功能模块 classficationregr">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326194453948.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326194644149.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326194718651.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326194738512.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326194822775.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326194942938.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326195827595.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326195926839.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326200148202.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326200801103.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326201145599.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326201202885.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326202859006.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326205600713.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326205700303.png">
-<meta property="og:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326205759368.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326194453948.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326194644149.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326194718651.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326194738512.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326194822775.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326194942938.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326195827595.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326195926839.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326200148202.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326200801103.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326201145599.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326201202885.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326202859006.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326205600713.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326205700303.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326205759368.png">
 <meta property="article:published_time" content="2024-03-26T11:42:31.000Z">
-<meta property="article:modified_time" content="2024-03-26T12:59:16.042Z">
+<meta property="article:modified_time" content="2024-05-19T07:49:49.332Z">
 <meta property="article:author" content="CuiXin">
 <meta property="article:tag" content="sklearn">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326194453948.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326194453948.png">
   
   
   
@@ -290,29 +290,29 @@
             
               <div class="markdown-body">
                 
-                <h1 id="sklearn核心概念与快速使用方法"><a href="#sklearn核心概念与快速使用方法" class="headerlink" title="sklearn核心概念与快速使用方法"></a>sklearn核心概念与快速使用方法</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326194453948.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326194453948"></p>
+                <h1 id="sklearn核心概念与快速使用方法"><a href="#sklearn核心概念与快速使用方法" class="headerlink" title="sklearn核心概念与快速使用方法"></a>sklearn核心概念与快速使用方法</h1><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326194453948.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326194453948"></p>
 <h1 id="sklearn核心对象类型：评估器"><a href="#sklearn核心对象类型：评估器" class="headerlink" title="sklearn核心对象类型：评估器"></a>sklearn核心对象类型：评估器</h1><p>评估器：一个一个的机器学习模型</p>
-<h2 id="导入评估器的三种方法"><a href="#导入评估器的三种方法" class="headerlink" title="导入评估器的三种方法"></a>导入评估器的三种方法</h2><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326194644149.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326194644149"></p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326194718651.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326194718651"></p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326194738512.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326194738512"></p>
+<h2 id="导入评估器的三种方法"><a href="#导入评估器的三种方法" class="headerlink" title="导入评估器的三种方法"></a>导入评估器的三种方法</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326194644149.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326194644149"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326194718651.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326194718651"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326194738512.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326194738512"></p>
 <p>默认使用第三种方法</p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326194822775.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326194822775"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326194822775.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326194822775"></p>
 <h2 id="模型训练"><a href="#模型训练" class="headerlink" title="模型训练"></a>模型训练</h2><p>model.fit(X,y)</p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326194942938.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326194942938"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326194942938.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326194942938"></p>
 <h2 id="查看模型自变量参数"><a href="#查看模型自变量参数" class="headerlink" title="查看模型自变量参数"></a>查看模型自变量参数</h2><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-keyword">model</span>.coef_<br></code></pre></td></tr></table></figure>
 
 <h2 id="查看模型截距"><a href="#查看模型截距" class="headerlink" title="查看模型截距"></a>查看模型截距</h2><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">model.<span class="hljs-built_in">int</span>ercept_<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326195827595.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326195827595"></p>
-<h2 id="sklearn中的实用函数"><a href="#sklearn中的实用函数" class="headerlink" title="sklearn中的实用函数"></a>sklearn中的实用函数</h2><h3 id="计算MSE"><a href="#计算MSE" class="headerlink" title="计算MSE"></a>计算MSE</h3><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326195926839.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326195926839"></p>
-<h3 id="修改参数"><a href="#修改参数" class="headerlink" title="修改参数"></a>修改参数</h3><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326200148202.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326200148202"></p>
-<h1 id="sklearn六大功能模块"><a href="#sklearn六大功能模块" class="headerlink" title="sklearn六大功能模块"></a>sklearn六大功能模块</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326200801103.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326200801103"></p>
-<h3 id="classfication"><a href="#classfication" class="headerlink" title="classfication"></a>classfication</h3><h3 id="regression"><a href="#regression" class="headerlink" title="regression"></a>regression</h3><h3 id="clustering"><a href="#clustering" class="headerlink" title="clustering"></a>clustering</h3><h3 id="dimensionality-reduction"><a href="#dimensionality-reduction" class="headerlink" title="dimensionality reduction"></a>dimensionality reduction</h3><h3 id="model-selection"><a href="#model-selection" class="headerlink" title="model selection"></a>model selection</h3><h3 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h3><h1 id="sklearn数据集读取"><a href="#sklearn数据集读取" class="headerlink" title="sklearn数据集读取"></a>sklearn数据集读取</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326201145599.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326201145599"></p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326201202885.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326201202885"></p>
-<h1 id="sklearn数据标准化"><a href="#sklearn数据标准化" class="headerlink" title="sklearn数据标准化"></a>sklearn数据标准化</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326202859006.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326202859006"></p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326205600713.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326205600713"></p>
-<p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326205700303.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326205700303"></p>
-<h1 id="sklearn数据归一化"><a href="#sklearn数据归一化" class="headerlink" title="sklearn数据归一化"></a>sklearn数据归一化</h1><p><img src="https://gitee.com/cuixinx/picgo/raw/master/cblog/image-20240326205759368.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326205759368"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326195827595.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326195827595"></p>
+<h2 id="sklearn中的实用函数"><a href="#sklearn中的实用函数" class="headerlink" title="sklearn中的实用函数"></a>sklearn中的实用函数</h2><h3 id="计算MSE"><a href="#计算MSE" class="headerlink" title="计算MSE"></a>计算MSE</h3><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326195926839.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326195926839"></p>
+<h3 id="修改参数"><a href="#修改参数" class="headerlink" title="修改参数"></a>修改参数</h3><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326200148202.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326200148202"></p>
+<h1 id="sklearn六大功能模块"><a href="#sklearn六大功能模块" class="headerlink" title="sklearn六大功能模块"></a>sklearn六大功能模块</h1><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326200801103.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326200801103"></p>
+<h3 id="classfication"><a href="#classfication" class="headerlink" title="classfication"></a>classfication</h3><h3 id="regression"><a href="#regression" class="headerlink" title="regression"></a>regression</h3><h3 id="clustering"><a href="#clustering" class="headerlink" title="clustering"></a>clustering</h3><h3 id="dimensionality-reduction"><a href="#dimensionality-reduction" class="headerlink" title="dimensionality reduction"></a>dimensionality reduction</h3><h3 id="model-selection"><a href="#model-selection" class="headerlink" title="model selection"></a>model selection</h3><h3 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h3><h1 id="sklearn数据集读取"><a href="#sklearn数据集读取" class="headerlink" title="sklearn数据集读取"></a>sklearn数据集读取</h1><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326201145599.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326201145599"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326201202885.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326201202885"></p>
+<h1 id="sklearn数据标准化"><a href="#sklearn数据标准化" class="headerlink" title="sklearn数据标准化"></a>sklearn数据标准化</h1><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326202859006.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326202859006"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326205600713.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326205600713"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326205700303.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326205700303"></p>
+<h1 id="sklearn数据归一化"><a href="#sklearn数据归一化" class="headerlink" title="sklearn数据归一化"></a>sklearn数据归一化</h1><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240326205759368.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240326205759368"></p>
 
                 
               </div>
