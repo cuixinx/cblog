@@ -1,0 +1,770 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/cblog/img/fluid.png">
+  <link rel="icon" href="/cblog/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="CuiXin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1.1数据的表示和校验码低电平：0 高电平：1 数据的表示进制的转换 ：任意进制转化为十进制  二进制转八进制：三位一组 二进制转十六进制：四位一组 十进制转二进制：短除法  真值：符合人类习惯的数字 机器数：数字实际存到机器里的形式，正负号需要被“数字化” 定点数：小数点的位置固定  浮点数：小数点的位置不固定   定点数原码：用数值部分表示真值的绝对值，符号位“0&#x2F;1”对应“正&amp;#x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第一章 计算机组成原理与体系结构基础知识">
+<meta property="og:url" content="https://github.com/cuixinx/cblog/2024/02/29/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E4%B8%8E%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1.1数据的表示和校验码低电平：0 高电平：1 数据的表示进制的转换 ：任意进制转化为十进制  二进制转八进制：三位一组 二进制转十六进制：四位一组 十进制转二进制：短除法  真值：符合人类习惯的数字 机器数：数字实际存到机器里的形式，正负号需要被“数字化” 定点数：小数点的位置固定  浮点数：小数点的位置不固定   定点数原码：用数值部分表示真值的绝对值，符号位“0&#x2F;1”对应“正&amp;#x">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240229205341108.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240229205553401.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240229210013784.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240229210045209.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240229210106394.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302173448590.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302173534826.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302173731770.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302173836884.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302174052910.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302174608641.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302175351354.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302175512012.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302181208464.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302181258266.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302181427773.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302181545252.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302183620331.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302193206601.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302193321339.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302193921567.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302194758440.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302194924283.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302195327805.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302195411787.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302195742525.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302200846922.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302201217170.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302202903975.png">
+<meta property="og:image" content="https://github.com/cblog/">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302204116163.png">
+<meta property="og:image" content="https://github.com/cblog/">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302204358990.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302204516454.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302204651524.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302204801322.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302204909710.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302205217437.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302212247094.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302214135757.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302214249995.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302214330843.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302214354111.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302214849493.png">
+<meta property="article:published_time" content="2024-02-29T12:25:45.000Z">
+<meta property="article:modified_time" content="2024-05-19T07:49:49.337Z">
+<meta property="article:author" content="CuiXin">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240229205341108.png">
+  
+  
+  
+  <title>第一章 计算机组成原理与体系结构基础知识 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/cblog/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/cblog/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/cblog/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"github.com","root":"/cblog/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/cblog/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/cblog/js/utils.js" ></script>
+  <script  src="/cblog/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/cblog/">
+      <strong>CuiXin</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/cblog/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="第一章 计算机组成原理与体系结构基础知识"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-02-29 20:25" pubdate>
+          2024年2月29日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">第一章 计算机组成原理与体系结构基础知识</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="1-1数据的表示和校验码"><a href="#1-1数据的表示和校验码" class="headerlink" title="1.1数据的表示和校验码"></a>1.1数据的表示和校验码</h1><p>低电平：0</p>
+<p>高电平：1</p>
+<h2 id="数据的表示"><a href="#数据的表示" class="headerlink" title="数据的表示"></a>数据的表示</h2><p>进制的转换 ：任意进制转化为十进制</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240229205341108.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240229205341108"></p>
+<p>二进制转八进制：三位一组</p>
+<p>二进制转十六进制：四位一组</p>
+<p>十进制转二进制：短除法</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240229205553401.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240229205553401"></p>
+<p>真值：符合人类习惯的数字</p>
+<p>机器数：数字实际存到机器里的形式，正负号需要被“数字化”</p>
+<p>定点数：小数点的位置固定</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240229210013784.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240229210013784"></p>
+<p>浮点数：小数点的位置不固定</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240229210045209.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240229210045209"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240229210106394.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240229210106394"></p>
+<h3 id="定点数"><a href="#定点数" class="headerlink" title="定点数"></a>定点数</h3><p>原码：用数值部分表示真值的绝对值，符号位“0&#x2F;1”对应“正&#x2F;负”    0正1负</p>
+<p>真值有+0和-0两种形式</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302173448590.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302173448590"></p>
+<p>反码：若符号位为0，则反码和原码相同，若符号位为1，则数值位全部取反。</p>
+<p>补码：正数的补码&#x3D;原码</p>
+<p>​           负数的补码&#x3D;反码末位+1</p>
+<p>​          将负数补码转回原码，尾数取反，末位加一</p>
+<p>正0和负0的补码只有一种表现形式</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302173534826.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302173534826"></p>
+<p>移码：补码的基础上将符号位取反。注意：移码只能用于表示整数。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302173731770.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302173731770"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302173836884.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302173836884"></p>
+<h3 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h3><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302174052910.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302174052910"></p>
+<p>其中，M称为尾数，R称为基数，E称为阶码</p>
+<p>阶码：决定浮点数所能表示的数值范围</p>
+<p>尾数：决定浮点数所能表示的数值精度</p>
+<h3 id="校验码"><a href="#校验码" class="headerlink" title="校验码"></a>校验码</h3><h4 id="奇偶校验码"><a href="#奇偶校验码" class="headerlink" title="奇偶校验码"></a>奇偶校验码</h4><p>常用的奇偶校验码：水平奇偶校验码、垂直奇偶校验码、水平垂直奇偶校验码</p>
+<h4 id="循环冗余校验码"><a href="#循环冗余校验码" class="headerlink" title="循环冗余校验码"></a>循环冗余校验码</h4><h4 id="海明码"><a href="#海明码" class="headerlink" title="海明码"></a>海明码</h4><p>海明码构成方法：在数据位之间插入k个校验码，通过扩大码距实现检错和纠错。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302174608641.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302174608641"></p>
+<h1 id="1-2计算机体系结构和指令系统"><a href="#1-2计算机体系结构和指令系统" class="headerlink" title="1.2计算机体系结构和指令系统"></a>1.2计算机体系结构和指令系统</h1><p>计算机体系结构——五大部件：</p>
+<p>1、输入设备</p>
+<p>2、输出设备</p>
+<p>3、运算器</p>
+<p>4、存储器</p>
+<p>5、控制器</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302175351354.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302175351354"><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302175512012.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302175512012"></p>
+<h2 id="计算机体系结构——主存储器"><a href="#计算机体系结构——主存储器" class="headerlink" title="计算机体系结构——主存储器"></a>计算机体系结构——主存储器</h2><p>存储单元：每个存储单元存放一串二进制代码</p>
+<p>存储字：存储单元中二进制代码的组合</p>
+<p>存储字长：存储单元中二进制代码的位数</p>
+<p>存储元：存储二进制的电子元件，每个存储元可存储1bit</p>
+<p><font color='red'>MAR：</font>地址寄存器</p>
+<p><font color='red'>MAR：</font>数据寄存器</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302181208464.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302181208464"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302181258266.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302181258266"></p>
+<h2 id="计算机体系结构——运算器"><a href="#计算机体系结构——运算器" class="headerlink" title="计算机体系结构——运算器"></a>计算机体系结构——运算器</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302181427773.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302181427773"></p>
+<h2 id="计算机体系结构——控制器"><a href="#计算机体系结构——控制器" class="headerlink" title="计算机体系结构——控制器"></a>计算机体系结构——控制器</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302181545252.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302181545252"></p>
+<h2 id="计算机体系结构——Flynn分类法"><a href="#计算机体系结构——Flynn分类法" class="headerlink" title="计算机体系结构——Flynn分类法"></a>计算机体系结构——Flynn分类法</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302183620331.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302183620331"></p>
+<h2 id="指令系统——指令"><a href="#指令系统——指令" class="headerlink" title="指令系统——指令"></a>指令系统——指令</h2><p>指令：是指示计算机执行某种操作的命令，是计算机运行的最小功能单位。</p>
+<p>一台计算机的所有指令的集合构成该机的<font color='red'>指令系统</font>，也称指令集。</p>
+<h2 id="指令系统——指令格式"><a href="#指令系统——指令格式" class="headerlink" title="指令系统——指令格式"></a>指令系统——指令格式</h2><p>一条指令就是机器语言的一个语句，它是一组<font color='red'>有意义</font>的二进制代码。</p>
+<p>一条指令包括<font color='red'>操作码字段</font>和<font color='red'>地址码字段</font></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302193206601.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302193206601"></p>
+<h2 id="指令系统——寻址方式"><a href="#指令系统——寻址方式" class="headerlink" title="指令系统——寻址方式"></a>指令系统——寻址方式</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302193321339.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302193321339"></p>
+<p>数据寻址</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302193921567.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302193921567"></p>
+<h2 id="指令系统——CISC和RISC"><a href="#指令系统——CISC和RISC" class="headerlink" title="指令系统——CISC和RISC"></a>指令系统——CISC和RISC</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302194758440.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302194758440"></p>
+<h2 id="指令系统——指令的流水处理"><a href="#指令系统——指令的流水处理" class="headerlink" title="指令系统——指令的流水处理"></a>指令系统——指令的流水处理</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302194924283.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302194924283"></p>
+<h2 id="指令系统——流水线的计算"><a href="#指令系统——流水线的计算" class="headerlink" title="指令系统——流水线的计算"></a>指令系统——流水线的计算</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302195327805.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302195327805"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302195411787.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302195411787"></p>
+<p>加速比</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302195742525.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302195742525"></p>
+<h1 id="1-3存储系统、总线系统、输入输出和可靠性"><a href="#1-3存储系统、总线系统、输入输出和可靠性" class="headerlink" title="1.3存储系统、总线系统、输入输出和可靠性"></a>1.3存储系统、总线系统、输入输出和可靠性</h1><h2 id="存储系统的层次结构"><a href="#存储系统的层次结构" class="headerlink" title="存储系统的层次结构"></a>存储系统的层次结构</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302200846922.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302200846922"></p>
+<p>cache：处理cpu和主存之间速度不匹配的问题  </p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302201217170.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302201217170"></p>
+<p>cache由硬件自动完成。</p>
+<h2 id="存储系统——存储器分类"><a href="#存储系统——存储器分类" class="headerlink" title="存储系统——存储器分类"></a>存储系统——存储器分类</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302202903975.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302202903975"></p>
+<p><img src="/cblog/" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302202945235"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302204116163.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302204116163"></p>
+<p><img src="/cblog/" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302204149037"></p>
+<h2 id="存储系统——高速缓存Cache"><a href="#存储系统——高速缓存Cache" class="headerlink" title="存储系统——高速缓存Cache"></a>存储系统——高速缓存Cache</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302204358990.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302204358990"></p>
+<h3 id="直接映像"><a href="#直接映像" class="headerlink" title="直接映像"></a>直接映像</h3><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302204516454.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302204516454"></p>
+<h3 id="全相联映像"><a href="#全相联映像" class="headerlink" title="全相联映像"></a>全相联映像</h3><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302204651524.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302204651524"></p>
+<h3 id="组相联映像"><a href="#组相联映像" class="headerlink" title="组相联映像"></a>组相联映像</h3><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302204801322.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302204801322"></p>
+<h3 id="选择替换算法"><a href="#选择替换算法" class="headerlink" title="选择替换算法"></a>选择替换算法</h3><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302204909710.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302204909710"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302205217437.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302205217437"></p>
+<p>cache对程序员来说是透明的，内容是主存内容的副本，既可以存放程序，又可以存放数据。  </p>
+<h2 id="存储系统——主存的编址"><a href="#存储系统——主存的编址" class="headerlink" title="存储系统——主存的编址"></a>存储系统——主存的编址</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302212247094.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302212247094"></p>
+<p>​                                                                                                               位扩展                             字扩展</p>
+<h2 id="存储系统——硬盘（磁盘）"><a href="#存储系统——硬盘（磁盘）" class="headerlink" title="存储系统——硬盘（磁盘）"></a>存储系统——硬盘（磁盘）</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302214135757.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302214135757"></p>
+<h2 id="总线系统"><a href="#总线系统" class="headerlink" title="总线系统"></a>总线系统</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302214249995.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302214249995"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302214330843.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302214330843"></p>
+<h2 id="输入输出技术"><a href="#输入输出技术" class="headerlink" title="输入输出技术"></a>输入输出技术</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302214354111.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302214354111"></p>
+<h2 id="可靠性（计算）"><a href="#可靠性（计算）" class="headerlink" title="可靠性（计算）"></a>可靠性（计算）</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240302214849493.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240302214849493"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/cblog/categories/%E8%BD%AF%E8%80%83/" class="category-chain-item">软考</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>第一章 计算机组成原理与体系结构基础知识</div>
+      <div>https://github.com/cuixinx/cblog/2024/02/29/第一章 计算机组成原理与体系结构基础知识/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>CuiXin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年2月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/cblog/2024/03/05/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" title="第二章 数据结构与算法基础">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">第二章 数据结构与算法基础</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/cblog/2024/02/29/%E8%BD%AF%E8%80%83%E4%BB%8B%E7%BB%8D/" title="软考介绍">
+                        <span class="hidden-mobile">软考介绍</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/cblog/js/events.js" ></script>
+<script  src="/cblog/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/cblog/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/cblog/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/cblog/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

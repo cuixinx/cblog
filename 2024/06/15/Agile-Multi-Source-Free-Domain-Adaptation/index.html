@@ -1,0 +1,750 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/cblog/img/fluid.png">
+  <link rel="icon" href="/cblog/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="CuiXin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Agile Multi-Source-Free Domain Adaptation作者: Xinyao Li, Jingjing Li, Fengling Li, Lei Zhu, Ke Lu 所属机构: 中国电子科技大学（UESTC） 深圳研究院，UESTC 悉尼科技大学 同济大学电子与信息工程学院  源码https:&#x2F;&#x2F;github.com&#x2F;TL-UESTC&#x2F;Bi-ATEN 摘要工作重点不访问">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Agile Multi-Source-Free Domain Adaptation">
+<meta property="og:url" content="https://github.com/cuixinx/cblog/2024/06/15/Agile-Multi-Source-Free-Domain-Adaptation/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Agile Multi-Source-Free Domain Adaptation作者: Xinyao Li, Jingjing Li, Fengling Li, Lei Zhu, Ke Lu 所属机构: 中国电子科技大学（UESTC） 深圳研究院，UESTC 悉尼科技大学 同济大学电子与信息工程学院  源码https:&#x2F;&#x2F;github.com&#x2F;TL-UESTC&#x2F;Bi-ATEN 摘要工作重点不访问">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240616110139495.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240616110207993.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240616110419859.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240616112600736.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240616112615506.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240616112624959.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240616125740033.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240616125841028.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240616125853555.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240616141726994.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240616141742757.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240616215129288.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240616215228532.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240616221948708.png">
+<meta property="article:published_time" content="2024-06-15T11:30:30.000Z">
+<meta property="article:modified_time" content="2024-06-16T14:33:43.993Z">
+<meta property="article:author" content="CuiXin">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240616110139495.png">
+  
+  
+  
+  <title>Agile Multi-Source-Free Domain Adaptation - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/cblog/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/cblog/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/cblog/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"github.com","root":"/cblog/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/cblog/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/cblog/js/utils.js" ></script>
+  <script  src="/cblog/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/cblog/">
+      <strong>CuiXin</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/cblog/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Agile Multi-Source-Free Domain Adaptation"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-15 19:30" pubdate>
+          2024年6月15日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          34 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Agile Multi-Source-Free Domain Adaptation</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Agile-Multi-Source-Free-Domain-Adaptation"><a href="#Agile-Multi-Source-Free-Domain-Adaptation" class="headerlink" title="Agile Multi-Source-Free Domain Adaptation"></a>Agile Multi-Source-Free Domain Adaptation</h1><p><strong>作者:</strong> Xinyao Li, Jingjing Li, Fengling Li, Lei Zhu, Ke Lu</p>
+<h1 id="所属机构"><a href="#所属机构" class="headerlink" title="所属机构:"></a>所属机构:</h1><ol>
+<li>中国电子科技大学（UESTC）</li>
+<li>深圳研究院，UESTC</li>
+<li>悉尼科技大学</li>
+<li>同济大学电子与信息工程学院</li>
+</ol>
+<h1 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h1><p><a href="https://github.com/TL-UESTC/Bi-ATEN">https://github.com/TL-UESTC/Bi-ATEN</a></p>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><h2 id="工作重点"><a href="#工作重点" class="headerlink" title="工作重点"></a>工作重点</h2><p>不访问源数据，自适应的利用来自多个源于训练模型的source知识到target</p>
+<p>提出无需对源主干进行调参的网络</p>
+<p><strong>工作贡献：</strong>Bi-level ATtention ENsemble (Bi-ATEN) module；它学习域内权重和域间集成权重，以在实例特异性和域一致性之间实现良好的平衡。</p>
+<p>研究团队通过对预训练模型中的瓶颈层进行小幅度调整，在DomainNet数据集上的表现达到了或超过了目前最先进的方法。这种调整不仅使模型的性能提升，同时<strong>显著减少了所需训练参数的数量（少于3%），并且大幅度提高了模型的处理速度</strong>（吞吐量增加了8倍）。</p>
+<p>此外，通过较小的修改，所提出的模块可以轻松地配备到现有方法中，并获得超过 4% 的性能提升。</p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>计算量太大，微调大模型参数是把预训练模型转移到下游任务的主要方法</p>
+<p>但是这种方法严重依赖标记的训练数据，并且域不同会严重影响网络性能</p>
+<p>此外，经常拥有不同来源或架构上训练的多个预训练模型</p>
+<p>在现实世界的应用中，最大限度地利用多个预训练模型的知识的需求是很常见的</p>
+<p><strong>无源域适应（Source-Free Domain Adaption, SFDA）指在数据不共享的场合，可以通过源域的预训练模型和目标域的数据进行跨域知识迁移。</strong></p>
+<p>多个无源域自适应（MSFDA）可以通过使多个预训练源模型整体适应未标记的目标域，同时不访问源训练数据来应对这些挑战。</p>
+<p><strong>现有的 MSFDA 方法通常通过两步框架解决该问题：</strong></p>
+<ol>
+<li>针对目标领域彻底调整每个源模型</li>
+<li>了解源重要性权重以组装源模型</li>
+</ol>
+<p>然而，它们在计算效率和可扩展性方面的巨大限制阻碍了它们在大规模问题上的应用。</p>
+<p><strong>第一步：</strong></p>
+<p>要调整的模型数量随着源域的数量线性增加，这对于具有丰富源域的大规模问题来说可能变得不可接受。 调整每个模型的所有参数的必要性也使得将这些方法扩展到更大的模型是不可行的。</p>
+<p>在表 5 中，我们比较了 CAiDA 的性能和可训练参数</p>
+<p>作为典型的 MSFDA 框架，CAiDA 由于 ResNet-50 主干的性能有限而表现不佳。</p>
+<p>通过配备更强大的主干 SwinTransformer，可实现 +12.3% 的潜在性能提升，但需要调整四倍的参数。</p>
+<p>另一方面，我们的目标是通过配备 SwinTransformer 来实现卓越的性能，同时要求显着降低训练成本，为 MSFDA 在大型模型上提供更可行、更敏捷的解决方案。</p>
+<p><strong>第二步：</strong></p>
+<p>对于步骤 (2)，当前的 MSFDA 方法学习域级集成权重，在所有目标实例上应用相同的集成策略。 尽管学习到的权重可以在域可转移性方面直观地解释，但它们不可避免地会在实例级别引入错位和偏差。 这一争议本质上引入了实例特异性和集合权重的域一致性之间的权衡，而现有方法尚未充分利用这一点。</p>
+<ol>
+<li><strong>域级别的集成权重</strong>：当前的方法在所有目标实例上使用相同的集成权重，这意味着它们不会根据每个实例的具体情况调整权重。</li>
+<li><strong>可转移性解释</strong>：这些权重在域之间的转移能力上是有意义的，可以直观地解释为某个域的重要性。</li>
+<li><strong>错位和偏差</strong>：然而，在实例级别，这种统一的策略可能会导致错位（即，某些实例得到不合适的权重分配）和偏差（即，某些实例的特性没有被充分考虑）。</li>
+<li><strong>实例特异性 vs 域一致性</strong>：这种方法没有平衡好实例的特异性（每个实例的独特需求）和域的一致性（在所有实例上应用相同策略）的关系。</li>
+</ol>
+<p>最近模型集成方法的成功表明，通过设计自适应集成权重来传递知识是有效的。虽然最优策略很难学习，但我们求助于对几个特定于领域的瓶颈层进行轻微调整，其成本不到整个模型调整的0.1%。</p>
+<p>如上所述，设计有效权重的关键是利用域级别的可转移性和实例级别的个体特征，如图8所示。</p>
+<p>现有的多源无数据域适应（MSFDA）方法仅仅从特征表示中学习权重，而忽略了特征和输出之间的潜在可转移性不匹配问题。这意味着即使目标域的特征在源域和目标域之间是可转移的，它们也不一定能产生准确的预测。</p>
+<p>解释：</p>
+<ol>
+<li><strong>特征和输出之间的可转移性不匹配</strong>：<ul>
+<li><strong>特征可转移性</strong>：特征在源域和目标域之间的可转移性是指这些特征在两个域之间的相似性或兼容性。高可转移性特征意味着这些特征在源域和目标域都表现良好。</li>
+<li><strong>输出准确性</strong>：尽管特征在两个域之间可以转移，但它们并不总是能保证在目标域中的输出是准确的。这是因为特征和最终预测之间可能存在不匹配。</li>
+</ul>
+</li>
+<li><strong>示例：</strong>假设我们有一个在猫和狗的图像分类任务上训练的模型。该模型学习了很多关于猫和狗的特征。如果我们将这个模型应用于一个新任务，比如区分狮子和老虎的图像，模型可能会成功地转移一些基本的动物特征（如毛发、四肢的形状等），但这些特征未必足以准确地区分狮子和老虎。因此，尽管特征在源任务和目标任务之间是可转移的，但由于这些特征在新任务中的适用性不足，预测结果可能并不准确。</li>
+</ol>
+<p><strong>对于特征表示，首先学习域内权重，找到产生无偏输出的最兼容的分类器来减少可转移性失配。</strong></p>
+<p><strong>利用所选源分类器的无偏输出，我们进一步学习将源输出组合到最终结果中的域间集成权重。我们提出了一种新的双层注意集成(BiAten)，通过注意机制来有效地学习这两个权重。</strong></p>
+<p>BiAten能够根据每个实例的特殊性定制其整体决策，同时保持跨域一致的更广泛的可转移性趋势。这种平衡对于准确的领域适应是至关重要的，在这种情况下，模型需要利用特定于领域的知识，而不会丢失驱动适应的总体模式。</p>
+<p>该方法可以简化为域间注意集成(ATEN)，并通过替换它们的权重学习模块嵌入到现有的MSFDA方法中。</p>
+<p>策略：</p>
+<ol>
+<li><strong>实例特异性</strong>：确保模型能够根据每个具体实例的特性进行调整，以提供最合适的处理结果。</li>
+<li><strong>域一致性</strong>：在不同域之间保持处理策略的一致性，确保结果的可靠性。</li>
+<li><strong>轻微调整瓶颈层</strong>：通过对模型的瓶颈层进行小幅度调整，提高模型的适应性和性能。</li>
+</ol>
+<h2 id="贡献总结"><a href="#贡献总结" class="headerlink" title="贡献总结"></a>贡献总结</h2><ol>
+<li><p>We propose a novel framework to agilely handle<br>MSFDA by learning fine-grained domain adaptive ensemble<br>strategies.</p>
+<p>我们提出了一种新的框架，通过学习细粒度域自适应集成策略来灵活地处理MSFDA。</p>
+</li>
+<li><p>We design an effective module Bi-ATEN that<br>learns both intra-domain weights and inter-domain ensem-<br>ble weights. Its light version ATEN can be equipped to exist-<br>ing MSFDA methods to boost performance.</p>
+<p>我们设计了一个同时学习域内权值和域间集成权值的有效模块BiAten。它的轻型版本ATEN可以配备到现有的MSFDA方法，以提高性能。</p>
+</li>
+<li><p>Our method<br>significantly reduces computational costs while achieving<br>state-of-the-art performance, making it feasible for real-life<br>transfer applications with large source-trained models.</p>
+<p>我们的方法显著降低了计算成本，同时获得了最先进的性能，使其适用于具有大型源训练模型的真实传输应用程序。</p>
+</li>
+<li><p>Extensive experiments on three challenging benchmarks and<br>detailed analysis demonstrates the success of our design.</p>
+<p>在三个具有挑战性的基准上进行的大量实验和详细的分析证明了我们的设计是成功的。</p>
+</li>
+</ol>
+<h1 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h1><p>**Source-free domain adaptation (SFDA)**：不可访问源数据，只能访问源预训练模型</p>
+<p>**Multi-source domain adaptation (MSDA)**：MSDA的目标是利用多个源域的数据来训练模型，使其能够更好地适应和预测目标域的数据。这种方法假设多个源域提供了更丰富的特征和信息，有助于模型更准确地理解和适应目标域的分布。</p>
+<p><strong>Multi-source-free domain adaptation (MSFDA)：</strong>MSFDA的目标是使用多个预训练的源模型，而不是源数据，来帮助模型适应目标域。这需要设计新的算法和方法来有效地利用源模型的知识。</p>
+<h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><h2 id="问题定义（gpt）"><a href="#问题定义（gpt）" class="headerlink" title="问题定义（gpt）"></a>问题定义（gpt）</h2><p>目标是优化所有 𝑛个源模型以在目标域上达到满意的性能。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240616110139495.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240616110139495"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240616110207993.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240616110207993"></p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>我们不是通过特定的源分类器直接生成输出，而是通过将当前特征通过所有源分类器转发来计算所有可能的跨域输出。在特征表示和所有输出向量之间计算域内权重{αi}n i&#x3D;1，以获得无偏输出。</p>
+<p>随后，学习域间权重β以将无偏的域输出组装成最终的分类结果。请注意，源主干和源分类器在整个训练过程中都保持冻结。</p>
+<p>该框架的核心是BiAten模块，如图9右侧所示。它同时从特征输出相似性中学习{αi}n i&#x3D;1，从特征-特征相似性中学习β。接下来，我们详细阐述了各个模块的详细设计。</p>
+<h2 id="两级注意力集成"><a href="#两级注意力集成" class="headerlink" title="两级注意力集成"></a>两级注意力集成</h2><p><strong>Intra-domain weights.<strong>：目前所有的MSFDA方法都采用端到端的训练范式，将每个源模型作为一个整体来对待，然而，目标和源数据之间的分布变化可能会导致源模型组件内部的不匹配，如瓶颈和分类器。受深度模型重组方法的启发，我们提出</strong>通过执行部分模型重组来改进现有的MSFDA范例</strong>。我们探索适合目标数据特征的兼容瓶颈-分类器对，并通过对瓶颈-分类器对的跨域加权输出求和得到重组结果。我们首先通过以下方式获得其跨域输出：</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240616110419859.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240616110419859"></p>
+<h2 id="域内权重"><a href="#域内权重" class="headerlink" title="域内权重"></a>域内权重</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240616112600736.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240616112600736"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240616112615506.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240616112615506"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240616112624959.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240616112624959"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240616125740033.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240616125740033"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240616125841028.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240616125841028"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240616125853555.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240616125853555"></p>
+<h2 id="域间权重"><a href="#域间权重" class="headerlink" title="域间权重"></a>域间权重</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240616141726994.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240616141726994"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240616141742757.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240616141742757"></p>
+<h2 id="动态聚类保证结果正确"><a href="#动态聚类保证结果正确" class="headerlink" title="动态聚类保证结果正确"></a>动态聚类保证结果正确</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240616215129288.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240616215129288"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240616215228532.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240616215228532"></p>
+<h2 id="Attention-Ensemble-作为可插入模块"><a href="#Attention-Ensemble-作为可插入模块" class="headerlink" title="Attention Ensemble 作为可插入模块"></a>Attention Ensemble 作为可插入模块</h2><p>当域内权重（αi）仅在第 𝑖 个位置为1，其余位置为0时，Bi-ATEN将简化为仅使用域间权重（<em>β</em>）的注意力集成模块（ATEN）。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240616221948708.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240616221948708"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/cblog/categories/%E6%96%87%E7%8C%AE/" class="category-chain-item">文献</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Agile Multi-Source-Free Domain Adaptation</div>
+      <div>https://github.com/cuixinx/cblog/2024/06/15/Agile-Multi-Source-Free-Domain-Adaptation/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>CuiXin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年6月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/cblog/2024/07/02/%E8%82%BA%E7%99%8C%E7%94%9F%E5%AD%98%E6%9C%9F%E9%A2%84%E6%B5%8B/" title="肺癌生存期预测">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">肺癌生存期预测</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/cblog/2024/05/19/hello-world/" title="Hello World">
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/cblog/js/events.js" ></script>
+<script  src="/cblog/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/cblog/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/cblog/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/cblog/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

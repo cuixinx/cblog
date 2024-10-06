@@ -1,0 +1,787 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/cblog/img/fluid.png">
+  <link rel="icon" href="/cblog/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="CuiXin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="题目Uncertainty-Aware Pseudo-Label Filtering for Source-Free Unsupervised Domain Adaptation 用于无源无监督域适应的不确定性感知伪标签过滤 Abstract现有的启发式噪声伪标签过滤方法都涉及引入额外的模型，这些模型对模型假设敏感并且可能引入额外的错误或错误标签。 （启发式噪声（heuristic noise）是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Uncertainty-Aware Pseudo-Label Filtering for Source-Free Unsupervised Domain Adaptation">
+<meta property="og:url" content="https://github.com/cuixinx/cblog/2024/07/22/Uncertainty-Aware-Pseudo-Label-Filtering-for-Source-Free-Unsupervised-Domain-Adaptation/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="题目Uncertainty-Aware Pseudo-Label Filtering for Source-Free Unsupervised Domain Adaptation 用于无源无监督域适应的不确定性感知伪标签过滤 Abstract现有的启发式噪声伪标签过滤方法都涉及引入额外的模型，这些模型对模型假设敏感并且可能引入额外的错误或错误标签。 （启发式噪声（heuristic noise）是">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240805001307235.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804163432925.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804164048541.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804163830413.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804164105265.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804212204513.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804212248032.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804212351925.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804212402639.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804215442418.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804215559173.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804215831150.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804220112017.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804220158569.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804222023412.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804222504654.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804222717194.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804222602662.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804223027617.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804224808127.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804231201975.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804233116466.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804233129250.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804233247972.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804234103392.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804234551403.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804234752129.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804234846039.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804235013697.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804235354268.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804235919125.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/1-s2.0-S0925231223013139-gr8_lrg.jpg">
+<meta property="article:published_time" content="2024-07-22T07:31:02.000Z">
+<meta property="article:modified_time" content="2024-08-04T19:23:40.002Z">
+<meta property="article:author" content="CuiXin">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240805001307235.png">
+  
+  
+  
+  <title>Uncertainty-Aware Pseudo-Label Filtering for Source-Free Unsupervised Domain Adaptation - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/cblog/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/cblog/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/cblog/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"github.com","root":"/cblog/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/cblog/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/cblog/js/utils.js" ></script>
+  <script  src="/cblog/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/cblog/">
+      <strong>CuiXin</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/cblog/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Uncertainty-Aware Pseudo-Label Filtering for Source-Free Unsupervised Domain Adaptation"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-22 15:31" pubdate>
+          2024年7月22日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          53 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Uncertainty-Aware Pseudo-Label Filtering for Source-Free Unsupervised Domain Adaptation</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><strong>Uncertainty-Aware Pseudo-Label Filtering for Source-Free Unsupervised Domain Adaptation</strong></p>
+<p><strong>用于无源无监督域适应的不确定性感知伪标签过滤</strong></p>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p><strong>现有的启发式噪声伪标签过滤方法都涉及引入额外的模型，这些模型对模型假设敏感并且可能引入额外的错误或错误标签。</strong></p>
+<p>（启发式噪声（heuristic noise）是指在数据标签中引入的基于启发式方法而产生的错误或不准确标签。</p>
+<p>使用启发式规则或算法对数据进行标注，但这些规则或算法可能并不总是准确，从而导致噪声标签的产生。）</p>
+<p><strong>在这项工作中，我们提出了一种称为不确定性感知伪标签过滤适应（UPA）的方法，以从粗到细的方式有效地解决这个问题。</strong></p>
+<ol>
+<li><p><strong>首先介绍一个名为自适应伪标签选择（APS）的样本选择模块，它负责过滤嘈杂的伪标签。</strong></p>
+<p>APS 利用简单的样本不确定性估计方法，通过聚合邻近样本的知识，并选择置信样本作为干净的伪标记。</p>
+</li>
+<li><p><strong>此外，我们结合了类感知对比学习（CACL），通过学习由伪标签监督的鲁棒的成对表示来减轻伪标签噪声的记忆。</strong></p>
+</li>
+<li><p><strong>通过在三个广泛使用的基准上进行的大量实验，我们证明了我们提出的方法实现了与最先进的 SFUDA 方法相当的竞争性能。</strong></p>
+</li>
+</ol>
+<h1 id="1、Introduction"><a href="#1、Introduction" class="headerlink" title="1、Introduction"></a>1、Introduction</h1><p>SFUDA 的目标是将预训练模型（最初在源域的标记训练集上进行训练）转移到仅提供对未标记训练数据的访问的目标域。</p>
+<p>通常，SFUDA 方法旨在最大限度地利用类感知信息，前提是只能访问目标数据。</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>1.SFUDA 中，自训练可以迭代选择置信目标样本作为伪标记样本来指导目标模型学习。</p>
+<p>2.现有的启发式噪声伪标签过滤方法引入额外的模型，可能会引入额外的错误标签。</p>
+<h2 id="贡献"><a href="#贡献" class="headerlink" title="贡献"></a>贡献</h2><p>1.提出UPA伪标签过滤框架，能够有效解决高伪标签噪声的挑战，而不需要额外的模型来进行不确定性估计。引入了一种不确定性感知机制——APS，有效过滤嘈杂伪标签。</p>
+<p>2.引入了一种语义一致性学习策略，该策略结合了伪标记集的类对比学习。这种策略可以防止标签噪声的记忆并确保稳健的学习。</p>
+<p>3.在三个标准数据集（Office、Office-Home 和 VisDA-C）进行了广泛的实验。</p>
+<h1 id="2、Related-Work"><a href="#2、Related-Work" class="headerlink" title="2、Related Work"></a>2、Related Work</h1><h2 id="2-1-UDA"><a href="#2-1-UDA" class="headerlink" title="2.1 UDA"></a>2.1 UDA</h2><p>UDA 方法的开发是为了减少源域和目标域之间的分布差异。这些方法大致可分为两大类。</p>
+<p>第一种方法侧重于通过执行特征变换来最小化跨域分布散度的各种指标。</p>
+<p>第二种方法采用自学习方案。在该方案中，利用源域的标记数据来标记未标记的数据，然后采用自训练或伪标记方法。</p>
+<h2 id="2-2-SFUDA"><a href="#2-2-SFUDA" class="headerlink" title="2.2 SFUDA"></a>2.2 SFUDA</h2><p>SFUDA 专注于将知识从预训练的源模型转移到目标域，而不需要标记源数据。现有的 SFUDA 方法可分为两大类。</p>
+<p>第一组方法侧重于“跨域对齐”策略。这些方法在源域假设下或通过利用源模型信息再现虚假源知识。</p>
+<p>第二组方法由自学习方法组成，解决模型预测不可靠的问题。不确定性估计的基础是模型不确定性或数据不确定性 。</p>
+<h2 id="2-3-使用嘈杂的标签学习"><a href="#2-3-使用嘈杂的标签学习" class="headerlink" title="2.3 使用嘈杂的标签学习"></a>2.3 使用嘈杂的标签学习</h2><p>最近，监督对比学习 Supervised Contrastive Learning (SCL) 也被用于带有噪声标签的学习 </p>
+<h1 id="3、Method"><a href="#3、Method" class="headerlink" title="3、Method"></a>3、Method</h1><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240805001307235.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240805001307235"></p>
+<h2 id="3-1"><a href="#3-1" class="headerlink" title="3.1"></a>3.1</h2><h2 id="问题设置"><a href="#问题设置" class="headerlink" title="问题设置"></a>问题设置</h2><h2 id="伪标签介绍（SHOT筛选）"><a href="#伪标签介绍（SHOT筛选）" class="headerlink" title="伪标签介绍（SHOT筛选）"></a>伪标签介绍（SHOT筛选）</h2><p>伪标签生成过程的概述：它使用模型的<strong>预测概率</strong>和<strong>类别样本数量</strong>作为权重来估计类别特征分布。</p>
+<h3 id="伪标签生成过程的详细步骤"><a href="#伪标签生成过程的详细步骤" class="headerlink" title="伪标签生成过程的详细步骤"></a>伪标签生成过程的详细步骤</h3><p>伪标签生成过程首先根据分配给目标训练样本的预测概率聚合特征。</p>
+<h3 id="类别特征聚合公式"><a href="#类别特征聚合公式" class="headerlink" title="类别特征聚合公式"></a>类别特征聚合公式</h3><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804163432925.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240804163432925"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804164048541.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240804164048541"></p>
+<h3 id="中间伪标签的生成"><a href="#中间伪标签的生成" class="headerlink" title="中间伪标签的生成"></a>中间伪标签的生成</h3><p>然后，通过将样本分配给特征表示空间中最近的类别中心（根据余弦相似性度量）来生成中间伪标签 ：</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804163830413.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240804163830413"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804164105265.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240804164105265"></p>
+<h3 id="最终类别质心的计算"><a href="#最终类别质心的计算" class="headerlink" title="最终类别质心的计算"></a>最终类别质心的计算</h3><p>这部分描述了最终类别质心的计算过程，并生成最终的伪标签。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804212204513.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240804212204513"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804212248032.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240804212248032"></p>
+<h3 id="更新伪标签"><a href="#更新伪标签" class="headerlink" title="更新伪标签"></a>更新伪标签</h3><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804212351925.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240804212351925"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804212402639.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240804212402639"></p>
+<h2 id="3-2-自适应伪标签选择"><a href="#3-2-自适应伪标签选择" class="headerlink" title="3.2 自适应伪标签选择"></a>3.2 自适应伪标签选择</h2><p>在生成伪标签时会考虑整体数据表示分布，这可能导致噪声。</p>
+<p><strong>假设：</strong></p>
+<ol>
+<li><strong>易于聚类的样本</strong>：在特征空间g(xt) 中，容易聚类的样本由于同类样本特征相似，包含较高程度的领域共享信息。</li>
+<li><strong>不确定样本</strong>：大量不确定样本位于聚类中心之间，这主要是由于领域之间的分布偏移引起的。</li>
+</ol>
+<p>受到上述假设的启发，作者提出了一种新的伪标签选择机制，称为<strong>APS（Adaptive Pseudo-Label Selection）</strong>。该机制通过迭代地通过附近邻居来估计样本的不确定性。</p>
+<p>先验概率：在没有抽牌之前，我们认为抽到红桃（或任何一种花色）的概率是均等的，即 P(红桃)&#x3D;1&#x2F;4</p>
+<p>后验概率：现在我们知道抽到的牌是红色的，我们要计算这张牌是红桃的概率。红桃和方块各占26张牌中的一半。</p>
+<p>根据余弦距离构造最近邻Nt，利用Nt进行基于距离的投票，估计样本xt的后验概率。</p>
+<p>（4）<img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804215442418.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240804215442418"></p>
+<p>伪标签更新公式</p>
+<p>（5）<img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804215559173.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240804215559173"></p>
+<p>根据经验观察，(4)——(5)——(4) 两次迭代就可以收敛。</p>
+<p>置信度得分 qt 定义如下：</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804215831150.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240804215831150"></p>
+<h3 id="网络结构图"><a href="#网络结构图" class="headerlink" title="网络结构图"></a>网络结构图</h3><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804220112017.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240804220112017"></p>
+<p>图 2. 用于解决 SFUDA 任务的 UPA 综合框架。 LIM 适用于所有样品。 APS 模块执行两轮不确定性估计，样本 Ixk∈Nt [ˆ yk &#x3D; e yt] 对 qt 有用。 qt 在每个类内进行排序，形成置信样本集 H，然后将 LCE 和 LCL 应用于 H。具体来说，每个样本 xi 及其强增强视图 x′ i 用于类对比（由彩色矩阵表示）块）拼箱。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804220158569.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240804220158569"></p>
+<p>图 3. 使用余弦相似度 s 计算置信度得分 qt。</p>
+<h3 id="伪标签选择标准"><a href="#伪标签选择标准" class="headerlink" title="伪标签选择标准"></a>伪标签选择标准</h3><p>基于模型预测不确定性假设，为了避免在伪标签选择中遗漏类别，每个伪类中的样本首先根据每个时期的置信度得分 qt 进行排序。然后，选择每个伪类的前 γ% 置信样本。然后将这些选定的样本分组为置信样本集 H。</p>
+<h2 id="3-3-类感知对比学习"><a href="#3-3-类感知对比学习" class="headerlink" title="3.3 类感知对比学习"></a>3.3 类感知对比学习</h2><h3 id="类感知对比学习的基本概念"><a href="#类感知对比学习的基本概念" class="headerlink" title="类感知对比学习的基本概念"></a>类感知对比学习的基本概念</h3><ol>
+<li><strong>类感知（Class-Aware）</strong>：在对比学习过程中，考虑样本所属的类别信息。通过引入类别标签，增强模型对同类样本和不同类样本的区分能力。</li>
+<li><strong>对比学习（Contrastive Learning）</strong>：通过对比样本对之间的相似性和差异性来学习数据的表示。通常使用正样本对和负样本对来训练模型，使相似的样本对靠近，不相似的样本对分开。</li>
+</ol>
+<h3 id="3-3-1损失函数"><a href="#3-3-1损失函数" class="headerlink" title="3.3.1损失函数"></a>3.3.1损失函数</h3><p>具体来说，在大小为 B 的小批量内，我们将 i ∈ I &#x3D; {1, · · · , 2B} 定义为任意增强训练样本的索引。考虑如图 4 所示的强增强视图。为了创建正对，如果所选置信样本共享相同的伪类，则将它们彻底耦合。形式上，锚点 i 的正对集形成为：</p>
+<p><strong>正样本对</strong>：</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804222023412.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240804222023412"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804222504654.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240804222504654"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804222717194.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240804222717194"></p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p><strong>1、类对比损失公式为：</strong></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804222602662.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240804222602662"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804223027617.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240804223027617"></p>
+<p><strong>2、交叉熵损失</strong></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804224808127.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240804224808127"></p>
+<p><strong>3、信息最大化损失</strong></p>
+<p>信息最大化损失LIM[22]旨在从输入数据中提取和利用相关信息并对所有目标数据进行聚类。</p>
+<p><strong>4、最终损失函数</strong></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804231201975.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240804231201975"></p>
+<p>其中 β &gt; 0 作为平衡因子。</p>
+<h2 id="3-4渐进式伪标签选择"><a href="#3-4渐进式伪标签选择" class="headerlink" title="3.4渐进式伪标签选择"></a>3.4渐进式伪标签选择</h2><p>考虑到源域和目标域之间经常存在大量域转移，在单次迭代中准确确定完整的真实伪标签集是不切实际的。因此，我们采用渐进策略，在两个步骤之间交替：（1）选择干净的伪标记样本，（2）相应地调整模型。这种方法与深度学习中常用的基于时代的协议非常吻合。算法 1 概述了 UPA 的完整训练过程。</p>
+<h1 id="4、实施"><a href="#4、实施" class="headerlink" title="4、实施"></a>4、实施</h1><h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><p><strong>Office：</strong>Office 是一个小型数据集，包含真实办公场景中的三个域（Amazon（A）、Dslr（D）和Webcam（W）），每个域有31个类。</p>
+<p><strong>Office-Home：</strong>Office-Home是一个媒体大小的数据集，包含 65 个类别，跨越四个领域：艺术 (Ar)、剪贴画 (Cl)、产品 (Pr) 和现实世界 (Rw)。 </p>
+<p><strong>VisDA-C</strong>：VisDA-C 是一个包含 12 个类别的大型数据集，具有从源合成（S）域到目标真实（R）域的适应任务。</p>
+<p><strong>DomainNet-126</strong>：DomainNet-126 是先前工作使用的 DomainNet [28] 的子集。它有来自 4 个领域（真实、素描、剪贴画、绘画）的 126 个类，我们评估从 4 个领域构建的 7 个领域转换。</p>
+<h2 id="Baselines"><a href="#Baselines" class="headerlink" title="Baselines"></a>Baselines</h2><p>对于源可用的无监督域适应，我们将我们提出的方法与许多基线进行比较：CDAN [23]、MCC [13]、MDD [48]、BCDM [20]、FixBi [25]、CAN [14] 和 SRDC [37]。对于无源无监督域适应，我们与以下基线进行比较：3C-GAN [19]、U-SFAN [32]、DIPE [43]、HCL [12]、NRC [46]、CoWA-JMDS [16]、 AdaContrast [2]、CDCL [44]、Tent [42]、D-MCD [5]、VDMDA [38]、SSNLL [3] 和 SHOT [22]。</p>
+<h2 id="在源域上进行预训练"><a href="#在源域上进行预训练" class="headerlink" title="在源域上进行预训练"></a>在源域上进行预训练</h2><p>为了确保与以前的方法[3,16,22,32,38,43,44,46]进行全面比较，我们使用相同的ResNet[10]模型。特别是，我们将 ResNet-50 用于 Office、Office-Home 和 DomainNet126，用于 Visda-C 的 ResNet101。采用 ResNet 的特征提取器组件作为主干，而最终的全连接 (FC) 层则替换为瓶颈层和特定于任务的 FC 层。</p>
+<h2 id="目标域的适应"><a href="#目标域的适应" class="headerlink" title="目标域的适应"></a>目标域的适应</h2><p>目标模型使用预先训练的源模型进行初始化，并且分类器权重在整个 SFUDA 阶段保持固定。采用随机梯度下降优化器，动量为 0.9，权重衰减为 1e-3。训练批量大小设置为 64。对于 Office、Office-Home 和 DomainNet-126 数据集，初始学习率 η0 配置为 1e-2，而对于 VisDA-C，则设置为 1e-3。在训练过程中，瓶颈层的学习率确定为骨干层的10倍。训练过程跨越 15 个 epoch，从第一个 epoch 期间的线性学习率预热开始。在预热阶段之后，学习率根据余弦衰减时间表逐渐降低，没有任何重新启动。为了确保训练期间的收敛，我们根据经验将损失权重设置为 β &#x3D; 0.3。此外，还定义了以下超参数：Office、Office-Home、DomainNet-126 和 VisDAC 数据集的温度 τ &#x3D; 0.1、邻域大小 K &#x3D; 4 和比率 γ &#x3D; 0.6&#x2F;0.6&#x2F;0.6&#x2F;0.8。对比学习中的数据增强遵循与 MoCov2 [4] 相同的设置。</p>
+<h1 id="5、实验"><a href="#5、实验" class="headerlink" title="5、实验"></a>5、实验</h1><h2 id="5-1实验结果"><a href="#5-1实验结果" class="headerlink" title="5.1实验结果"></a>5.1实验结果</h2><h3 id="VisDA-C-结果"><a href="#VisDA-C-结果" class="headerlink" title="VisDA-C 结果"></a>VisDA-C 结果</h3><p>如表 1 所示，我们的方法比基本方法 SHOT (82.9%) 取得了显着的改进，显着提高了 5.8%。此外，我们的方法超越了之前最先进的 SFUDA 方法 1.2%。与其他 UDA 方法相比，显着提高了 1.5%。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804233116466.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240804233116466"></p>
+<h3 id="Office-Home结果"><a href="#Office-Home结果" class="headerlink" title="Office-Home结果"></a>Office-Home结果</h3><p>表 2 显示了 Office-Home 数据集上的实验结果。我们的方法显示出显着的改进，与 SHOT 基线相比实现了 1.2% 的大幅提升。值得注意的是，我们的方法优于现有最先进的 SFUDA 和 UDA 方法，建立了新的基准。具体来说，在 5 个域转移任务中实现了最高精度，包括 Cl→Pr 和 Cl→Rw。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804233129250.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240804233129250"></p>
+<h3 id="Office结果"><a href="#Office结果" class="headerlink" title="Office结果"></a>Office结果</h3><p>Office 数据集的结果如表 3 所示。尽管训练数据集的大小有限，但我们的方法表现出与最先进的 SFUDA 方法相当的性能。具体来说，我们观察到与基线 SHOT 方法相比，显着提高了 1.3% 以上。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804233247972.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240804233247972"></p>
+<h3 id="Domainnet-126-结果"><a href="#Domainnet-126-结果" class="headerlink" title="Domainnet-126 结果"></a>Domainnet-126 结果</h3><p>表 4 报告了 7 个域转移任务的结果。在这些方法中，我们的 UPA 遵循 SFUDA 方法，以 68.0% 的平均准确率脱颖而出。与其他方法相比，UPA 不仅超出基线 SHOT 0.9%，而且优于其他竞争方法。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804234103392.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240804234103392"></p>
+<h2 id="5-2-消融实验"><a href="#5-2-消融实验" class="headerlink" title="5.2 消融实验"></a>5.2 消融实验</h2><p>我们进行了一系列消融研究实验，以更好地阐明我们方法的有效性。子模块的消融。我们进行了一系列全面的消融研究实验，以进一步研究我们提出的方法的有效性。在表 5 中，我们展示了对三个数据集的子组件消融研究的结果。具体来说，我们将我们的方法 (Methods.3) 与其他两个变体进行比较：Methods.1（指的是 SHOT 方法）和Methods.2（包括 APS 模块，其中交叉熵损失 (LCE) 仅应用于置信样本集H.</p>
+<p>仅考虑 APS 时，我们观察到 Office、OfficeHome 和 VisDA-C 数据集分别显着提高了 0.9%、0.9% 和 1.3%。</p>
+<p>通过结合对比学习来减轻噪声标签记忆的影响，我们的方法在 Office 和 Office-Home 数据集上分别实现了 0.4% 和 0.3% 的额外性能改进。值得注意的是，CACL 模块在 VisDA-C 数据集上表现出 4.5% 的显着性能提升。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804234551403.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240804234551403"></p>
+<p>伪标签选择的有效性。进行消融研究以验证我们的 APS 模块中伪标签不确定性估计方法的有效性。表 6 比较了估计伪标签不确定性的三种不同方法：(1) 与相应伪标签 (Prob) 相关的模型概率 φ(xt)，(2) 预测 φ(xt) 的负熵 (Ent) ，(3) 与聚类中心 d(g(xt), μ(1)) 的余弦相似度 (Cossim)。结果表明，我们的 APS 模块在 VisDA-C 数据集的传输任务 S→R 和 Office-Home 数据集的 Ar→Pr 任务上实现了最高性能。这表明使用 KNN 近邻的不确定性估计优于其他方法。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804234752129.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240804234752129"></p>
+<p>APS 的迭代细化。 APS中不确定性估计的迭代细化旨在提高伪标签分布感知的准确性。为了验证我们的迭代设计，我们进行了实验并在表 7 中列出了结果。该表表明，合并第二次迭代可以使 VisDA-C 数据集显着提高 1.5%，使 Office 数据集显着提高 0.4%。然而，额外的迭代不会带来进一步的改进，这表明两次迭代为置信度得分估计提供了最佳数量。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804234846039.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240804234846039"></p>
+<p>防止标签噪音记忆。所提出的方法 CACL 通过利用选定的干净伪标签来合并类别对比学习 [15]。这种集成的目的是促进同一类样本的不同视图中一致的概率输出。为了评估它在减轻伪标签噪音记忆方面的功效，我们进行了一项比较实验。图 7 所示的结果说明了所选伪标签的准确性。很明显，CACL 显着提高了选择过程的精度，凸显了其在提高 APS 整体性能方面的有效性。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804235013697.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240804235013697"></p>
+<p>超参数的影响。我们进行了一项评估，以评估我们的方法 UPA 中三个关键超参数对 Office 和 VisDA-C 数据集的敏感性。这些超参数如下：（1）置信样本选择比，表示为γ，（2）LCL中的温度参数τ，（3）最近邻居的数量，表示为K。公平比较，所有其他参数均保持默认值。</p>
+<p>结果如图 5 所示，表明这些超参数对模型性能的敏感性较低。这一特性在实际应用中非常有利。尽管 VisDA-C 数据集上 γ 的选择更为关键，因为它取决于源模型的性能和目标数据集的特征，但我们的方法在各种 γ 值上始终优于先前的方法，范围从0.5至0.9。值得注意的是，我们使用的默认训练参数对于 VisDA-C 数据集可能不是最佳的。然而，当面对这些参数的变化时，UPA 表现出相对稳定性。这使我们能够选择广泛的参数用于测试目的，同时尽可能在多个数据集上保持一致的训练参数。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804235354268.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240804235354268"></p>
+<h2 id="5-3可视化和分析"><a href="#5-3可视化和分析" class="headerlink" title="5.3可视化和分析"></a>5.3可视化和分析</h2><h3 id="模型行为可视化"><a href="#模型行为可视化" class="headerlink" title="模型行为可视化"></a>模型行为可视化</h3><p>为了评估我们提出的方法 UPA 的视觉效果，我们使用 t-SNE 可视化对 Office-Home 数据集的 Ar→Pr 基准进行了全面分析 [40]。比较两个角度的结果：域转移（图6a与图6b）和类别辨别能力（图6c与图6d）。图 6a 显示，对目标域数据的初始预测表现出聚类特征，但具有显着的类重叠。然而，随着UPA的整合，结构域偏移显着减少，导致更明显的聚类结构（图6b）。此外，UPA 实现了清晰的类边界，如视觉比较所示（图 6c 与图 6d）。这些视觉见解为我们提出的方法的辨别能力提供了令人信服的证据，突出了其在增强领域适应性能方面的有效性。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/image-20240804235919125.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240804235919125"></p>
+<p>图 6. 使用 ResNet50 对 SFUDA 任务 Ar→Pr（办公室-家庭）进行 t-SNE 可视化。 (a)(b)：适应前后的源特征（即红点）和目标特征（即蓝点）可视化； (c)(d)：适应前后目标特征的类分布（即不同颜色）。</p>
+<p><strong>训练曲线</strong></p>
+<p>UPA（无 CACL）和 UPA 方法在两个适应任务中的准确性进展如图 8a 和图 8b 所示。结果明确地证明了我们的方法所实现的准确率的快速且持续的增长。值得注意的是，我们的方法在这两项任务上表现出快速收敛，通常在大约 10 个时期内，进一步证实了其有效性并验证了其性能。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/1-s2.0-S0925231223013139-gr8_lrg.jpg" srcset="/cblog/img/loading.gif" lazyload alt="img"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/cblog/categories/%E6%96%87%E7%8C%AE/" class="category-chain-item">文献</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Uncertainty-Aware Pseudo-Label Filtering for Source-Free Unsupervised Domain Adaptation</div>
+      <div>https://github.com/cuixinx/cblog/2024/07/22/Uncertainty-Aware-Pseudo-Label-Filtering-for-Source-Free-Unsupervised-Domain-Adaptation/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>CuiXin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年7月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/cblog/2024/09/07/leetcode/" title="leetcode">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">leetcode</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/cblog/2024/07/02/%E8%82%BA%E7%99%8C%E7%94%9F%E5%AD%98%E6%9C%9F%E9%A2%84%E6%B5%8B/" title="肺癌生存期预测">
+                        <span class="hidden-mobile">肺癌生存期预测</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/cblog/js/events.js" ></script>
+<script  src="/cblog/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/cblog/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/cblog/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/cblog/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

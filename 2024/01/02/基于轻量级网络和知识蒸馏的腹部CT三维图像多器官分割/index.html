@@ -1,0 +1,748 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/cblog/img/fluid.png">
+  <link rel="icon" href="/cblog/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="CuiXin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Efficient Multi-Organ Segmentation From 3DAbdominal CT Images With LightweightNetwork and Knowledge Distillation 高效的三维多器官分割腹部CT图像轻量网络与知识蒸馏任务腹部CT图像多器官分割 背景 3D卷积神经网络（CNN）在自动医学图像分割任务中取得了令人鼓舞的性能。然而，大多数现有的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于轻量级网络和知识蒸馏的腹部CT三维图像多器官分割">
+<meta property="og:url" content="https://github.com/cuixinx/cblog/2024/01/02/%E5%9F%BA%E4%BA%8E%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%BD%91%E7%BB%9C%E5%92%8C%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F%E7%9A%84%E8%85%B9%E9%83%A8CT%E4%B8%89%E7%BB%B4%E5%9B%BE%E5%83%8F%E5%A4%9A%E5%99%A8%E5%AE%98%E5%88%86%E5%89%B2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Efficient Multi-Organ Segmentation From 3DAbdominal CT Images With LightweightNetwork and Knowledge Distillation 高效的三维多器官分割腹部CT图像轻量网络与知识蒸馏任务腹部CT图像多器官分割 背景 3D卷积神经网络（CNN）在自动医学图像分割任务中取得了令人鼓舞的性能。然而，大多数现有的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102163131290.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102165210802.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102165414310.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102165931770.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102171618845.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102175436446.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102175619117.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102181422289.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102181837369.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102181941758.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102182245940.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102182537467.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102191946483.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102191955618.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102192009738.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102192028033.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102192246153.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102192321174.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102192337029.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102192349274.png">
+<meta property="article:published_time" content="2024-01-02T08:27:52.000Z">
+<meta property="article:modified_time" content="2024-05-19T07:49:49.334Z">
+<meta property="article:author" content="CuiXin">
+<meta property="article:tag" content="文献">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102163131290.png">
+  
+  
+  
+  <title>基于轻量级网络和知识蒸馏的腹部CT三维图像多器官分割 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/cblog/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/cblog/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/cblog/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"github.com","root":"/cblog/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/cblog/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/cblog/js/utils.js" ></script>
+  <script  src="/cblog/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/cblog/">
+      <strong>CuiXin</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/cblog/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="基于轻量级网络和知识蒸馏的腹部CT三维图像多器官分割"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-01-02 16:27" pubdate>
+          2024年1月2日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          39 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">基于轻量级网络和知识蒸馏的腹部CT三维图像多器官分割</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="Efficient-Multi-Organ-Segmentation-From-3DAbdominal-CT-Images-With-Lightweight"><a href="#Efficient-Multi-Organ-Segmentation-From-3DAbdominal-CT-Images-With-Lightweight" class="headerlink" title="Efficient Multi-Organ Segmentation From 3DAbdominal CT Images With Lightweight"></a>Efficient Multi-Organ Segmentation From 3DAbdominal CT Images With Lightweight</h2><p>Network and Knowledge Distillation</p>
+<h2 id="高效的三维多器官分割腹部CT图像轻量网络与知识蒸馏"><a href="#高效的三维多器官分割腹部CT图像轻量网络与知识蒸馏" class="headerlink" title="高效的三维多器官分割腹部CT图像轻量网络与知识蒸馏"></a>高效的三维多器官分割腹部CT图像轻量网络与知识蒸馏</h2><h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3><p>腹部CT图像多器官分割</p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><ol>
+<li>3D卷积神经网络（CNN）在自动医学图像分割任务中取得了令人鼓舞的性能。然而，大多数现有的3D CNN具有较大的参数集和巨大的浮点运算（FLOP），并且3D CT体积具有较大的尺寸，导致较高的计算成本，这限制了它们的临床应用。</li>
+<li>从3D医学图像中手动分割多个器官耗时太差。</li>
+</ol>
+<h3 id="贡献"><a href="#贡献" class="headerlink" title="贡献"></a>贡献</h3><ol>
+<li>LCOV-Net在计算成本和准确性方面优于现有的轻量级3D分割模型</li>
+<li>KD策略有效地提高了轻量级网络的性能，并且优于现有的KD方法。</li>
+<li>LCOV-Net和KD策略相结合，实现了比最先进的3D nnU-Net更好的性能，并且只使用了五分之一的参数。</li>
+</ol>
+<h3 id="网络架构"><a href="#网络架构" class="headerlink" title="网络架构"></a>网络架构</h3><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102163131290.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240102163131290"></p>
+<p>提出两种新的KD策略：MSKD（多尺度蒸馏）和CAKD（类亲和蒸馏）</p>
+<p>使用LACB块代替传统3D卷积块</p>
+<p>Teacher Model使用3D nnU-Net    Student Model使用LCOV-Net网络</p>
+<h3 id="LACB块"><a href="#LACB块" class="headerlink" title="LACB块"></a>LACB块</h3><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102165210802.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240102165210802"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102165414310.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240102165414310"></p>
+<p>基于注意力的卷积块(LACB)来取代标准的3D卷积操作。LACB由一个分支与时空可分离的3D卷积组成，以减少参数，另一个分支与基于注意力的特征校准组成，以增强块的学习能力。</p>
+<p>特征标定分支以F′为输入，由四层组成，首先下采样层将F′的分辨率降低一半，然后使用逐点卷积进行具有通道间交互的特征映射，然后是上采样层以恢复分辨率，并将输出发送到Sigmoid激活函数以获得注意力系数α。</p>
+<p>（1）LACB-H中额外的下采样层使得特征图太小而无法保持空间细节，（2）LACB-H中标准的3 × 3 × 1卷积由于通道数很大而导致大量参数。因此，我们提出了LACB-L，这是LACB-H在瓶颈处的变体。如图2（B）所示，在特征校准分支中，由于低空间分辨率，我们去除了下采样和上采样操作，并且仅保留逐点卷积。此外，第一分支中的3 × 3 × 1卷积使用分组卷积。具体地，特征图F′沿通道维度被划分为g个沿着组，并且每个组具有独立的卷积运算，组之间没有相互作用。</p>
+<h3 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h3><h4 id="基本的KD模块"><a href="#基本的KD模块" class="headerlink" title="基本的KD模块"></a>基本的KD模块</h4><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102165931770.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240102165931770"></p>
+<p>P表示学生网络的softmax预测，QS和QT分别表示教师和学生的软概率图。</p>
+<p>其中Lce和Ldice分别是交叉熵（CE）损失和Dice损失。Lkd是通过CE损失实现的QS和QT之间的知识蒸馏损失。Lsup是P和实际分割图Y之间的标准监督损失。λ ∈ [0，1]是调整Lkd和Lsup的贡献的权重。</p>
+<h4 id="类亲和知识蒸馏"><a href="#类亲和知识蒸馏" class="headerlink" title="类亲和知识蒸馏"></a>类亲和知识蒸馏</h4><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102171618845.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240102171618845"></p>
+<p>假设有K个类别进行分割，教师QT的软预测图具有K × W × H × D的形状。它首先被整形为K ×（WHD），然后乘以它的转置版本，其形状为（WHD）× K，导致类亲和矩阵MT ∈ RK×K，如图1（d）所示。类似地，学生模型的类亲和度矩阵也可以表示为MS ∈ RK×K。对于多类分割任务，矩阵表示任何一对不同类之间的关系。建议CAKD损失以鼓励学生生成类似于教师的类亲和矩阵。CAKD损失的提出是为了鼓励学生生成一个类似于教师的类亲和矩阵。其中sim表示余弦相似度。</p>
+<h4 id="多尺度知识蒸馏"><a href="#多尺度知识蒸馏" class="headerlink" title="多尺度知识蒸馏"></a>多尺度知识蒸馏</h4><p>设S 表示解码器中考虑的全部尺度数(本文中 S &#x3D; 4)。请注意，s &#x3D; 0 表示网络的最末端，s 越大，说明我们越接近瓶颈。教师和学生的软预测图分别表示为 QsS 和QsT。我们用MSs和MTs 分别表示相应的类亲和映射。多尺度KD损失为</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102175436446.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240102175436446"></p>
+<p>γs 为尺度 s 的损失权重，s &#x3D; 0表示最高分辨率，即最终输出，s &gt; 0表示较低分辨率。</p>
+<h4 id="总损失函数"><a href="#总损失函数" class="headerlink" title="总损失函数"></a>总损失函数</h4><p>Lsup是P和Ground Truth分割图Y之间的标准监督损失。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102175619117.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240102175619117"></p>
+<p>最终的损失函数    λ是超参数，平衡两个损失函数</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102181422289.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240102181422289"></p>
+<h3 id="评价指标"><a href="#评价指标" class="headerlink" title="评价指标"></a>评价指标</h3><h4 id="DICE"><a href="#DICE" class="headerlink" title="DICE"></a>DICE</h4><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102181837369.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240102181837369"></p>
+<p>Dice系数定义为两倍的交集除以像素和，也叫F1 score。Dice 系数与 IoU 非常相似，它们是正相关的。这意味着如果一个人说模型 A 在分割图像方面比模型 B 更好，那么另一个人也会这么说。</p>
+<h4 id="HD"><a href="#HD" class="headerlink" title="HD"></a>HD</h4><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102181941758.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240102181941758"></p>
+<p>Hausdorff distance（豪斯道夫距离）， HD 用于分割指标，主要是用来度量边界的分割准确度。</p>
+<p>在实际计算中，我们并不是选取的不是最大距离，而是将距离从大到小排列后，取排名为5%的距离。这么做的目的是为了排除一些离群点所造成的不合理的距离，保持整体数值的稳定性。所以也叫HD95。</p>
+<p>其中Sa和Sb分别表示由CNN和Ground Truth分割的一个器官的表面点的集合。</p>
+<h4 id="ASSD"><a href="#ASSD" class="headerlink" title="ASSD"></a>ASSD</h4><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102182245940.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240102182245940"></p>
+<p>ASSD是平均表面距离</p>
+<p>其中d（i，Sa）是点k和表面Sa之间的最短欧几里得距离。</p>
+<p>表面距离：设P为prediction的表面点集，G为ground truth的Volume表面点集，P中任意一点的表面距离为该体素到G中所有体素的欧式距离的最小值，依次遍历P中所有的点即可得到表面距离。</p>
+<h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3><ol>
+<li><p>公开数据集WORD包括150名直肠癌、前列腺癌或宫颈癌患者在放疗前的CT扫描。图像的平面内分辨率为 0.976 mm×0.976 mm，切片间距 2.5-3.0 mm，基体尺寸512 × 512 .有16个器官进行分割，包括肝、脾、肾（L）、肾（R）、胃、胆囊、食道、胰腺、十二指肠、结肠、肠、肾上腺、直肠、膀胱、股骨头（L）和股骨头（R）。将数据集随机拆分为 100、20 和 30 个案例，分别用于训练、验证和测试。</p>
+</li>
+<li><p>（2）TCIA (43次扫描)和 BTCV(47次扫描) 数据集。平面内像素尺寸范围为0.6-0.9 mm，切片间距范围为0.5-5.0 mm。这两个数据集的融合有 90 次腹部 CT 扫描，有八个器官进行分割：脾脏、左肾、胆囊、食道、肝脏、胃、胰腺和十二指肠。将数据集随机分成 60、10 和 20 次扫描，分别用于训练、验证和测试。</p>
+</li>
+</ol>
+<h3 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h3><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102182537467.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240102182537467"></p>
+<p>表1显示了对这些方法的定量评估，其中第一部分是模型大小和计算成本的比较，第二部分显示了分割结果的Dice分数。我们按照[30]中的方法评估模型大小。可以看出，ESPNet[10]获得的Dice得分最低。这主要是因为ESPNet[10]是针对自然RGB图像提出的，而自然RGB图像与CT图像具有不同的特征和强度分布。</p>
+<p>LCOV-Net（-A）仅使用LACB中的时空可分离卷积分支，LCOV-Net（-B）将时空可分离卷积分支与跳过连接相结合，而不使用LACB中的特征校准分支，以及LCOV-Net（-C）在瓶颈处使用LACB-H而不是LACB-L。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102191946483.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240102191946483"></p>
+<p>图3显示了三种轻量级网络与重量级3D nnU-Net的视觉对比[3]。</p>
+<p>可以看出，3D nnU-Net[3]比轻量化模型获得了更好的结果。对于轻量级模型，我们的LCOV-Net优于DMFNet[32]和ESPNet[10]，特别是在第一行所示的脾脏和第三行所示的肿瘤肝脏中。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102191955618.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240102191955618"></p>
+<p>图4呈现了这些KD方法对于不同器官的Dice方面的定量比较。结果表明，KD方法能有效地提高轻量级模型的性能。特别是对于胃、胆囊、十二指肠、结肠、肾上腺和直肠等硬组织的分割精度有了很大的提高。可以观察到，对于16个器官中的大多数，所提出的KD方法优于现有的KD方法。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102192009738.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240102192009738"></p>
+<p>表II显示了这些方法之间平均Dice、HD95和ASSD的比较。在WORD数据集上，与不使用KD相比，我们的方法将平均HD95从10.16 mm减少到5.96 mm，平均ASSD从2.94 mm减少到1.86 mm，并且优于Attention KD [46]，在现有KD方法中实现了最佳性能。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102192028033.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240102192028033"></p>
+<p>T是控制输出概率的软度的参数</p>
+<p>我们的KD方法的消融研究：为了验证我们提出的KD方法的每个组成部分（等式1）。10)将CAKD和MSKD与FNKD组合（等式11）。6），我们将其与使用这些组件的一部分的不同变体进行了比较。</p>
+<p>定量结果见表III。可以观察到，初始KD [14]和FNKD [39]分别将平均Dice从83.90%提高到84.32%和84.93%。FNKD和MSKD的平均Dice提高到84.96%。最后，FNKD + MSKD + CAKD的方法导致最高的性能</p>
+<p>FNKD ：特征归一化KD（FNKD）     q中T被设置为z的L2范数，以获得可靠的软预测，而不管特征的规模如何。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102192246153.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240102192246153"></p>
+<p>图5显示了我们的KD方法的不同变体之间的视觉比较。可以观察到，我们的蒸馏模块有助于减少脾脏、结肠和肠道等具有挑战性区域的错误分割。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102192321174.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240102192321174"></p>
+<p>TABLE IV</p>
+<p>TCIA和BTCV数据集上不同KD方法之间的DICE（%）比较。表示性能显著低于我们（p值&lt; 0.05）</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102192337029.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240102192337029"></p>
+<p>图6显示了不同CNN在TCIA+BTCV数据集上实现的Dice得分。这表明我们的LCOV-Net与脾脏、左肾和肝脏上的3D nnU-Net [3]相当。ESPNet [10]在大多数器官上的表现最差，DMFNet [32]优于ESPNet，但劣于我们的LCOV-Net。图6还示出了LCOV-Net优于LCOV-Net（-A）、LCOVNet（-B）和LCOV-Net（-C），尤其是在难以分割的十二指肠、食道和胃上。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240102192349274.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240102192349274"></p>
+<p>图7显示了我们的KD方法在TCIA和BTCV数据集上的消融研究，其分别证明了我们提出的CAKD和MSKD所获得的性能改善。</p>
+<h4 id="亲和矩阵"><a href="#亲和矩阵" class="headerlink" title="亲和矩阵"></a>亲和矩阵</h4><p>Affinity Matrix 可以用来干什么？<br>智能信息检索：亲和矩阵是搜索引擎的驱动力，它为你提取你甚至不知道你需要的额外相关信息。<br>数据挖掘：相似矩阵可以快速准确地在充满未标记信息的数据库中识别任何的隐藏关系模式。<br>无监督学习：如果没有相似度矩阵来确保网络自学内容的最低准确性标准，那么创建能够从原始无组织数据中获取结构和含义的机器学习算法是不可能的。</p>
+<h4 id="知识蒸馏"><a href="#知识蒸馏" class="headerlink" title="知识蒸馏"></a>知识蒸馏</h4><p>知识蒸馏就是把一个大的教师模型的知识萃取出来，把他浓缩到一个小的学生模型，可以理解为一个大的教师神经网络把他的知识教给小的学生网络，这里有一个知识的迁移过程，从教师网络迁移到了学生网络身上，教师网络一般是比较臃肿，所以教师网络把知识教给学生网络，学生网络是一个比较小的网络，这样就可以用学生网络去做一些轻量化网络做的事情。</p>
+<p>知识蒸馏使用的是Teacher—Student模型，其中teacher是“知识”的输出者，student是“知识”的接受者。知识蒸馏的过程分为2个阶段:</p>
+<ol>
+<li>原始模型训练: 训练”Teacher模型”, 简称为Net-T，它的特点是模型相对复杂，也可以由多个分别训练的模型集成而成。我们对”Teacher模型”不作任何关于模型架构、参数量、是否集成方面的限制，唯一的要求就是，对于输入X, 其都能输出Y，其中Y经过softmax的映射，输出值对应相应类别的概率值。</li>
+<li>精简模型训练: 训练”Student模型”, 简称为Net-S，它是参数量较小、模型结构相对简单的单模型。同样的，对于输入X，其都能输出Y，Y经过softmax映射后同样能输出对应相应类别的概率值。</li>
+<li>Teacher学习能力强，可以将它学到的知识迁移给学习能力相对弱的Student模型，以此来增强Student模型的泛化能力。复杂笨重但是效果好的Teacher模型不上线，就单纯是个导师角色，真正部署上线进行预测任务的是灵活轻巧的Student小模型。</li>
+</ol>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">liver:肝<br>duodenum：十二指肠<br>spleen：脾<br>colon：结肠<br>kidney：肾<br><span class="hljs-built_in">int</span>estine：肠<br>adrenal：肾上腺<br>stomach：胃<br>rectum：直肠<br>gallbladder：胆囊<br>bladder：膀胱<br>head femur：头股骨<br>pancreas：胰腺<br>esophagus：食管<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/cblog/categories/%E6%96%87%E7%8C%AE/" class="category-chain-item">文献</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/cblog/tags/%E6%96%87%E7%8C%AE/" class="print-no-link">#文献</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>基于轻量级网络和知识蒸馏的腹部CT三维图像多器官分割</div>
+      <div>https://github.com/cuixinx/cblog/2024/01/02/基于轻量级网络和知识蒸馏的腹部CT三维图像多器官分割/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>CuiXin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年1月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/cblog/2024/01/20/1-1-%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%B8%8E%E5%AE%9E%E4%BE%8B%E5%88%86%E5%89%B2/" title="1.1 语义分割与实例分割">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">1.1 语义分割与实例分割</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/cblog/2023/12/18/MB-FSGAN/" title="MB-FSGAN">
+                        <span class="hidden-mobile">MB-FSGAN</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/cblog/js/events.js" ></script>
+<script  src="/cblog/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/cblog/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/cblog/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/cblog/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

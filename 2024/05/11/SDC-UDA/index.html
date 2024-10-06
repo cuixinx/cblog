@@ -1,0 +1,701 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/cblog/img/fluid.png">
+  <link rel="icon" href="/cblog/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="CuiXin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="题目SDC-UDA: Volumetric Unsupervised Domain Adaptation Framework for Slice-Direction Continuous Cross-Modality Medical Image Segmentation SDC-UDA：用于切片方向连续跨模态医学图像分割的体积无监督域自适应框架  会议：2023 IEEE&#x2F;CVF 计算机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SDC-UDA">
+<meta property="og:url" content="https://github.com/cuixinx/cblog/2024/05/11/SDC-UDA/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="题目SDC-UDA: Volumetric Unsupervised Domain Adaptation Framework for Slice-Direction Continuous Cross-Modality Medical Image Segmentation SDC-UDA：用于切片方向连续跨模态医学图像分割的体积无监督域自适应框架  会议：2023 IEEE&#x2F;CVF 计算机">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122138093.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122141222.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122142106.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122143361.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122144793.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122145278.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122147415.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122210189.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122210864.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122214165.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122216576.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122225444.png">
+<meta property="article:published_time" content="2024-05-11T09:45:23.000Z">
+<meta property="article:modified_time" content="2024-05-19T07:49:49.332Z">
+<meta property="article:author" content="CuiXin">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122138093.png">
+  
+  
+  
+  <title>SDC-UDA - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/cblog/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/cblog/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/cblog/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"github.com","root":"/cblog/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/cblog/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/cblog/js/utils.js" ></script>
+  <script  src="/cblog/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/cblog/">
+      <strong>CuiXin</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/cblog/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="SDC-UDA"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-05-11 17:45" pubdate>
+          2024年5月11日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          38 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">SDC-UDA</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>SDC-UDA: Volumetric Unsupervised Domain Adaptation Framework for Slice-Direction Continuous Cross-Modality Medical Image Segmentation</p>
+<p>SDC-UDA：用于切片方向连续跨模态医学图像分割的体积无监督域自适应框架</p>
+<p> 会议：2023 IEEE&#x2F;CVF 计算机视觉与模式识别会议 （CVPR）</p>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><ol>
+<li>医学影像领域，获取像素级专家注释是极其昂贵和费力的。</li>
+<li>与以往的医学图像分割方法不同，它可以在切片方向上获得连续分割，从而保证了临床实践中更高的准确性和潜力</li>
+<li>当深度学习模型面对来自看不见的领域的数据时，性能会下降。无监督域适应 （UDA） 旨在通过将源域数据训练的模型调整到目标域来缓解此问题，而无需在目标域中进行监督。</li>
+<li>以往在跨模态医学图像分割领域对UDA的研究通常是通过同时学习二维图像平移和靶域分割来进行的，在每个目标数据切片上推断训练好的模型，然后在切片方向上堆叠预测。可能导致切片方向上的预测不一致或波动，而这些预测在定量指标中未显示，并可能中断对靶标结构的准确分析，使其难以在现实世界的临床实践中使用。</li>
+</ol>
+<h1 id="贡献"><a href="#贡献" class="headerlink" title="贡献"></a>贡献</h1><ol>
+<li>我们提出了<strong>SDC-UDA</strong>，一个<strong>用于跨模态医学图像分割的统一体积UDA框架</strong>。</li>
+<li>用于高效医学图像翻译的切片内和切片间自注意力：提出的 2.5D 平移框架与切片内和切片间自注意力模块可提高合成体积中的<strong>解剖结构保留和</strong>切片<strong>方向平滑度</strong>，从而使合成体积能够在以下自训练步骤中有效使用。</li>
+<li>具有不确定性约束的伪标签细化的体积自训练：我们提出了一种新型的不确定性约束伪标签细化模块，<strong>该模块可以自适应地提高伪标签的准确性（即灵敏度或特异性），</strong>从而最大限度地提高医学图像分割的自训练性能。</li>
+<li>SDC-UDA<strong>在多个具有不同数据特征的公共数据集上进行了验证</strong>，用于跨模态医学图像分割。它不仅超越了以往方法的性能，而且表现出<strong>优异的切片方向分割连续性</strong>，可在临床实践中提供精确的分析。</li>
+</ol>
+<h1 id="二、相关工作"><a href="#二、相关工作" class="headerlink" title="二、相关工作"></a>二、相关工作</h1><h2 id="用于医学图像分割的UDA"><a href="#用于医学图像分割的UDA" class="headerlink" title="用于医学图像分割的UDA"></a>用于医学图像分割的UDA</h2><p>以前的工作大多是用目标域分割来训练二维级图像翻译，并将每个目标切片的分割堆叠在切片方向上。由于分割网络不考虑切片方向的解剖结构，这可能导致分割结果的高度可变性，即使在相邻的切片中也是如此。</p>
+<h2 id="医学图像分割的-UDA-自训"><a href="#医学图像分割的-UDA-自训" class="headerlink" title="医学图像分割的 UDA 自训"></a>医学图像分割的 UDA 自训</h2><p>在自我训练中，首先仅使用标记的数据训练教师模型。接下来，通过在训练模型上传递未标记的数据来推断具有高置信度的伪标签。使用标记数据和伪标记数据，可以使用更大的数据集来训练学生模型，该模型的性能优于仅在标记数据上训练的教师模型。</p>
+<p>所提出的伪标签细化策略在两个方面是有效的：1）灵敏度和特异性增强细化可以根据目标数据的特征自适应使用，2）它是一种更安全的不确定性处理方法，因为即使是正确分割的区域也可能具有很高的不确定性，因此在以下训练中使用不确定性图对损失函数进行加权可能会将模型引导到错误的方向。</p>
+<h1 id="三、方法"><a href="#三、方法" class="headerlink" title="三、方法"></a>三、方法</h1><h2 id="3-1-使用切片内和切片间自注意力模块的不配对图像翻译"><a href="#3-1-使用切片内和切片间自注意力模块的不配对图像翻译" class="headerlink" title="3.1. 使用切片内和切片间自注意力模块的不配对图像翻译"></a>3.1. 使用切片内和切片间自注意力模块的不配对图像翻译</h2><p>以前的 2D UDA 方法将 3D 体积拆分为 2D 切片，然后将它们的平移重新堆叠为 3D 体积。由于切片是单独处理的，因此重新构建翻译体积通常需要额外的后处理，例如切片方向插值，这仍然不能完美地解决切片方向不连续等问题。</p>
+<p>3D-CycleGAN：优化复杂性，计算负担或翻译质量下降等典型缺点，它们很少使用</p>
+<p><strong>方法是将一堆源域图像转换为目标域，同时使用切片内和切片间自注意力模块。</strong>利用了切片方向上相邻切片的信息。</p>
+<h2 id="3-2-基于不确定性约束的伪标签细化的体积自训练"><a href="#3-2-基于不确定性约束的伪标签细化的体积自训练" class="headerlink" title="3.2. 基于不确定性约束的伪标签细化的体积自训练"></a>3.2. 基于不确定性约束的伪标签细化的体积自训练</h2><p>即使源到目标转换的图像生成良好，与真实目标域数据仍可能存在一定的分布差距，难以完全替代。通过自训练，可以获取未标记目标域数据的伪标签，并用于对目标域数据进行监督，从而从模型的角度缩小域差距。我们建议利用体积自训练来缩小领域差距，采用简单新颖的伪标签细化策略，以最大限度地发挥自我训练的效果。</p>
+<h3 id="3-2-1使用标记合成扫描进行训练分割"><a href="#3-2-1使用标记合成扫描进行训练分割" class="headerlink" title="3.2.1使用标记合成扫描进行训练分割"></a>3.2.1使用标记合成扫描进行训练分割</h3><p>利用从源域转换的合成数据Xxt和源扫描上的注释ys（即，标记的合成数据集），我们首先训练一个教师分割网络fteacher，使分割损失最小化：</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122138093.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512213836909"></p>
+<h3 id="3-2-2在未标记的目标域数据上推断伪标记"><a href="#3-2-2在未标记的目标域数据上推断伪标记" class="headerlink" title="3.2.2在未标记的目标域数据上推断伪标记"></a>3.2.2在未标记的目标域数据上推断伪标记</h3><p>一旦训练了教师模型，就可以通过将真实的目标扫描传递给训练的分割模型fteacher来获得未注释的真实的数据xt的伪标记fteacher。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122141222.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512214146196"></p>
+<h3 id="3-2-3用于灵敏度-特异性增强的不确定性约束伪标记细化"><a href="#3-2-3用于灵敏度-特异性增强的不确定性约束伪标记细化" class="headerlink" title="3.2.3用于灵敏度&#x2F;特异性增强的不确定性约束伪标记细化"></a>3.2.3用于灵敏度&#x2F;特异性增强的不确定性约束伪标记细化</h3><p><strong>灵敏度增强伪标签细化。</strong>利用伪标签的推断，不确定性（即，根据以下等式计算对应于每个类别的（熵）图：</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122142106.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512214247073"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122143361.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512214350323"></p>
+<p><strong>特异性增强伪标签细化。</strong>为了增强伪标记的特异性，检测伪标记范围内的高度不确定区域。然后，如果该区域中的像素强度在包括在当前伪标签中的图像强度的特定范围之外，则将其从当前伪标签中排除。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122144793.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512214417747"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122145278.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512214516196"></p>
+<h3 id="3-2-4-使用组合数据重新训练分割"><a href="#3-2-4-使用组合数据重新训练分割" class="headerlink" title="3.2.4.使用组合数据重新训练分割"></a>3.2.4.使用组合数据重新训练分割</h3><p>合成目标扫描与真实的目标扫描具有分布间隙，但它们与完美的注释配对。另一方面，真实的靶扫描与伪标记配对，伪标记还不完整。我们将这两个对自我训练，以最大限度地提高泛化能力，并尽量减少由于分布的差异造成的性能下降。利用标记的合成目标扫描（xt，ys）和伪标记的真实的目标扫描（xt，yt r）的组合数据，我们训练学生分割fstudent以最小化</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122147415.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512214733378"></p>
+<p>尽管不是地面真值标签，但在先前的文献中已经报道了自训练方案和伪标签通过利用未标记的数据进行训练来提高模型在未知数据上的性能和泛化能力</p>
+<h1 id="四、实验"><a href="#四、实验" class="headerlink" title="四、实验"></a>四、实验</h1><h2 id="4-1-数据集"><a href="#4-1-数据集" class="headerlink" title="4.1.数据集"></a>4.1.数据集</h2><h3 id="CrossMoDA-dataset"><a href="#CrossMoDA-dataset" class="headerlink" title="CrossMoDA dataset."></a>CrossMoDA dataset.</h3><p>前庭神经鞘瘤和耳蜗分割的CrossMoDA数据集[7]由105个标记的对比增强T1（ceT1）MRI扫描和105个未标记的高分辨率T2（hrT2）MRI扫描组成。域适应的方向是从ceT1到hrT2，因为hrT2扫描的注释不公开。</p>
+<h3 id="Cardiac-structure-segmentation-dataset"><a href="#Cardiac-structure-segmentation-dataset" class="headerlink" title="Cardiac structure segmentation dataset."></a>Cardiac structure segmentation dataset.</h3><p>心脏结构分割数据集。</p>
+<p>由20个MRI和20个CT体积组成，用于心脏分割。从MRI到CT进行域适应，每种模态的80%用于训练，20%用于评价的随机选择的CT扫描。用于分割的目标心脏结构是升主动脉（AA）、左心房血腔（LAC）、左心室血腔（LVC）和左心室心肌（MYO）。在256×256的固定冠状面分辨率下，手动裁剪MRI和CT体积以覆盖4个心脏子结构。</p>
+<h2 id="4-2-实验细节"><a href="#4-2-实验细节" class="headerlink" title="4.2.实验细节"></a>4.2.实验细节</h2><p>带层内和层间自关注模块的不成对图像平移。切片内和切片间的专注翻译基于2D框架，其中图像切片作为大小为（B×3，1，H，W）的堆叠批次馈送到2D CNN E，其中H和W各自表示高度和宽度。在GE之后，编码的特征图被重新整形为（B，3，H，W）并被馈送到注意模块以考虑切片方向注意。贴片大小p设定为2。转置卷积用于将嵌入的补丁转换回2D特征图。对于在G处生成的一堆小体积，我们实现了2D WMD来进行域转换的对抗训练。对于D的真实的输入，从目标体积随机提取3个连续切片。</p>
+<p>不确定性约束的伪标签精化。对于每个类别，进行网格搜索，以确定如何设置用于掩蔽高不确定性区域的阈值，以及是否使用灵敏度和特异性增强细化中的一种或两种。对于CrossMoDA数据集，在两个类中组合灵敏度和特异性增强细化（即，VS和CODEa），不确定性阈值为0.3，结果最好。对于心脏数据集，使用相同的阈值，并且对于除一个类别之外的所有类别仅使用特异性增强细化（即，AA）导致了最好的结果。这是由于心脏CT中相邻子结构之间的对比度差异非常弱，这导致使用灵敏度增强模块时伪标记噪声更大。消融结果请参见补充材料中的表格。α和β分别设定为0.6和1.4。</p>
+<p>体积的自我训练。对于体积分割自训练，使用从nnU-Net [14]构建的基于3D U-Net的架构。使用Dice和交叉熵损失与随机梯度下降优化器的组合对分割进行了100个时期的训练。初始学习率和批量大小分别为1 e-2和2。</p>
+<h2 id="4-3结果"><a href="#4-3结果" class="headerlink" title="4.3结果"></a>4.3结果</h2><h3 id="片内和片间自注意力模块在图像翻译中的作用"><a href="#片内和片间自注意力模块在图像翻译中的作用" class="headerlink" title="片内和片间自注意力模块在图像翻译中的作用"></a>片内和片间自注意力模块在图像翻译中的作用</h3><p>由于使用2D网络（蓝色箭头）逐切片预测产生的变化，在翻译图像中观察到像素强度的切片方向不一致。即使使用将两个相邻切片放在网络中的2.5D网络，这也没有完全克服。此外，在2D和2.5D网络中，发现源图像的解剖结构在转换图像中失真（红色和绿色箭头）。另一方面，观察到当利用有效地考虑相邻解剖结构的切片内和切片间自注意模块时，上述问题得到缓解。表1示出了通过在图像平移网络中结合切片内和切片间自注意力，与利用纯未配对图像平移随后是3D分割网络的基线相比，最终分割性能的提高。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122210189.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512221012057"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122210864.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512221024819"></p>
+<h3 id="不确定性约束伪标签细化和体积自训练的影响"><a href="#不确定性约束伪标签细化和体积自训练的影响" class="headerlink" title="不确定性约束伪标签细化和体积自训练的影响"></a>不确定性约束伪标签细化和体积自训练的影响</h3><p>不确定性约束的伪标签细化和体积自训练的效果。由于CrossMoDA数据集无法获得目标域的真实数据，因此通过比较伪标签细化前后的自训练性能来验证伪标签细化的有效性。对于可获得基础事实的心脏数据集，通过比较伪标签细化前后的骰子系数与标签进行验证（请参阅补充材料）。表1显示了通过在CrossMoDA数据集上应用所提出的不确定性约束伪标签细化来提高目标域分割性能。可以看出，体积自训练与所提出的不确定性约束伪标签细化相结合，大幅提高了VS和C中的定量指标，而纯自训练仅提高了VS中的性能。</p>
+<h3 id="比较研究"><a href="#比较研究" class="headerlink" title="比较研究"></a>比较研究</h3><p>比较研究。该方法与六种流行的UDA方法进行了比较，它们是CycleGAN [38]，CyCADA [12]，ADVENT [34]，FDA [36]，SIFA [4]和PSIGAN [15]。前四种方法是从自然图像领域，而最后两个是UDA的医学图像分割方法。完全监督和无适应的结果分别提供上限和下限。请注意，CrossMoDA数据集的全监督结果（其真实分割掩码不可用）来自数据集所有者的论文[7]。表2和图6显示了所提出的方法与先前方法之间的比较研究的定量和定性结果。SDC-UDA在非医学领域的语义分割研究中远远超过了UDA的结果，并且与最近在医学领域的研究相比，在多个任务中显示出更好的结果。特别是，与心脏数据集相比，在CrossMoDA数据集中提出的方法和比较方法之间存在显著的性能差距。这可能是由于以前的医学UDA研究致力于数据集，其中数据被裁剪在目标器官周围，前景对象占据了大部分数据。相比之下，SDC-UDA显示CrossMoDA数据集中的两个目标结构都以高精度分割。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122214165.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512221401093"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122216576.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512221656454"></p>
+<h3 id="与先前研究相比，分割的切片方向连续性"><a href="#与先前研究相比，分割的切片方向连续性" class="headerlink" title="与先前研究相比，分割的切片方向连续性"></a>与先前研究相比，分割的切片方向连续性</h3><p>与以前的研究相比，分割的切片方向连续性。图7显示了与MMWHS心脏数据集上的先前研究相比，所提出的方法的分割的出色切片方向连续性。图7-（a）、（B）、（c）和（d）分别绘制了AA、LAC、LVC和MYO代表性病例的切片Dice值。我们的SDC-UDA在切片方向上表现出渐进和一致的分割性能，而最近提出的医学UDA方法SIFA和PSIGAN在切片方向上表现出非常不一致的分割性能，有时会突然波动。这表明所提出的方法在临床实践中是有用的，其中需要精确的体积分割来分析患者的状态具有高置信度的潜力。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202405122225444.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240512222529361"></p>
+<h1 id="五、结论"><a href="#五、结论" class="headerlink" title="五、结论"></a>五、结论</h1><p>在这项研究中，我们提出了SDC-UDA，一种新的体积UDA框架切片方向连续跨模态医学图像分割，并验证了它在多个公共数据集。SDC-UDA通过切片内和切片间的自我关注有效地转换医学体积，并通过简单而有效的伪标签细化策略（利用不确定性图）增强的体积自训练更好地适应目标域。消融研究证明了每个组件的有效性和比较研究表明所提出的方法的上级性能。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/cblog/categories/%E6%96%87%E7%8C%AE/" class="category-chain-item">文献</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>SDC-UDA</div>
+      <div>https://github.com/cuixinx/cblog/2024/05/11/SDC-UDA/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>CuiXin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年5月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/cblog/2024/05/19/hello-world/" title="Hello World">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/cblog/2024/04/11/%E5%B9%BF%E4%B9%89%E6%97%A0%E6%BA%90%E5%9F%9F%E9%80%82%E5%BA%94/" title="广义无源域适应">
+                        <span class="hidden-mobile">广义无源域适应</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/cblog/js/events.js" ></script>
+<script  src="/cblog/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/cblog/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/cblog/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/cblog/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

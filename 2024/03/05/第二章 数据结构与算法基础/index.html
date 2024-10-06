@@ -1,0 +1,821 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/cblog/img/fluid.png">
+  <link rel="icon" href="/cblog/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="CuiXin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="2.1 基础概念和算法数据结构学什么？如何用程序代码把现实世界的问题信息化。 如何用计算机高效地处理这些信息从而创造价值。 数据数据：数据是信息的载体，是描述客观事物属性的数、字符及所有能输入到计算机中并被计算机程序识别和处理的符号的集合。数据是计算机程序加工的原料。 数据元素：数据元素是数据的基本单位，通常作为一个整体进行考虑和处理。 数据项：一个数据元素可由若干数据项组成，数据项是构成数据元">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第二章 数据结构与算法基础">
+<meta property="og:url" content="https://github.com/cuixinx/cblog/2024/03/05/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="2.1 基础概念和算法数据结构学什么？如何用程序代码把现实世界的问题信息化。 如何用计算机高效地处理这些信息从而创造价值。 数据数据：数据是信息的载体，是描述客观事物属性的数、字符及所有能输入到计算机中并被计算机程序识别和处理的符号的集合。数据是计算机程序加工的原料。 数据元素：数据元素是数据的基本单位，通常作为一个整体进行考虑和处理。 数据项：一个数据元素可由若干数据项组成，数据项是构成数据元">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240306151941599.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240306155339668.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240306155501068.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240306155538268.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240306155818943.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240306163715478.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240306163904579.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240306163945804.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240306164039592.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309130338087.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309130526874.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309133444989.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309133516332.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309133611134.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309133846083.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309134234200.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309134338857.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309134551797.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309134612364.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309134939058.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309135204084.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309144755986.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309145046452.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309150037874.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309150226264.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309150531339.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309150630465.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309150938791.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309151849551.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309152101183.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309152133088.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309152243334.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309152404243.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309152514097.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309152929026.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309153325388.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309153356171.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309153513171.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309153650581.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309155258028.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309155322450.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309155653577.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309155820905.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202403091652142.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309160213064.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309160307132.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309163225119.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309163408830.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309164826776.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202403091654448.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202403091655784.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202403091658522.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202403091659155.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202403091701808.png">
+<meta property="article:published_time" content="2024-03-05T03:43:52.000Z">
+<meta property="article:modified_time" content="2024-05-19T07:49:49.339Z">
+<meta property="article:author" content="CuiXin">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240306151941599.png">
+  
+  
+  
+  <title>第二章 数据结构与算法基础 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/cblog/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/cblog/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/cblog/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"github.com","root":"/cblog/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/cblog/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/cblog/js/utils.js" ></script>
+  <script  src="/cblog/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/cblog/">
+      <strong>CuiXin</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/cblog/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="第二章 数据结构与算法基础"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-05 11:43" pubdate>
+          2024年3月5日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">第二章 数据结构与算法基础</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240306151941599.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240306151941599"></p>
+<h1 id="2-1-基础概念和算法"><a href="#2-1-基础概念和算法" class="headerlink" title="2.1 基础概念和算法"></a>2.1 基础概念和算法</h1><h2 id="数据结构学什么？"><a href="#数据结构学什么？" class="headerlink" title="数据结构学什么？"></a>数据结构学什么？</h2><p>如何用程序代码把现实世界的问题信息化。</p>
+<p>如何用计算机高效地处理这些信息从而创造价值。</p>
+<h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><p>数据：数据是<font color='red'>信息的载体</font>，是描述客观事物属性的数、字符及所有能输入到计算机中并被计算机程序识别和处理的符号的集合。<font color='red'>数据是计算机程序加工的原料</font>。</p>
+<p>数据元素：数据元素是数据的基本单位，通常作为一个整体进行考虑和处理。</p>
+<p>数据项：一个数据元素可由<font color='red'>若干数据项组成</font>，数据项是构成数据元素的不可分割的<font color='red'>最小单位</font>。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240306155339668.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240306155339668"></p>
+<p>数据结构：数据结构是相互存在的一种或多种特定关系的数据元素的集合。</p>
+<h2 id="数据结构三要素"><a href="#数据结构三要素" class="headerlink" title="数据结构三要素"></a>数据结构三要素</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240306155501068.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240306155501068"></p>
+<h3 id="逻辑结构"><a href="#逻辑结构" class="headerlink" title="逻辑结构"></a>逻辑结构</h3><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240306155538268.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240306155538268"></p>
+<p>集合：各个元素同属一个集合，别无其他关系。</p>
+<p>线性结构：数据元素之间是一对一的关系。除了第一个元素，所有元素都有唯一前驱；除最后一个元素，所有元素都有唯一后继。</p>
+<p>树形结构：数据元素之间是一对多的关系。</p>
+<p>图结构：数据元素之间是多对多的关系。</p>
+<h3 id="物理结构（存储结构）"><a href="#物理结构（存储结构）" class="headerlink" title="物理结构（存储结构）"></a>物理结构（存储结构）</h3><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240306155818943.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240306155818943"></p>
+<h3 id="数据的运算"><a href="#数据的运算" class="headerlink" title="数据的运算"></a>数据的运算</h3><h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><h3 id="什么是算法"><a href="#什么是算法" class="headerlink" title="什么是算法"></a>什么是算法</h3><p>程序 &#x3D; 数据结构 + 算法</p>
+<p>算法：如何处理这些信息以解决实际问题。</p>
+<h3 id="算法特性"><a href="#算法特性" class="headerlink" title="算法特性"></a>算法特性</h3><ol>
+<li><p>有穷性：一个算法必须在执行有穷步之后结束，并且每一步都在有穷时间内完成，不能无限的执行下去；</p>
+</li>
+<li><p>确定性：算法的每一个步骤都应当是有确切定义的，对于每一个过程都不能有二义性，对于<font color = 'red'>相同的输入</font>只能得到<font color='red'>相同的输出</font>。</p>
+</li>
+<li><p>可行性：算法中描述的操作都可以通过已经实现的<font color='red'>基本运算执行有限次</font>来实现。</p>
+</li>
+<li><p>输入：一个算法<font color='red'>有零个或多个输入</font>，这些输入取自于某个特定的对象的集合。</p>
+</li>
+<li><p>输出：一个算法有<font color='red'>一个或多个输出</font>，这些输出是与输入有着某种特定关系的量。</p>
+</li>
+</ol>
+<h3 id="算法——算法效率的度量"><a href="#算法——算法效率的度量" class="headerlink" title="算法——算法效率的度量"></a>算法——算法效率的度量</h3><p>时间复杂度：时间开销与问题规模n之间的关系。</p>
+<p>空间复杂度：空间开销（内存开销）与问题规模n之间的关系。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240306163715478.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240306163715478"></p>
+<h1 id="2-2-线性表、栈和队列、串、数组、矩阵和广义表"><a href="#2-2-线性表、栈和队列、串、数组、矩阵和广义表" class="headerlink" title="2.2 线性表、栈和队列、串、数组、矩阵和广义表"></a>2.2 线性表、栈和队列、串、数组、矩阵和广义表</h1><h2 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240306163904579.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240306163904579"></p>
+<h2 id="线性表定义"><a href="#线性表定义" class="headerlink" title="线性表定义"></a>线性表定义</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240306163945804.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240306163945804"></p>
+<h2 id="线性表——存储结构"><a href="#线性表——存储结构" class="headerlink" title="线性表——存储结构"></a>线性表——存储结构</h2><h3 id="存储结构"><a href="#存储结构" class="headerlink" title="存储结构"></a>存储结构</h3><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240306164039592.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240306164039592"></p>
+<h3 id="性能比较"><a href="#性能比较" class="headerlink" title="性能比较"></a>性能比较</h3><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309130338087.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309130338087"></p>
+<h2 id="线性表——插入删除操作"><a href="#线性表——插入删除操作" class="headerlink" title="线性表——插入删除操作"></a>线性表——插入删除操作</h2><h3 id=""><a href="#" class="headerlink" title=""></a><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309130526874.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309130526874"></h3><h2 id="栈和队列——栈定义"><a href="#栈和队列——栈定义" class="headerlink" title="栈和队列——栈定义"></a>栈和队列——栈定义</h2><p>栈和队列都是操作受限的线性表</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309133444989.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309133444989"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309133516332.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309133516332"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309133611134.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309133611134"></p>
+<h3 id="循环队列"><a href="#循环队列" class="headerlink" title="循环队列"></a>循环队列</h3><p>队空条件：head&#x3D;tail</p>
+<p>队满条件：（tail+1）%size&#x3D;head</p>
+<h2 id="串、数组、矩阵和广义表"><a href="#串、数组、矩阵和广义表" class="headerlink" title="串、数组、矩阵和广义表"></a>串、数组、矩阵和广义表</h2><h3 id="串"><a href="#串" class="headerlink" title="串"></a>串</h3><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309133846083.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309133846083"></p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/ascii.html">ASCII 表 | 菜鸟教程 (runoob.com)</a></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309134234200.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309134234200"></p>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309134338857.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309134338857"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309134551797.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309134551797"></p>
+<h3 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h3><h4 id="稀疏矩阵-三角矩阵"><a href="#稀疏矩阵-三角矩阵" class="headerlink" title="稀疏矩阵(三角矩阵)"></a>稀疏矩阵(三角矩阵)</h4><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309134612364.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309134612364"></p>
+<p>计算存储位置可以用代入法</p>
+<p>先代入A[0,0]</p>
+<p>A[1,0]   A[0,1]</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309134939058.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309134939058"></p>
+<h3 id="广义表"><a href="#广义表" class="headerlink" title="广义表"></a>广义表</h3><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309135204084.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309135204084"></p>
+<p>例一：长度&#x3D;3，深度&#x3D;2</p>
+<p>例二：head(head(tail(LS1)))</p>
+<p><strong>原子的深度是0</strong></p>
+<p><strong>空表的深度是1</strong></p>
+<p><strong>当广义表LS非空时，称第一个元素为LS的表头；称广义表LS中除去表头后其余元素组成的广义表为LS的表尾。</strong></p>
+<h1 id="2-3-树和二叉树、图"><a href="#2-3-树和二叉树、图" class="headerlink" title="2.3 树和二叉树、图"></a>2.3 树和二叉树、图</h1><h2 id="树和二叉树——树的基本概念"><a href="#树和二叉树——树的基本概念" class="headerlink" title="树和二叉树——树的基本概念"></a>树和二叉树——树的基本概念</h2><ol>
+<li>结点的度：节点的度是指节点的子树个数。</li>
+<li>树的度：树的度是指树中节点的度最大值。</li>
+<li>叶子结点：度为0的结点</li>
+<li>分支结点：</li>
+<li>内部结点：除了分支结点和子结点。</li>
+<li>父结点：若一个结点含有子结点，则这个结点称为其子结点的父结点</li>
+<li>根节点：一棵树中，没有双亲结点的结点</li>
+<li>子结点：一个结点含有的子树的根结点称为该结点的子结点</li>
+<li>兄弟结点：具有相同父结点的结点互称为兄弟结点</li>
+<li>层次：从根开始定义起，根为第1层，根的子结点为第二层</li>
+<li>满二叉树、完全二叉树、非完全二叉树</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309144755986.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309144755986"></p>
+<h2 id="树和二叉树——二叉树的遍历"><a href="#树和二叉树——二叉树的遍历" class="headerlink" title="树和二叉树——二叉树的遍历"></a>树和二叉树——二叉树的遍历</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309145046452.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309145046452"></p>
+<p>前序遍历：（根左右）12457836</p>
+<p>中序遍历：（左根右）42785136</p>
+<p>后续遍历：（左右根）48752631</p>
+<p>层次遍历：12345678</p>
+<h2 id="树和二叉树——反向构造二叉树"><a href="#树和二叉树——反向构造二叉树" class="headerlink" title="树和二叉树——反向构造二叉树"></a>树和二叉树——反向构造二叉树</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309150037874.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309150037874"></p>
+<p>根据二叉树的遍历序列，反向构造二叉树；必须有<strong>中序序列和任意前序或后序序列</strong>才能实现</p>
+<h2 id="树和二叉树——树转二叉树"><a href="#树和二叉树——树转二叉树" class="headerlink" title="树和二叉树——树转二叉树"></a>树和二叉树——树转二叉树</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309150226264.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309150226264"></p>
+<p><strong>左儿子</strong>，<strong>右兄弟</strong></p>
+<h2 id="树和二叉树——查找二叉树（二叉排序树）"><a href="#树和二叉树——查找二叉树（二叉排序树）" class="headerlink" title="树和二叉树——查找二叉树（二叉排序树）"></a>树和二叉树——查找二叉树（二叉排序树）</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309150531339.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309150531339"></p>
+<h2 id="树和二叉树——构造霍夫曼树（最优）"><a href="#树和二叉树——构造霍夫曼树（最优）" class="headerlink" title="树和二叉树——构造霍夫曼树（最优）"></a>树和二叉树——构造霍夫曼树（最优）</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309150630465.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309150630465"></p>
+<h2 id="树和二叉树——线索二叉树"><a href="#树和二叉树——线索二叉树" class="headerlink" title="树和二叉树——线索二叉树"></a>树和二叉树——线索二叉树</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309150938791.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309150938791"></p>
+<h2 id="树和二叉树——平衡二叉树"><a href="#树和二叉树——平衡二叉树" class="headerlink" title="树和二叉树——平衡二叉树"></a>树和二叉树——平衡二叉树</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309151849551.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309151849551"></p>
+<h2 id="图——基本概念"><a href="#图——基本概念" class="headerlink" title="图——基本概念"></a>图——基本概念</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309152101183.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309152101183"></p>
+<h2 id="图——存储结构（邻接矩阵）"><a href="#图——存储结构（邻接矩阵）" class="headerlink" title="图——存储结构（邻接矩阵）"></a>图——存储结构（邻接矩阵）</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309152133088.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309152133088"></p>
+<h2 id="图——存储结构（邻接表）"><a href="#图——存储结构（邻接表）" class="headerlink" title="图——存储结构（邻接表）"></a>图——存储结构（邻接表）</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309152243334.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309152243334"></p>
+<h2 id="图——图的遍历"><a href="#图——图的遍历" class="headerlink" title="图——图的遍历"></a>图——图的遍历</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309152404243.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309152404243"></p>
+<h2 id="图——拓扑排序"><a href="#图——拓扑排序" class="headerlink" title="图——拓扑排序"></a>图——拓扑排序</h2><p><strong>AOV网络</strong></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309152514097.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309152514097"></p>
+<h2 id="图——最小生成树"><a href="#图——最小生成树" class="headerlink" title="图——最小生成树"></a>图——最小生成树</h2><h3 id="prime算法"><a href="#prime算法" class="headerlink" title="prime算法"></a>prime算法</h3><ol>
+<li>从源点出发，将所有与源点连接的点加入一个待处理的集合中</li>
+<li>从集合中找出与源点的边中权重最小的点，从待处理的集合中移除标记为确定的点</li>
+<li>将找到的点按照步骤1的方式处理</li>
+<li>重复2，3步直到所有的点都被标记</li>
+<li><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309152929026.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309152929026"></li>
+</ol>
+<h3 id="kruskal算法"><a href="#kruskal算法" class="headerlink" title="kruskal算法"></a>kruskal算法</h3><ol>
+<li>将边按照权重从小到大排列</li>
+<li>枚举第一个边，加入MST里，判断是否成环</li>
+<li>如果成环则跳过，否则确定这条边为MST里的</li>
+<li>继续枚举下一条边，直到所有的边都枚举完</li>
+</ol>
+<h1 id="2-4-查找、排序"><a href="#2-4-查找、排序" class="headerlink" title="2.4 查找、排序"></a>2.4 查找、排序</h1><h2 id="查找——基本概念"><a href="#查找——基本概念" class="headerlink" title="查找——基本概念"></a>查找——基本概念</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309153325388.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309153325388"></p>
+<p>查找：静态查找、动态查找、哈希表</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309153356171.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309153356171"></p>
+<h2 id="查找——顺序查找"><a href="#查找——顺序查找" class="headerlink" title="查找——顺序查找"></a>查找——顺序查找</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309153513171.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309153513171"></p>
+<h2 id="查找——折半查找"><a href="#查找——折半查找" class="headerlink" title="查找——折半查找"></a>查找——折半查找</h2><p>折半查找仅限于有序顺序表</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309153650581.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309153650581"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309155258028.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309155258028"></p>
+<h2 id="查找——分块查找"><a href="#查找——分块查找" class="headerlink" title="查找——分块查找"></a>查找——分块查找</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309155322450.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309155322450"></p>
+<h2 id="查找——哈希表-散列表"><a href="#查找——哈希表-散列表" class="headerlink" title="查找——哈希表(散列表)"></a>查找——哈希表(散列表)</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309155653577.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309155653577"></p>
+<h2 id="排序——基本概念"><a href="#排序——基本概念" class="headerlink" title="排序——基本概念"></a>排序——基本概念</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309155820905.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309155820905"></p>
+<p>內部排序：内存中的排序</p>
+<p>外部排序：用到外部存储器的排序</p>
+<p><strong>稳定排序与不稳定排序</strong>：假定在待排序的记录序列中，存在多个具有相同的关键字的记录，若经过排序，这些记录的相对次序保持不变，即在原序列中，A1&#x3D;A2，且A1在A2之前，而在排序后的序列中，A1仍在A2之前，则称这种排序算法是稳定的；否则称为不稳定的。</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202403091652142.png" srcset="/cblog/img/loading.gif" lazyload></p>
+<h2 id="排序——直接插入排序（稳定）"><a href="#排序——直接插入排序（稳定）" class="headerlink" title="排序——直接插入排序（稳定）"></a>排序——直接插入排序（稳定）</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309160213064.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309160213064"></p>
+<h2 id="排序——希尔排序（不稳定）"><a href="#排序——希尔排序（不稳定）" class="headerlink" title="排序——希尔排序（不稳定）"></a>排序——希尔排序（不稳定）</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309160307132.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309160307132"></p>
+<h2 id="排序——冒泡排序（稳定）"><a href="#排序——冒泡排序（稳定）" class="headerlink" title="排序——冒泡排序（稳定）"></a>排序——冒泡排序（稳定）</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309163225119.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309163225119"></p>
+<h2 id="排序——快速排序（不稳定）"><a href="#排序——快速排序（不稳定）" class="headerlink" title="排序——快速排序（不稳定）"></a>排序——快速排序（不稳定）</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309163408830.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309163408830"></p>
+<h2 id="排序——简单选择排序（不稳定）"><a href="#排序——简单选择排序（不稳定）" class="headerlink" title="排序——简单选择排序（不稳定）"></a>排序——简单选择排序（不稳定）</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/image-20240309164826776.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309164826776"></p>
+<h2 id="排序——堆排序（不稳定）"><a href="#排序——堆排序（不稳定）" class="headerlink" title="排序——堆排序（不稳定）"></a>排序——堆排序（不稳定）</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202403091654448.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309165415258"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202403091655784.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309165509585"></p>
+<p>将待排序序列构造成一个大顶堆，此时，整个序列的最大值就是堆顶的根节点；将其与末尾元素进行交换，此时末尾就为最大值，可称为有序区。 然后将剩余 n-1个元素重新构造成一个堆，估且称为堆区 (未排序)，这样会得到 n个元素的次小值（将开始的第一个堆顶也算进去了，所以还是n个数）。 重复执行，有序区从:1—&gt;n，堆区：n–&gt;0，便能得到一个有序序列了</p>
+<h2 id="排序——归并排序（稳定）"><a href="#排序——归并排序（稳定）" class="headerlink" title="排序——归并排序（稳定）"></a>排序——归并排序（稳定）</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202403091658522.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309165850372"></p>
+<h2 id="排序——基数排序"><a href="#排序——基数排序" class="headerlink" title="排序——基数排序"></a>排序——基数排序</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202403091659155.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309165924000"></p>
+<h2 id="排序——评价指标"><a href="#排序——评价指标" class="headerlink" title="排序——评价指标"></a>排序——评价指标</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/cblog/202403091701808.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20240309170102724"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/cblog/categories/%E8%BD%AF%E8%80%83/" class="category-chain-item">软考</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>第二章 数据结构与算法基础</div>
+      <div>https://github.com/cuixinx/cblog/2024/03/05/第二章 数据结构与算法基础/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>CuiXin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年3月5日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/cblog/2024/03/10/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1/" title="第三章 算法分析与设计">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">第三章 算法分析与设计</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/cblog/2024/02/29/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E4%B8%8E%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="第一章 计算机组成原理与体系结构基础知识">
+                        <span class="hidden-mobile">第一章 计算机组成原理与体系结构基础知识</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/cblog/js/events.js" ></script>
+<script  src="/cblog/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/cblog/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/cblog/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/cblog/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
