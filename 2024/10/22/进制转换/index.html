@@ -16,19 +16,21 @@
   <meta name="author" content="CuiXin">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="LEDA">
-<meta property="og:url" content="https://github.com/cuixinx/cblog/2024/09/28/LEDA/index.html">
+    <meta name="description" content="进制转换十进制转其他进制 12345678910111213141516171819package Main;import java.util.Scanner;public class Main &#123;    public static void main(String[] args) &#123;        int a&#x3D;123;        String s1&#x3D;Integer.toB">
+<meta property="og:type" content="article">
+<meta property="og:title" content="进制转换">
+<meta property="og:url" content="https://github.com/cuixinx/cblog/2024/10/22/%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="进制转换十进制转其他进制 12345678910111213141516171819package Main;import java.util.Scanner;public class Main &#123;    public static void main(String[] args) &#123;        int a&#x3D;123;        String s1&#x3D;Integer.toB">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-09-28T01:46:31.000Z">
-<meta property="article:modified_time" content="2024-10-06T10:43:28.880Z">
+<meta property="article:published_time" content="2024-10-22T05:12:50.000Z">
+<meta property="article:modified_time" content="2024-10-22T05:18:36.698Z">
 <meta property="article:author" content="CuiXin">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>LEDA - Hexo</title>
+  <title>进制转换 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -194,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="LEDA"></span>
+            <span id="subtitle" data-typed-text="进制转换"></span>
           
         </div>
 
@@ -205,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-09-28 09:46" pubdate>
-          2024年9月28日 上午
+        <time datetime="2024-10-22 13:12" pubdate>
+          2024年10月22日 下午
         </time>
       </span>
     
@@ -217,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          1.5k 字
         
       </span>
     
@@ -228,7 +230,7 @@
         
         
         
-          1 分钟
+          13 分钟
         
       </span>
     
@@ -265,12 +267,18 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">LEDA</h1>
+            <h1 id="seo-header">进制转换</h1>
             
             
               <div class="markdown-body">
                 
-                
+                <h1 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h1><p>十进制转其他进制</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> Main;<br><br><span class="hljs-keyword">import</span> java.util.Scanner;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">int</span> a=<span class="hljs-number">123</span>;<br>        String s1=Integer.toBinaryString(a);  <span class="hljs-comment">//将整数a转换成二进制字符串并输出</span><br>        System.out.println(s1);<br>        String s2=Integer.toOctalString(a);   <span class="hljs-comment">//将整数a转换成八进制字符串并输出</span><br>        System.out.println(s2);<br>        String s3=Integer.toHexString(a);     <span class="hljs-comment">//将整数a转换成十六进制字符串并输出</span><br>        System.out.println(s3);<br>        <span class="hljs-comment">//Integer.toString(i,x),将i转换成任意x进制</span><br>        String s4=Integer.toString(a,<span class="hljs-number">7</span>);      <span class="hljs-comment">//将整数a转换成7进制并输出</span><br>        System.out.println(s4);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>下面是其他进制转换成10进制:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> Main;<br><br><span class="hljs-keyword">import</span> java.util.Scanner;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>            <span class="hljs-comment">// Integer.valueof(&quot;s&quot;,x);  s是对应的某个进制的字符串，x对应当前字符串的进制</span><br>            System.out.println(<span class="hljs-string">&quot;其它制转换到十进制：&quot;</span>);<br>            <span class="hljs-type">int</span> y1= Integer.valueOf(<span class="hljs-string">&quot;FFFF&quot;</span>,<span class="hljs-number">16</span>);     <span class="hljs-comment">///16进制转换成10进制</span><br>            System.out.println(y1);<br>            <span class="hljs-type">int</span> y2=Integer.valueOf(<span class="hljs-string">&quot;776&quot;</span>,<span class="hljs-number">8</span>);        <span class="hljs-comment">///8进制转换成10进制</span><br>            System.out.println(y2);<br>            <span class="hljs-type">int</span> y3=Integer.valueOf(<span class="hljs-string">&quot;0101&quot;</span>,<span class="hljs-number">2</span>);       <span class="hljs-comment">//2进制转换成10进制</span><br>            System.out.println(y3);<br>            <span class="hljs-type">int</span> y4=Integer.valueOf(<span class="hljs-string">&quot;101&quot;</span>,<span class="hljs-number">7</span>);        <span class="hljs-comment">//7进制转换成10进制</span><br>            System.out.println(y4);<br><br>            System.out.println(<span class="hljs-string">&quot;其它的可能用到的函数：&quot;</span>);<br>            <span class="hljs-comment">//static int parseInt(String s, int radix) //使用第二个参数指定的基数，将字符串参数解析为有符号的整数。</span><br>            <span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> Integer.parseInt(<span class="hljs-string">&quot;776&quot;</span>, <span class="hljs-number">8</span>) ; <span class="hljs-comment">///8进制转换成10进制</span><br>            System.out.println(n);<br>            <span class="hljs-comment">///Integer.valueOf()返回一个“integer对象”和Integer.parseInt()返回一个“int值”的区别在于，返回值不同</span><br>            <span class="hljs-comment">///基本常识，其他的非10进制的数的保存，基本都是以字符串的形式</span><br><br><br>            <span class="hljs-comment">///例子：7进制到8进制的转换</span><br>            <span class="hljs-type">String</span> <span class="hljs-variable">q</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;6523&quot;</span> ; <span class="hljs-comment">///7进制的字符串</span><br>            <span class="hljs-type">String</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> Integer.toString(Integer.valueOf(q,<span class="hljs-number">7</span>),<span class="hljs-number">8</span>) ;<span class="hljs-comment">///这样7进制就变成8进制了</span><br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
                 
               </div>
             
@@ -288,7 +296,7 @@
     
       <span class="category-chain">
         
-  <a href="/cblog/categories/%E6%96%87%E7%8C%AE/" class="category-chain-item">文献</a>
+  <a href="/cblog/categories/Java/" class="category-chain-item">Java</a>
   
   
 
@@ -308,8 +316,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>LEDA</div>
-      <div>https://github.com/cuixinx/cblog/2024/09/28/LEDA/</div>
+      <div>进制转换</div>
+      <div>https://github.com/cuixinx/cblog/2024/10/22/进制转换/</div>
     </div>
     <div class="license-meta">
       
@@ -321,7 +329,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年9月28日</div>
+          <div>2024年10月22日</div>
         </div>
       
       
@@ -353,18 +361,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/cblog/2024/09/29/57-%E6%8F%92%E5%85%A5%E5%8C%BA%E9%97%B4/" title="57 插入区间">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">57 插入区间</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/cblog/2024/09/28/209-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/" title="209.长度最小的子数组">
-                        <span class="hidden-mobile">209.长度最小的子数组</span>
+                      <a href="/cblog/2024/10/22/%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5/" title="键盘输入">
+                        <span class="hidden-mobile">键盘输入</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
