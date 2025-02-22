@@ -1,0 +1,726 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/cblog/img/fluid.png">
+  <link rel="icon" href="/cblog/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="CuiXin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="题目LEAD: Learning Decomposition for Source-free Universal Domain Adaptation LEAD：无源通用域适应的学习分解 2024 CVPR 背景1.无源通用域适应存在协变量偏移。 2.现有解决方法聚焦于手动设计阈值或采用迭代聚类解决问题。阈值法不够灵活，聚类耗时长。 协变量转移是指源域和目标域的特征（输入数据）的分布不同，但给定特征">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LEAD">
+<meta property="og:url" content="https://github.com/cuixinx/cblog/2024/09/28/LEAD/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="题目LEAD: Learning Decomposition for Source-free Universal Domain Adaptation LEAD：无源通用域适应的学习分解 2024 CVPR 背景1.无源通用域适应存在协变量偏移。 2.现有解决方法聚焦于手动设计阈值或采用迭代聚类解决问题。阈值法不够灵活，聚类耗时长。 协变量转移是指源域和目标域的特征（输入数据）的分布不同，但给定特征">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231615956.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231618850.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231618264.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231618420.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231618421.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231618580.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231618580.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231620017.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231620376.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231621921.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231621576.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231622983.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231623299.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231624711.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231624885.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231624333.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231624333.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231625889.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231625291.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231625080.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231626306.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231626509.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231626325.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231626855.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231626670.png">
+<meta property="article:published_time" content="2024-09-28T01:46:31.000Z">
+<meta property="article:modified_time" content="2024-10-23T08:29:46.161Z">
+<meta property="article:author" content="CuiXin">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231615956.png">
+  
+  
+  
+  <title>LEAD - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/cblog/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/cblog/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/cblog/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"github.com","root":"/cblog/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/cblog/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/cblog/js/utils.js" ></script>
+  <script  src="/cblog/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/cblog/">
+      <strong>CuiXin</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/cblog/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="LEAD"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-28 09:46" pubdate>
+          2024年9月28日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">LEAD</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>LEAD: Learning Decomposition for Source-free Universal Domain Adaptation</p>
+<p>LEAD：无源通用域适应的学习分解</p>
+<p>2024 CVPR</p>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>1.无源通用域适应存在<strong>协变量</strong>偏移。</p>
+<p>2.现有解决方法聚焦于手动设计阈值或采用迭代聚类解决问题。阈值法不够灵活，聚类耗时长。</p>
+<p>协变量转移是指<strong>源域和目标域的特征（输入数据）的分布不同，但给定特征的条件标签分布相同</strong>。<br> 标签转移是指<strong>源域和目标域的标签分布不同，但给定特征的条件标签分布是相同的</strong>。</p>
+<h1 id="贡献"><a href="#贡献" class="headerlink" title="贡献"></a>贡献</h1><p>1.提出了一种用于无源通用域适应（SF-UniDA）的特征分解框架（LEAD），通过将特征分解为源已知和源未知部分来识别目标域的私有数据。</p>
+<p>2.计算开销大大降低，对比其他传统聚类方法，LEAD在DomainNet数据集 仅需0.29秒计算伪标签决策边界，GLC 方法平均需要 897.65 秒 。</p>
+<p>3.在四个数据集（Office-Home， Office-31， VisDA， DomainNet ）上进行广泛实验。</p>
+<h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231615956.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20241023161548792"></p>
+<p>其基本原理是，尽管特征空间可能发生变化，但目标私有数据预计将包含来自源模型的正交补（源未知）空间的更多组件。</p>
+<ol>
+<li>LEAD 首先执行正交分解，将目标特征分解为源已知和源未知部分</li>
+<li>接下来，LEAD 采用二分量高斯混合模型来估计源未知特征分布</li>
+<li>LEAD 设计了一个名为“共同得分”εi,c 的指标，该指标考虑了到目标原型和源锚点（从 ht θ 导出）的距离，以方便导出实例级决策边界ρi,c。</li>
+</ol>
+<h2 id="正交特征分解"><a href="#正交特征分解" class="headerlink" title="正交特征分解"></a>正交特征分解</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231618850.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20241023161818833"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231618264.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20241023161829243"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231618420.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20241023161841399"></p>
+<h2 id="构建目标原型"><a href="#构建目标原型" class="headerlink" title="构建目标原型"></a>构建目标原型</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231618421.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20241023161850403"></p>
+<p><strong>Top-K</strong> <strong>采样</strong>：目标原型通过 <strong>Top-K</strong> <strong>采样</strong>的方法构建。具体来说，通过选择与特定类别特征最相似的 K 个样本来构建目标原型。<strong>目标原型****代表类别中心</strong>：目标原型可以被看作是目标域中某个类别的“典型代表”，它提供了一种方式来聚合目标域中同一类别的数据特征，以帮助模型更好地理解和分类。</p>
+<h2 id="目标原型和源锚点距离"><a href="#目标原型和源锚点距离" class="headerlink" title="目标原型和源锚点距离"></a>目标原型和源锚点距离</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231618580.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20241023161854557"></p>
+<h2 id="伪标签"><a href="#伪标签" class="headerlink" title="伪标签"></a>伪标签</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231618580.png" srcset="/cblog/img/loading.gif" lazyload></p>
+<h2 id="优化目标"><a href="#优化目标" class="headerlink" title="优化目标"></a>优化目标</h2><ol>
+<li><p>伪标签学习</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231620017.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20241023162013996"></p>
+<p><strong>伪标签学习：</strong>使用从等式导出的伪标签。 我们应用交叉熵损失来进行模型自适应。尽管如此，我们并没有对所有伪标签赋予同等的重要性，而是引入了学生 t 分布来表征与每个伪标签相关的确定性，同时考虑了 ∥zt i,unk ∥2 和 ρi,c 之间的距离</p>
+</li>
+<li><p>特征分解正则化</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231620376.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20241023162036352"></p>
+<p><strong>特征分解正则化（<strong><strong>Feature Decomposition Regularization</strong></strong>）</strong>：在文章中提到的这种正则化用于将目标域特征分为源已知部分和源未知部分，以便模型能够识别出目标域中特有的类别，从而减少对源域知识的过度依赖。</p>
+<p>yt i &#x3D; 1或0表示伪标记为私有&#x2F;公共数据。</p>
+</li>
+<li><p>特征一致性正则化</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231621921.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20241023162116904"></p>
+<p>通过增加特征空间中样本与其最近邻的相似性，使模型对目标域中的相似样本有一致的特征表示。</p>
+</li>
+<li><p>总损失函数</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231621576.png" srcset="/cblog/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<h1 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h1><ol>
+<li>Office31：包含真实办公场景中的三个域（Amazon（A）、Dslr（D）和Webcam（W）），每个域有31个类（包含 4,652 个图像）。</li>
+<li>Office-Home：分为艺术 (Ar)、剪贴画 (Cl)、产品 (Pr) 和现实世界 (Rw) 4个域的65个类别。（总计 15,500 张图像）</li>
+<li>VisDA-C ： 包含 12 个类别。包括合成域（ Synthesis Domain, S ）和真实域（eal Domain, R）。其源域包括 152,397 个合成图像，目标域包括55,388 个真实世界图像。</li>
+<li>DomainNet：包含 345 个类别的大约 60 万张图像。实验集中在三个域上（真实、素描、绘画）。</li>
+</ol>
+<p><strong>实验场景</strong></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231622983.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20241023162251958"></p>
+<h1 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h1><h2 id="结果评估"><a href="#结果评估" class="headerlink" title="结果评估"></a>结果评估</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231623299.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20241023162331274"></p>
+<p><strong>H-score</strong> 的公式通常为<strong>公共类别分类准确率</strong>与<strong>私有类别识别准确率</strong>的<strong>调和平均值</strong></p>
+<h2 id="OPDA"><a href="#OPDA" class="headerlink" title="OPDA"></a>OPDA</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231624711.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20241023162416682"></p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231624885.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20241023162426855"></p>
+<h2 id="OSDA"><a href="#OSDA" class="headerlink" title="OSDA"></a>OSDA</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231624333.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20241023162444299"></p>
+<h2 id="PDA"><a href="#PDA" class="headerlink" title="PDA"></a>PDA</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231624333.png" srcset="/cblog/img/loading.gif" lazyload></p>
+<h2 id="消融实验"><a href="#消融实验" class="headerlink" title="消融实验"></a>消融实验</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231625889.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20241023162501868"></p>
+<h2 id="执行效率"><a href="#执行效率" class="headerlink" title="执行效率"></a>执行效率</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231625291.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20241023162506260"></p>
+<h2 id="决策边界方法分析"><a href="#决策边界方法分析" class="headerlink" title="决策边界方法分析"></a>决策边界方法分析</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231625080.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20241023162546054"></p>
+<h2 id="消融实验可视化"><a href="#消融实验可视化" class="headerlink" title="消融实验可视化"></a>消融实验可视化</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231626306.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20241023162607274"></p>
+<h2 id="混淆矩阵"><a href="#混淆矩阵" class="headerlink" title="混淆矩阵"></a>混淆矩阵</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231626509.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20241023162615479"></p>
+<h2 id="目标推理"><a href="#目标推理" class="headerlink" title="目标推理"></a>目标推理</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231626325.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20241023162631307"></p>
+<h2 id="近邻分析"><a href="#近邻分析" class="headerlink" title="近邻分析"></a>近邻分析</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231626855.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20241023162646813"></p>
+<h2 id="特征可视化"><a href="#特征可视化" class="headerlink" title="特征可视化"></a>特征可视化</h2><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/202410231626670.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20241023162656636"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/cblog/categories/%E6%96%87%E7%8C%AE/" class="category-chain-item">文献</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>LEAD</div>
+      <div>https://github.com/cuixinx/cblog/2024/09/28/LEAD/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>CuiXin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年9月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/cblog/2024/09/29/57-%E6%8F%92%E5%85%A5%E5%8C%BA%E9%97%B4/" title="57 插入区间">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">57 插入区间</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/cblog/2024/09/28/209-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/" title="209.长度最小的子数组">
+                        <span class="hidden-mobile">209.长度最小的子数组</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/cblog/js/events.js" ></script>
+<script  src="/cblog/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/cblog/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/cblog/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/cblog/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
