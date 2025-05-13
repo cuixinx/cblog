@@ -1,0 +1,1213 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/cblog/img/fluid.png">
+  <link rel="icon" href="/cblog/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="CuiXin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="SIGMA: Semantic-complete Graph Matching for Domain Adaptive Object DetectionSIGMA：用于领域自适应目标检测的语义完整图匹配方法 网络结构 贡献✅ 1. 首次将领域自适应目标检测（DAOD）建模为图匹配问题 创新点：大多数以往 DAOD 方法采用原型（prototype）对齐方式，而 SIGMA 引入图结构（node +">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SIGMA: Semantic-complete Graph Matching for Domain Adaptive Object Detection ">
+<meta property="og:url" content="https://github.com/cuixinx/cblog/2025/05/12/SIGMA-Semantic-complete-Graph-Matching-for-Domain-Adaptive-Object-Detection/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="SIGMA: Semantic-complete Graph Matching for Domain Adaptive Object DetectionSIGMA：用于领域自适应目标检测的语义完整图匹配方法 网络结构 贡献✅ 1. 首次将领域自适应目标检测（DAOD）建模为图匹配问题 创新点：大多数以往 DAOD 方法采用原型（prototype）对齐方式，而 SIGMA 引入图结构（node +">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/202505130754826.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/202505130854437.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/202505131423722.png">
+<meta property="article:published_time" content="2025-05-12T13:41:42.000Z">
+<meta property="article:modified_time" content="2025-05-13T06:37:12.527Z">
+<meta property="article:author" content="CuiXin">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/cuixinx/picgo/master/202505130754826.png">
+  
+  
+  
+  <title>SIGMA: Semantic-complete Graph Matching for Domain Adaptive Object Detection  - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/cblog/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/cblog/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/cblog/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"github.com","root":"/cblog/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/cblog/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/cblog/js/utils.js" ></script>
+  <script  src="/cblog/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/cblog/">
+      <strong>CuiXin</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cblog/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/cblog/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="SIGMA: Semantic-complete Graph Matching for Domain Adaptive Object Detection "></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-05-12 21:41" pubdate>
+          2025年5月12日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          18k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          147 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">SIGMA: Semantic-complete Graph Matching for Domain Adaptive Object Detection </h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="SIGMA-Semantic-complete-Graph-Matching-for-Domain-Adaptive-Object-Detection"><a href="#SIGMA-Semantic-complete-Graph-Matching-for-Domain-Adaptive-Object-Detection" class="headerlink" title="SIGMA: Semantic-complete Graph Matching for Domain Adaptive Object Detection"></a>SIGMA: Semantic-complete Graph Matching for Domain Adaptive Object Detection</h1><p>SIGMA：用于领域自适应目标检测的语义完整图匹配方法</p>
+<h1 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h1><p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/202505130754826.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20250513075428587"></p>
+<h1 id="贡献"><a href="#贡献" class="headerlink" title="贡献"></a>贡献</h1><h3 id="✅-1-首次将领域自适应目标检测（DAOD）建模为图匹配问题"><a href="#✅-1-首次将领域自适应目标检测（DAOD）建模为图匹配问题" class="headerlink" title="✅ 1. 首次将领域自适应目标检测（DAOD）建模为图匹配问题"></a>✅ 1. <strong>首次将领域自适应目标检测（DAOD）建模为图匹配问题</strong></h3><ul>
+<li><strong>创新点</strong>：大多数以往 DAOD 方法采用原型（prototype）对齐方式，而 SIGMA 引入图结构（node + edge）来表示类别，构建出跨域的图匹配系统。</li>
+<li><strong>意义</strong>：捕捉更细粒度、结构化的语义信息，提升跨域匹配的准确性。</li>
+</ul>
+<h3 id="✅-2-提出“Graph-embedded-Semantic-Completion-GSC-”模块"><a href="#✅-2-提出“Graph-embedded-Semantic-Completion-GSC-”模块" class="headerlink" title="✅ 2. 提出“Graph-embedded Semantic Completion (GSC)”模块"></a>✅ 2. <strong>提出“Graph-embedded Semantic Completion (GSC)”模块</strong></h3><ul>
+<li><strong>功能</strong>：解决训练过程中 batch 中语义不完整的问题。</li>
+<li><strong>核心机制</strong>：利用记忆库生成<strong>幻觉节点（hallucinated nodes）</strong>来补全缺失类别，使构图更语义完整。</li>
+</ul>
+<h3 id="✅-3-设计“双边图匹配（Bipartite-Graph-Matching-BGM）”模块"><a href="#✅-3-设计“双边图匹配（Bipartite-Graph-Matching-BGM）”模块" class="headerlink" title="✅ 3. 设计“双边图匹配（Bipartite Graph Matching, BGM）”模块"></a>✅ 3. <strong>设计“双边图匹配（Bipartite Graph Matching, BGM）”模块</strong></h3><ul>
+<li><strong>核心思路</strong>：通过<strong>节点相似度（semantic affinity）</strong>与<strong>结构对齐（quadratic consistency）</strong>联合优化，寻找源域和目标域之间最优节点匹配。</li>
+<li><strong>实现方法</strong>：基于<strong>QAP（Quadratic Assignment Problem）</strong>，设计了近似可导的匹配机制。</li>
+</ul>
+<h3 id="✅-4-提出结构感知的图匹配损失函数"><a href="#✅-4-提出结构感知的图匹配损失函数" class="headerlink" title="✅ 4. 提出结构感知的图匹配损失函数"></a>✅ 4. <strong>提出结构感知的图匹配损失函数</strong></h3><ul>
+<li>包括：<ul>
+<li><strong>TE</strong>（True Positive Enhancement）：鼓励真实匹配；</li>
+<li><strong>FS</strong>（False Positive Suppression）：抑制错误匹配；</li>
+<li><strong>QC</strong>（Quadratic Constraints）：保持结构一致性。</li>
+</ul>
+</li>
+<li><strong>优势</strong>：显著提高匹配鲁棒性和泛化性能。</li>
+</ul>
+<h1 id="V2G"><a href="#V2G" class="headerlink" title="V2G"></a>V2G</h1><h2 id="🔧-V2G-的输入是什么？"><a href="#🔧-V2G-的输入是什么？" class="headerlink" title="🔧 V2G 的输入是什么？"></a>🔧 V2G 的输入是什么？</h2><ul>
+<li>原始图像（来自源域&#x2F;目标域）；</li>
+<li>目标检测器（如 Faster R-CNN）输出的：<ul>
+<li>Proposal boxes（每个候选框）；</li>
+<li>Proposal feature（每个框的特征向量）；</li>
+<li>分类得分（置信度分数）。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="✅-V2G-是怎么做的？（分步）"><a href="#✅-V2G-是怎么做的？（分步）" class="headerlink" title="✅ V2G 是怎么做的？（分步）"></a>✅ V2G 是怎么做的？（分步）</h2><h3 id="1️⃣-使用检测器提取-proposals"><a href="#1️⃣-使用检测器提取-proposals" class="headerlink" title="1️⃣ 使用检测器提取 proposals"></a>1️⃣ 使用检测器提取 proposals</h3><ul>
+<li>输入图像 → 检测器（Faster R-CNN）</li>
+<li>输出：每张图得 $N$ 个候选框（proposal）和特征向量 $f_i \in \mathbb{R}^D$</li>
+</ul>
+<h3 id="2️⃣-置信度筛选"><a href="#2️⃣-置信度筛选" class="headerlink" title="2️⃣ 置信度筛选"></a>2️⃣ 置信度筛选</h3><ul>
+<li>使用 foreground&#x2F;background 阈值（比如 0.5 &#x2F; 0.05）过滤掉置信度太低的背景 proposal；</li>
+<li>保留预测为前景物体的 proposal。</li>
+</ul>
+<h3 id="3️⃣-每个剩下的-proposal-成为一个图节点"><a href="#3️⃣-每个剩下的-proposal-成为一个图节点" class="headerlink" title="3️⃣ 每个剩下的 proposal 成为一个图节点"></a>3️⃣ 每个剩下的 proposal 成为一个图节点</h3><ul>
+<li>Proposal 特征 $f_i$ 即为图节点表示；</li>
+<li>这些节点之间会构建边，形成图 $G &#x3D; (V, E)$。</li>
+</ul>
+<h3 id="4️⃣-节点打标签（如果是-source-domain，有-ground-truth-类别）："><a href="#4️⃣-节点打标签（如果是-source-domain，有-ground-truth-类别）：" class="headerlink" title="4️⃣ 节点打标签（如果是 source domain，有 ground-truth 类别）："></a>4️⃣ 节点打标签（如果是 source domain，有 ground-truth 类别）：</h3><ul>
+<li>每个节点会有类别标签（source）；</li>
+<li>target 的标签通过 pseudo label 得到。</li>
+</ul>
+<h1 id="DNC"><a href="#DNC" class="headerlink" title="DNC"></a>DNC</h1><h3 id="📌-原文："><a href="#📌-原文：" class="headerlink" title="📌 原文："></a>📌 原文：</h3><blockquote>
+<p><strong>The object categories ΩB_{s&#x2F;t} ∈ {0, 1, …, C} within a training batch are always mismatched between the source and target domain, limiting the adaptation of class-conditional distributions.</strong></p>
+</blockquote>
+<p><strong>翻译：</strong><br> 训练过程中，<strong>每个 batch 内源域和目标域的物体类别集合 $\Omega^{B}_{s&#x2F;t}$</strong> 往往不一致，<br> 这会阻碍模型对<strong>类别条件分布（class-conditional distribution）</strong>的有效对齐。</p>
+<p>🧠 <strong>解释：</strong><br> 比如当前 batch，源域有“人”和“车”，目标域只有“人”，导致“车”类无法对齐训练，这样适应就不充分。</p>
+<h3 id="📌-原文：-1"><a href="#📌-原文：-1" class="headerlink" title="📌 原文："></a>📌 原文：</h3><blockquote>
+<p><strong>Hence, we propose a semantic completion strategy to generate hallucination nodes in missing categories … obtaining semantic-complete nodes $V_{s&#x2F;t}$.</strong></p>
+</blockquote>
+<p><strong>翻译：</strong><br> 因此，作者提出一种<strong>语义补全策略</strong>，在那些类别缺失的地方<strong>生成幻觉节点（hallucination nodes）</strong>，<br> 从而构建出**语义完整的节点集 $V_{s&#x2F;t}$**。</p>
+<p>🧠 <strong>解释：</strong><br> 构图时，补全那些本 batch 没有出现、但理论上应该存在的类别，让图结构更完整。</p>
+<p>幻觉节点就是<strong>“补出来”的类别节点</strong>，当某个类在当前 batch 没有出现时，我们用历史知识模拟出这个类别应该是什么样的，用来构图和匹配。</p>
+<p>论文提出：</p>
+<blockquote>
+<p>如果目标域图中没有“车”，那就<strong>生成一个“假的车”节点</strong>——不是瞎编，而是：</p>
+</blockquote>
+<ul>
+<li>参考<strong>源域中“车”的语义中心（均值）</strong>；</li>
+<li>加上<strong>目标域“车”这个类别的变化范围（方差）</strong>；</li>
+<li><strong>高斯采样</strong>出一个新特征；</li>
+<li>再映射成图中的一个节点，叫做“幻觉节点”。</li>
+</ul>
+<p>这就是“<strong>Hallucinated Node</strong>”。</p>
+<hr>
+<h3 id="📌-原文：-2"><a href="#📌-原文：-2" class="headerlink" title="📌 原文："></a>📌 原文：</h3><blockquote>
+<p><strong>To generate additional nodes containing non-existing semantics, we define a graph-guided memory bank $S_{s&#x2F;t} ∈ \mathbb{R}^{C×D}$</strong> …</p>
+</blockquote>
+<p><strong>翻译：</strong><br> 为生成这些“缺失语义”的补全节点，我们定义了一个**图引导的记忆库 $S_{s&#x2F;t}$**，<br> 用于存储每个类别的“平均语义表示”。</p>
+<p>🧠 <strong>解释：</strong><br> 记忆库就像一个词典，每个类别在源域&#x2F;目标域中有哪些典型特征，系统都记录下来，供后续生成使用。</p>
+<hr>
+<h3 id="📌-原文：-3"><a href="#📌-原文：-3" class="headerlink" title="📌 原文："></a>📌 原文：</h3><blockquote>
+<p><strong>…we fully utilize the semantic cues from the counterpart domain to guide the node generation, which provide a joint measurement of the class-conditional distribution within the batch.</strong></p>
+</blockquote>
+<p><strong>翻译：</strong><br> 我们还充分利用<strong>对方领域（源或目标域）中的语义提示</strong>，来辅助当前域缺失类别的节点生成，<br> 这样可以更全面地反映类别分布。</p>
+<p>🧠 <strong>解释：</strong><br> 如果源域缺“人”类，就可以参考目标域中“人”的样子来补出来，反之亦然。</p>
+<hr>
+<h3 id="📌-原文：-4"><a href="#📌-原文：-4" class="headerlink" title="📌 原文："></a>📌 原文：</h3><blockquote>
+<p><strong>Specifically for the completion of the source-missing category ω ∈ Ωmiss_s, we calculate the standard variance of target nodes ${v^{(ω)}_t}$</strong> …</p>
+</blockquote>
+<p><strong>翻译：</strong><br> 比如要在源域补全类别 $ω$（源域缺失，但目标域有），我们会：</p>
+<ul>
+<li>从目标域中该类别的节点，计算出其标准差 $σ^{(ω)}_t$，反映特征变化范围；</li>
+<li>然后从源域记忆库中加载该类别的“语义中心” $μ^{(ω)}_s$；</li>
+<li>接着从高斯分布中采样，并投影得到幻觉节点。</li>
+</ul>
+<p>🧠 <strong>解释：</strong><br> 一个类的“形状”和“变化范围”在另一个域中是可参考的，我们借此来补。</p>
+<hr>
+<h3 id="📌-原文：-5"><a href="#📌-原文：-5" class="headerlink" title="📌 原文："></a>📌 原文：</h3><blockquote>
+<p><strong>VH_s &#x3D; {v^h_s | v^h_s &#x3D; P(x^h_s), x^h_s ∼ N(μ^{(ω)}_s, σ^{(ω)}_t)}</strong></p>
+</blockquote>
+<p><strong>翻译：</strong><br> 幻觉节点由高斯采样后，经过线性投影 $P(\cdot)$ 得到，成为 $V^H_s$；<br> 这组节点就是源域中“补出来”的 ω 类节点。</p>
+<p>🧠 <strong>解释：</strong><br> 你可以理解为“根据别人给的风格，在自己这边画出这个人应该长什么样”。</p>
+<hr>
+<h3 id="📌-原文：-6"><a href="#📌-原文：-6" class="headerlink" title="📌 原文："></a>📌 原文：</h3><blockquote>
+<p><strong>The same completion is also conducted in the target domain…</strong></p>
+</blockquote>
+<p><strong>翻译：</strong><br> 同样的过程也会在目标域执行，用于补全目标域中缺失的类别。</p>
+<hr>
+<h3 id="📌-原文：-7"><a href="#📌-原文：-7" class="headerlink" title="📌 原文："></a>📌 原文：</h3><blockquote>
+<p><strong>Instead of aligning these statistic-based estimations directly […], we fully utilize domain knowledge to generate novel and unbiased samples…</strong></p>
+</blockquote>
+<p><strong>翻译：</strong><br> 不同于那些直接用均值&#x2F;方差做对齐的方法，我们用跨域信息生成更有代表性且无偏的新样本，<br> 避免了统计估计方法中的偏差和次优对齐。</p>
+<hr>
+<h3 id="📌-原文：-8"><a href="#📌-原文：-8" class="headerlink" title="📌 原文："></a>📌 原文：</h3><blockquote>
+<p><strong>Finally, both existing nodes and hallucination ones constitute the semantic-complete node set $V_{s&#x2F;t}$ for the followed graph modelling.</strong></p>
+</blockquote>
+<p><strong>翻译：</strong><br> 最终，真实节点 + 幻觉节点一起组成了语义完整的图节点集 $V_{s&#x2F;t}$，供后续图建模使用。</p>
+<p>比如要在源域补全类别 $ω$（源域缺失，但目标域有），我们会：</p>
+<ul>
+<li>从目标域中该类别的节点，计算出其标准差 $σ^{(ω)}_t$，反映特征变化范围；</li>
+<li>然后从源域记忆库中加载该类别的“语义中心” $μ^{(ω)}_s$；</li>
+<li>接着从高斯分布中采样，并投影得到幻觉节点。</li>
+</ul>
+<h1 id="GMB"><a href="#GMB" class="headerlink" title="GMB"></a>GMB</h1><h2 id="🧾-原文逐句翻译-解释"><a href="#🧾-原文逐句翻译-解释" class="headerlink" title="🧾 原文逐句翻译 + 解释"></a>🧾 原文逐句翻译 + 解释</h2><hr>
+<h3 id="📌-原文：-9"><a href="#📌-原文：-9" class="headerlink" title="📌 原文："></a>📌 原文：</h3><blockquote>
+<p>Since the nodes $V_{s&#x2F;t}$ derive from different images within a batch, we establish a cross-image graph to model the class-conditional distribution with long-distance semantic dependency…</p>
+</blockquote>
+<p><strong>翻译：</strong><br> 因为图节点 $V_{s&#x2F;t}$ 来自同一个 batch 中的多个图像，我们构建一个<strong>跨图像的图结构</strong>，<br> 来建模类别条件分布（class-conditional distribution）中<strong>长距离的语义依赖</strong>。</p>
+<p><strong>解释：</strong><br> 不是每个图像单独建图，而是<strong>一个 batch 的多个图像一起组成一个大图</strong>，让同类目标之间能相互学习。</p>
+<hr>
+<h3 id="📌-原文：-10"><a href="#📌-原文：-10" class="headerlink" title="📌 原文："></a>📌 原文：</h3><blockquote>
+<p>…and propose a memory bank to preserve graph-based knowledge, which helps the DNC to generate better hallucination nodes in turn.</p>
+</blockquote>
+<p><strong>翻译：</strong><br> 我们还提出一个<strong>记忆库（memory bank）</strong>来保存基于图的语义知识，<br> 以便在生成幻觉节点（DNC）时提供更好的语义信息。</p>
+<p><strong>解释：</strong><br> 记忆库像一个“类别语义知识库”，DNC 生成幻觉节点时，就可以查字典一样调用它。</p>
+<hr>
+<h3 id="📌-原文：-11"><a href="#📌-原文：-11" class="headerlink" title="📌 原文："></a>📌 原文：</h3><blockquote>
+<p>For the graph edge, we utilize edge drop to avoid the potential relationship bias…</p>
+</blockquote>
+<p><strong>翻译：</strong><br> 为了建立图中的边，我们使用了<strong>EdgeDrop</strong>机制，防止因过多连接带来的偏置。</p>
+<p><strong>解释：</strong><br> EdgeDrop 类似 dropout，在构图时随机丢弃部分边，避免图中连接过密、语义过拟合。</p>
+<hr>
+<h3 id="📌-原文：-12"><a href="#📌-原文：-12" class="headerlink" title="📌 原文："></a>📌 原文：</h3><blockquote>
+<p>$A_{s&#x2F;t} &#x3D; \text{EdgeDrop}{ \text{softmax}( V_{s&#x2F;t} W_e (V_{s&#x2F;t} W_e)^T ) }$</p>
+</blockquote>
+<p><strong>解释：</strong></p>
+<ul>
+<li>$A_{s&#x2F;t}$：邻接矩阵，表示节点之间的边权；</li>
+<li>$W_e$：可学习的线性变换矩阵；</li>
+<li>softmax 后表示节点间的相似度关系；</li>
+<li>EdgeDrop 后保留部分连接，构成图的结构。</li>
+</ul>
+<hr>
+<h3 id="📌-原文：-13"><a href="#📌-原文：-13" class="headerlink" title="📌 原文："></a>📌 原文：</h3><blockquote>
+<p>Then, we perform single-layer graph convolution… yielding enhanced node representation:</p>
+</blockquote>
+<p>$$<br>\tilde{v}^i_{s&#x2F;t} &#x3D; \text{LN}\left( \sum_{j \in \mathcal{N}<em>i} A^{s&#x2F;t}</em>{i,j} v^j_{s&#x2F;t} W_{\text{gcn}} + v^i_{s&#x2F;t} \right)<br>$$</p>
+<p><strong>翻译：</strong><br> 我们在图上进行一层图卷积，聚合邻居节点的信息，生成<strong>增强后的图节点表示</strong> $\tilde{v}^i_{s&#x2F;t}$。</p>
+<hr>
+<h3 id="📌-原文：-14"><a href="#📌-原文：-14" class="headerlink" title="📌 原文："></a>📌 原文：</h3><blockquote>
+<p>To provide representative and robust dependency for hallucination node generation, we introduce a memory bank…</p>
+</blockquote>
+<p><strong>翻译：</strong><br> 为生成更有代表性和鲁棒性的幻觉节点，我们引入记忆库来保存<strong>每个类别的图嵌入（graph embedding）</strong>。</p>
+<hr>
+<h3 id="📌-Memory-Bank-的核心更新策略："><a href="#📌-Memory-Bank-的核心更新策略：" class="headerlink" title="📌 Memory Bank 的核心更新策略："></a>📌 Memory Bank 的核心更新策略：</h3><ol>
+<li>初始化一个记忆库 $S_{s&#x2F;t} \in \mathbb{R}^{C \times D}$，表示每个类别一个向量；</li>
+<li>在当前 batch 中，找到某类 $\omega$ 出现过的节点 ${ \tilde{v}^{(\omega)}_{s&#x2F;t} }$；</li>
+<li>将这些节点与记忆种子 $S^{(\omega)}_{s&#x2F;t}$ 一起做谱聚类（spectral clustering），得到两个类簇：<ul>
+<li><strong>π_seed</strong>：包含记忆种子在内的“可信”节点；</li>
+<li><strong>π_else</strong>：其他节点。</li>
+</ul>
+</li>
+</ol>
+<p>📌 <strong>只用 π_seed 中的节点去更新记忆库</strong>，因为这些节点被认为更稳定、更可信。</p>
+<hr>
+<h3 id="📌-更新公式："><a href="#📌-更新公式：" class="headerlink" title="📌 更新公式："></a>📌 更新公式：</h3><p>$$<br>S^{(\omega)}<em>{s&#x2F;t} \leftarrow \text{sim}(b</em>{s&#x2F;t}, S^{(\omega)}<em>{s&#x2F;t}) \cdot S^{(\omega)}</em>{s&#x2F;t} + [1 - \text{sim}(\cdot)] \cdot b_{s&#x2F;t}<br>$$</p>
+<p>其中：</p>
+<ul>
+<li>$b_{s&#x2F;t}$：是 π_seed 中图节点的平均向量；</li>
+<li>$\text{sim}(a, b)$：是 cosine 相似度；</li>
+<li>这个更新方式相当于动量更新（Momentum），融合新旧信息。</li>
+</ul>
+<hr>
+<h3 id="📌-最后一句："><a href="#📌-最后一句：" class="headerlink" title="📌 最后一句："></a>📌 最后一句：</h3><blockquote>
+<p>We only utilize existing graph nodes to update memory seeds, and remove hallucination ones…</p>
+</blockquote>
+<p><strong>翻译：</strong><br> 我们只使用真实图节点来更新记忆库，<strong>不会用幻觉节点</strong>，<br> 以避免受高斯采样这种“手工生成”的不确定性影响。</p>
+<hr>
+<h2 id="✅-总结一下（通俗版）："><a href="#✅-总结一下（通俗版）：" class="headerlink" title="✅ 总结一下（通俗版）："></a>✅ 总结一下（通俗版）：</h2><blockquote>
+<p><strong>GMB（图引导记忆库）模块</strong>会：</p>
+</blockquote>
+<ul>
+<li>把当前 batch 中所有图像的节点构成一个大图；</li>
+<li>用图卷积聚合信息，获得更鲁棒的节点表示；</li>
+<li>再用谱聚类筛选出“可靠的”节点来更新每个类别的记忆向量；</li>
+<li>这个记忆库会作为“参考模板”，在下一步生成幻觉节点（DNC）时使用。</li>
+</ul>
+<h2 id="🔍-步骤详解：GMB-如何建立与更新？"><a href="#🔍-步骤详解：GMB-如何建立与更新？" class="headerlink" title="🔍 步骤详解：GMB 如何建立与更新？"></a>🔍 步骤详解：GMB 如何建立与更新？</h2><p>下面是一步步的操作过程，对应论文中的描述：</p>
+<hr>
+<h3 id="🟩-第一步：初始化"><a href="#🟩-第一步：初始化" class="headerlink" title="### 🟩 第一步：初始化"></a>### 🟩 第一步：初始化</h3><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">python</span><br><br><br>复制编辑<br><span class="hljs-type">S_s</span><span class="hljs-operator">/</span><span class="hljs-variable">t</span> ∈ ℝ<span class="hljs-operator">^</span><span class="hljs-punctuation">&#123;</span><span class="hljs-built_in">C</span>×<span class="hljs-built_in">D</span><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>初始化一个 <strong>记忆库</strong> <code>S_s</code> 和 <code>S_t</code>，分别用于源域和目标域；</li>
+<li>每一行 $S^{(\omega)}_{s&#x2F;t}$ 表示 <strong>类别 ω 的语义中心</strong>，共 <code>C</code> 类，特征维度为 <code>D</code>。</li>
+</ul>
+<hr>
+<h3 id="🟦-第二步：构建图节点（GSC-部分）"><a href="#🟦-第二步：构建图节点（GSC-部分）" class="headerlink" title="🟦 第二步：构建图节点（GSC 部分）"></a>🟦 第二步：构建图节点（GSC 部分）</h3><ul>
+<li><p>对于每个训练 batch，通过 GCN 得到增强的图节点特征：<br>$$<br>\tilde{v}^{i}_{s&#x2F;t}<br>$$</p>
+</li>
+<li><p>每个节点都带有类别标签 ω，接下来会按类处理。</p>
+</li>
+</ul>
+<hr>
+<h3 id="🟨-第三步：选出“可信节点”更新记忆库（核心）"><a href="#🟨-第三步：选出“可信节点”更新记忆库（核心）" class="headerlink" title="🟨 第三步：选出“可信节点”更新记忆库（核心）"></a>🟨 第三步：选出“可信节点”更新记忆库（核心）</h3><p>对于每一个在当前 batch 中出现的类别 ω：</p>
+<h4 id="✅-1-找出该类的所有图节点："><a href="#✅-1-找出该类的所有图节点：" class="headerlink" title="✅ 1. 找出该类的所有图节点："></a>✅ 1. 找出该类的所有图节点：</h4><p>$$<br>{ \tilde{v}^{(\omega)}_{s&#x2F;t} }<br>$$</p>
+<h4 id="✅-2-加上当前记忆种子-S-omega-s-t-，一起做谱聚类（spectral-clustering）："><a href="#✅-2-加上当前记忆种子-S-omega-s-t-，一起做谱聚类（spectral-clustering）：" class="headerlink" title="✅ 2. 加上当前记忆种子 $S^{(\omega)}_{s&#x2F;t}$，一起做谱聚类（spectral clustering）："></a>✅ 2. 加上当前记忆种子 $S^{(\omega)}_{s&#x2F;t}$，一起做谱聚类（spectral clustering）：</h4><p>分成两簇：</p>
+<ul>
+<li><code>π_seed</code>：<strong>包含记忆种子</strong>，认为是“可信语义类中心”</li>
+<li><code>π_else</code>：不包含种子，认为是可能“偏离语义的样本”</li>
+</ul>
+<p>📌 <strong>只用 <code>π_seed</code> 中的节点更新记忆库，过滤噪声！</strong></p>
+<hr>
+<h3 id="🟧-第四步：更新记忆库（Momentum-更新）"><a href="#🟧-第四步：更新记忆库（Momentum-更新）" class="headerlink" title="🟧 第四步：更新记忆库（Momentum 更新）"></a>🟧 第四步：更新记忆库（Momentum 更新）</h3><p>对每类的记忆种子 $S^{(\omega)}<em>{s&#x2F;t}$，更新方式如下：<br>$$<br>S^{(\omega)}</em>{s&#x2F;t} \leftarrow \text{sim}(b, S) \cdot S + [1 - \text{sim}(\cdot)] \cdot b<br>$$</p>
+<ul>
+<li>$b$：是 <code>π_seed</code> 中节点的平均值，作为新的候选中心；</li>
+<li><code>sim(·)</code>：cosine 相似度；</li>
+<li>这种更新方式是<strong>自适应动量融合</strong>，类似 BatchNorm 的均值更新，但带相似度权重。</li>
+</ul>
+<h1 id="BGM-Bipartite-Graph-Matching"><a href="#BGM-Bipartite-Graph-Matching" class="headerlink" title="BGM(Bipartite Graph Matching)"></a>BGM(Bipartite Graph Matching)</h1><p>两部分图匹配</p>
+<h2 id="✅-总结"><a href="#✅-总结" class="headerlink" title="✅ 总结"></a>✅ 总结</h2><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>element-wise addition</td>
+<td>相同维度的两个张量，对应位置元素相加</td>
+</tr>
+<tr>
+<td>是否改变形状</td>
+<td>❌ 不会，形状保持一致</td>
+</tr>
+<tr>
+<td>主要用途</td>
+<td>残差连接、特征融合、注意力加法等</td>
+</tr>
+</tbody></table>
+<h3 id="📌-第一部分：将领域对齐建模为图匹配（QAP）"><a href="#📌-第一部分：将领域对齐建模为图匹配（QAP）" class="headerlink" title="📌 第一部分：将领域对齐建模为图匹配（QAP）"></a>📌 第一部分：将领域对齐建模为图匹配（QAP）</h3><blockquote>
+<p><strong>原文：</strong><br> Given the graph $G_s&#x2F;t$, we reformulate the cross-domain alignment as a graph matching problem, i.e., solving the QAP between $G_s$ and $G_t$…</p>
+</blockquote>
+<p><strong>翻译与解释：</strong><br> 给定源域图 $G_s$ 和目标域图 $G_t$，我们将领域对齐问题重新表述为一个图匹配问题，也就是解决这两个图之间的<strong>二次分配问题（QAP）</strong>。<br> 我们希望学到一个节点匹配矩阵，让源域图的节点<strong>一一对应</strong>到目标域图的节点，实现跨域对齐。</p>
+<h2 id="📌-QAP的目标函数"><a href="#📌-QAP的目标函数" class="headerlink" title="📌 QAP的目标函数"></a>📌 QAP的目标函数</h2><p>通常形式是：<br>$$<br>\min_{\Pi} \sum_{i,j,k,l} A_{ij} B_{kl} \Pi_{ik} \Pi_{jl}<br>$$<br>其中：</p>
+<ul>
+<li>$A$：源图的邻接矩阵；</li>
+<li>$B$：目标图的邻接矩阵；</li>
+<li>$\Pi$：你要学习的匹配矩阵（即 node-to-node permutation）；</li>
+<li>上式表示：在匹配后，两个图的结构相似度差异尽量小。</li>
+</ul>
+<p>可以加入节点相似度：<br>$$<br>\min_{\Pi} \quad \text{Tr}(C^T \Pi) + \lambda \cdot \text{structure loss}<br>$$</p>
+<ul>
+<li>$C$：点对点的匹配代价（比如 MLP 输出的得分）；</li>
+<li>$\lambda$：平衡点结构匹配与点属性匹配。</li>
+</ul>
+<hr>
+<h2 id="🧠-为什么是“二次”的？"><a href="#🧠-为什么是“二次”的？" class="headerlink" title="🧠 为什么是“二次”的？"></a>🧠 为什么是“二次”的？</h2><p>因为它不仅考虑“i对应谁”，还考虑“i的邻居j”匹配的是谁 → 是一个<strong>成对变量乘积</strong>的问题 → 所以是“二次”。</p>
+<hr>
+<h2 id="🟦-Cross-Graph-Interaction（跨图语义交互）"><a href="#🟦-Cross-Graph-Interaction（跨图语义交互）" class="headerlink" title="🟦 Cross Graph Interaction（跨图语义交互）"></a>🟦 Cross Graph Interaction（跨图语义交互）</h2><blockquote>
+<p><strong>原文简化：</strong><br> 为了建立语义上的交互，我们引入 cross-attention 机制：</p>
+</blockquote>
+<p>$$<br>\hat{V}_s &#x3D; \text{LN} \left( \text{softmax}( \tilde{V}_s W_q \cdot \tilde{V}_t^T W_k ) \cdot \tilde{V}_t W_v \cdot W_p + \tilde{V}_s \right)<br>$$</p>
+<p><strong>翻译：</strong><br> 我们对源图和目标图之间的节点做注意力交互（cross-attention），生成具有<strong>跨域语义感知能力的节点表示</strong> $\hat{V}_s, \hat{V}_t$。<br> 这个交互过程类似 Transformer 的注意力机制：</p>
+<ul>
+<li><p>$W_q, W_k, W_v, W_p$ 是可学习投影矩阵；</p>
+</li>
+<li><p>LN 是 LayerNorm；</p>
+</li>
+<li><p>softmax 后表示“这个源节点对哪个目标节点最关注”。</p>
+</li>
+</ul>
+<p>这些矩阵来自 <strong>Transformer 的注意力机制</strong>，在 SIGMA 中用于<strong>图节点之间的 cross-attention</strong>：<br>$$<br>\hat{V}_s &#x3D; \text{LayerNorm} \left( \text{softmax}(V_s W_q \cdot V_t^T W_k) \cdot V_t W_v \cdot W_p + V_s \right)<br>$$<br>具体作用如下：</p>
+<table>
+<thead>
+<tr>
+<th>矩阵</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$W_q$</td>
+<td>把源节点 $V_s$ 转成 <strong>Query（查询向量）</strong></td>
+</tr>
+<tr>
+<td>$W_k$</td>
+<td>把目标节点 $V_t$ 转成 <strong>Key（键向量）</strong></td>
+</tr>
+<tr>
+<td>$W_v$</td>
+<td>把目标节点 $V_t$ 转成 <strong>Value（值向量）</strong></td>
+</tr>
+<tr>
+<td>$W_p$</td>
+<td>对注意力输出做线性变换，增强表达能力</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🟨-辅助监督：节点分类损失"><a href="#🟨-辅助监督：节点分类损失" class="headerlink" title="🟨 辅助监督：节点分类损失"></a>🟨 辅助监督：节点分类损失</h2><blockquote>
+<p><strong>原文：</strong><br> 我们引入一个辅助分类器 $f_{\text{cls}}$，对交互后的节点进行分类监督：</p>
+</blockquote>
+<p>$$<br>\mathcal{L}<em>{\text{node}} &#x3D; - \sum</em>{i&#x3D;1}^{N_s+N_t} y_i \cdot \log \left( \text{softmax}(f_{\text{cls}}(\hat{v}_i)) \right)<br>$$</p>
+<p><strong>解释：</strong></p>
+<ul>
+<li>源域：使用真实标签；</li>
+<li>目标域：使用伪标签（来自 score map）；</li>
+<li>作用是让每个节点学到明确语义，便于后续匹配。</li>
+</ul>
+<hr>
+<h2 id="🟧-Semantic-aware-Node-Affinity（语义感知节点匹配）"><a href="#🟧-Semantic-aware-Node-Affinity（语义感知节点匹配）" class="headerlink" title="🟧 Semantic-aware Node Affinity（语义感知节点匹配）"></a>🟧 Semantic-aware Node Affinity（语义感知节点匹配）</h2><blockquote>
+<p><strong>原文简化：</strong><br> 我们使用语义信息来计算节点之间的匹配相似度矩阵 $M_{\text{aff}}$：</p>
+</blockquote>
+<p>$$<br>M^{i,j}<em>{\text{aff}} &#x3D; f</em>{\text{mlp}} \left( f_p(\hat{v}^i_s) \mathbin{|} f_p(\hat{v}^j_t) \right)<br>$$</p>
+<p><strong>解释：</strong></p>
+<ul>
+<li>对 $\hat{v}_s, \hat{v}_t$ 做线性映射 → 拼接 → 送入 MLP → 得到匹配得分；</li>
+<li>本质上：<strong>判断这两个节点是否表示的是同一类物体</strong>；</li>
+<li>最后用 <strong>Sinkhorn 算法</strong> 进行归一化，输出一个 <strong>双随机矩阵</strong> $\tilde{M}_{\text{aff}}$，每行&#x2F;列加和为 1，相当于“软匹配”矩阵。</li>
+</ul>
+<h3 id="我的疑问"><a href="#我的疑问" class="headerlink" title="我的疑问"></a>我的疑问</h3><h3 id="🔶-1-MLP-如何得到匹配得分？"><a href="#🔶-1-MLP-如何得到匹配得分？" class="headerlink" title="🔶 1. MLP 如何得到匹配得分？"></a>🔶 1. <strong>MLP 如何得到匹配得分？</strong></h3><h4 id="✨-背景："><a href="#✨-背景：" class="headerlink" title="✨ 背景："></a>✨ 背景：</h4><p>我们有两个节点：</p>
+<ul>
+<li>$\hat{v}_i^s$：源图的第 $i$ 个节点；</li>
+<li>$\hat{v}_j^t$：目标图的第 $j$ 个节点；</li>
+</ul>
+<p>我们要判断它们<strong>是否属于同一类物体</strong>。</p>
+<hr>
+<h4 id="✅-做法："><a href="#✅-做法：" class="headerlink" title="✅ 做法："></a>✅ 做法：</h4><p>$$<br>M^{\text{aff}}<em>{i,j} &#x3D; f</em>{\text{mlp}} \left( f_p(\hat{v}_i^s) \mathbin{|} f_p(\hat{v}_j^t) \right)<br>$$</p>
+<p>解释：</p>
+<ul>
+<li>$f_p$：先对每个节点做线性映射（Linear Layer）提取语义特征；</li>
+<li>$|$：表示 <strong>concatenation（拼接）</strong>，把源+目标特征拼一起；</li>
+<li>$f_{\text{mlp}}$：一个小型的 MLP 网络（多层感知机）输出一个<strong>标量得分</strong>，表示这两个节点的匹配可能性。</li>
+</ul>
+<hr>
+<h4 id="💡-本质："><a href="#💡-本质：" class="headerlink" title="💡 本质："></a>💡 本质：</h4><p>MLP 就像一个分类器，它输入拼接后的两个节点特征，输出它们是否是“同类”的概率（或相似度分数）。</p>
+<hr>
+<h3 id="🔷-2-Sinkhorn-是什么？为什么用？"><a href="#🔷-2-Sinkhorn-是什么？为什么用？" class="headerlink" title="🔷 2. Sinkhorn 是什么？为什么用？"></a>🔷 2. <strong>Sinkhorn 是什么？为什么用？</strong></h3><h4 id="🔍-问题背景："><a href="#🔍-问题背景：" class="headerlink" title="🔍 问题背景："></a>🔍 问题背景：</h4><p>MLP 输出的是 $M^{\text{aff}} \in \mathbb{R}^{N_s \times N_t}$，但这不是概率矩阵：</p>
+<ul>
+<li>每行、每列加起来不等于 1；</li>
+<li>没有“概率”意义，也不是双随机矩阵。</li>
+</ul>
+<hr>
+<h4 id="✅-解决方法：Sinkhorn-算法"><a href="#✅-解决方法：Sinkhorn-算法" class="headerlink" title="✅ 解决方法：Sinkhorn 算法"></a>✅ 解决方法：<strong>Sinkhorn 算法</strong></h4><p>Sinkhorn 是一种优化算法，可以把任意实数矩阵 $M$ 转换成一个 <strong>行和列都归一为 1 的概率矩阵</strong>，即：<br>$$<br>\tilde{M}^{\text{aff}} &#x3D; \text{Sinkhorn}(M^{\text{aff}})<br>$$<br>每次迭代：</p>
+<ol>
+<li>对每一行归一化（除以总和）；</li>
+<li>对每一列归一化；</li>
+<li>循环多次（SIGMA 设定 $k &#x3D; 20$ 次）；<br> → 得到一个双随机矩阵。</li>
+</ol>
+<hr>
+<h4 id="💡-本质意义："><a href="#💡-本质意义：" class="headerlink" title="💡 本质意义："></a>💡 本质意义：</h4><blockquote>
+<p>Sinkhorn 输出的矩阵代表“每个源节点 与 目标节点 匹配的概率”，且确保“每个节点最多匹配一个目标”（软分配）。</p>
+</blockquote>
+<hr>
+<h3 id="🔵-3-Instance-Normalization（IN）是啥？"><a href="#🔵-3-Instance-Normalization（IN）是啥？" class="headerlink" title="🔵 3. Instance Normalization（IN）是啥？"></a>🔵 3. <strong>Instance Normalization（IN）是啥？</strong></h3><p>这是一个常用于图像风格迁移&#x2F;图神经网络的 <strong>归一化操作</strong>。</p>
+<hr>
+<h4 id="✅-作用："><a href="#✅-作用：" class="headerlink" title="✅ 作用："></a>✅ 作用：</h4><blockquote>
+<p><strong>对每一个样本（例如一张图&#x2F;一个节点），在每个通道内做归一化。</strong></p>
+</blockquote>
+<p>和 BatchNorm 不同，它<strong>不依赖 batch 维度</strong>，适合输入不规则的图、句子等。</p>
+<hr>
+<h4 id="🧮-公式（简化版）："><a href="#🧮-公式（简化版）：" class="headerlink" title="🧮 公式（简化版）："></a>🧮 公式（简化版）：</h4><p>对于输入特征 $x \in \mathbb{R}^{C \times H \times W}$：<br>$$<br>\mu_c &#x3D; \frac{1}{HW} \sum_{h,w} x_{c,h,w}, \quad<br>\sigma_c^2 &#x3D; \frac{1}{HW} \sum_{h,w} (x_{c,h,w} - \mu_c)^2<br>$$<br>然后归一化：<br>$$<br>\hat{x}<em>{c,h,w} &#x3D; \frac{x</em>{c,h,w} - \mu_c}{\sqrt{\sigma_c^2 + \epsilon}}<br>$$<br>在图网络里，常用于归一化图节点特征，使得不同图&#x2F;样本的特征尺度更稳定。</p>
+<hr>
+<h2 id="🔴-Structure-aware-Matching-Loss（结构感知匹配损失）"><a href="#🔴-Structure-aware-Matching-Loss（结构感知匹配损失）" class="headerlink" title="🔴 Structure-aware Matching Loss（结构感知匹配损失）"></a>🔴 Structure-aware Matching Loss（结构感知匹配损失）</h2><p>定义一个结构感知的损失函数 $\mathcal{L}_{\text{mat}}$，由三部分组成：</p>
+<hr>
+<h3 id="①-True-positive-Enhancement-TE"><a href="#①-True-positive-Enhancement-TE" class="headerlink" title="① True-positive Enhancement (TE)"></a>① True-positive Enhancement (TE)</h3><p>$$<br>\sum_i \frac{1}{N_s} \left[ \max_j ( \tilde{M}<em>{\text{aff}} \odot Y_\Pi )</em>{i,j} - 1 \right]^2<br>$$</p>
+<ul>
+<li><strong>目的</strong>：增强正确匹配；</li>
+<li>$Y_\Pi$：表示“同类是否匹配”的 ground-truth；</li>
+<li>找出每个源节点在目标域中<strong>最可能的正确匹配</strong>，希望其相似度尽可能接近 1。</li>
+</ul>
+<hr>
+<h3 id="②-False-positive-Suppression-FS"><a href="#②-False-positive-Suppression-FS" class="headerlink" title="② False-positive Suppression (FS)"></a>② False-positive Suppression (FS)</h3><p>$$<br>\sum_{i,j} \frac{1}{||1 - Y_\Pi||<em>1} [ \tilde{M}</em>{\text{aff}} \odot (1 - Y_\Pi) ]_{i,j}^2<br>$$</p>
+<ul>
+<li><strong>目的</strong>：抑制错误匹配；</li>
+<li>对所有类别不一致的匹配对，强制其相似度为 0；</li>
+<li>避免模型“错连”。</li>
+</ul>
+<hr>
+<h3 id="③-Quadratic-Structural-Constraint-QC"><a href="#③-Quadratic-Structural-Constraint-QC" class="headerlink" title="③ Quadratic Structural Constraint (QC)"></a>③ Quadratic Structural Constraint (QC)</h3><p>$$<br>\sum_{i,j} \frac{1}{N_s N_t} (A_s \tilde{M}<em>{\text{aff}} - \tilde{M}</em>{\text{aff}} A_t )_{i,j}<br>$$</p>
+<ul>
+<li><strong>目的</strong>：对齐邻接结构；</li>
+<li>$A_s, A_t$：源图和目标图的邻接矩阵；</li>
+<li>要求<strong>结构一致性</strong>：匹配后连边也尽量一致。</li>
+</ul>
+<hr>
+<h2 id="✅-最终目标："><a href="#✅-最终目标：" class="headerlink" title="✅ 最终目标："></a>✅ 最终目标：</h2><blockquote>
+<p>通过跨图语义交互 + 节点分类监督 + 匹配得分学习 + 三种结构&#x2F;语义损失，<br> SIGMA 使得源域图和目标域图之间的节点可以：</p>
+</blockquote>
+<ul>
+<li><strong>一一对齐</strong></li>
+<li><strong>语义一致</strong></li>
+<li><strong>结构一致</strong></li>
+</ul>
+<p>从而实现<strong>精细的类条件对齐（class-conditional alignment）</strong>，推动领域自适应检测。</p>
+<hr>
+<p>是否需要我配一张结构图，帮你把整个 BGM 模块（从 cross-attention 到 Sinkhorn 再到匹配损失）可视化？会更直观理解。</p>
+<h1 id="总体损失"><a href="#总体损失" class="headerlink" title="总体损失"></a>总体损失</h1><h3 id="📄-原文逐句翻译-解释："><a href="#📄-原文逐句翻译-解释：" class="headerlink" title="📄 原文逐句翻译 + 解释："></a>📄 原文逐句翻译 + 解释：</h3><blockquote>
+<p><strong>During training, we adopt class-agnostic global alignment [12] on visual features ${x_i^{s&#x2F;t}}<em>{i&#x3D;1}^B$ with adversarial loss $\mathcal{L}</em>{GA}$.</strong><br> 在训练过程中，我们对源域&#x2F;目标域的视觉特征 ${x_i^{s&#x2F;t}}<em>{i&#x3D;1}^B$ 进行<strong>类别无关的全局对齐</strong>（class-agnostic global alignment），并引入一个**对抗损失项 $\mathcal{L}</em>{GA}$** 来实现。</p>
+</blockquote>
+<p>🔎 解释：这是普通视觉特征级别的对抗对齐策略，不考虑类别，仅希望源&#x2F;目标的分布整体接近（如 DANN 那样）。</p>
+<hr>
+<blockquote>
+<p><strong>Considering the non-grid correspondence among graph nodes and the non-Euclidean representation of graphical space [39], we design a Node Discriminator (ND) to align well-matched nodes,</strong><br> 考虑到图节点之间不是规则网格关系（non-grid）且图空间是非欧式结构（non-Euclidean），我们设计了一个<strong>节点级别的判别器（Node Discriminator, ND）</strong>，用于更好地对齐匹配得较好的节点。</p>
+</blockquote>
+<p>🔎 解释：视觉特征是欧几里得空间的张量，但图是非欧结构，所以需要专门在“图节点”上再做一层更细致的对抗对齐。</p>
+<hr>
+<blockquote>
+<p><strong>consisting a gradient reversed layer [7], three stacked discrimination blocks $f_b$ (each block is FC-LayerNorm-ReLU), and a domain classifier $f_{dc}$ followed with the Binary Cross Entropy (BCE) loss:</strong><br> ND 包括：一个<strong>梯度反转层（GRL）</strong>，三个堆叠的判别模块 $f_b$（每个模块为 全连接层 → LayerNorm → ReLU），最后接一个<strong>域分类器 $f_{dc}$<strong>，整体用</strong>二分类交叉熵（BCE）损失</strong>来优化。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p><strong>$\mathcal{L}<em>{NA} &#x3D; - \sum</em>{i&#x3D;1}^{N_s} D \log f_{dc}[f_b(v_i^s)] - \sum_{i&#x3D;1}^{N_t} (1-D) \log f_{dc}[f_b(v_i^t)]$, where D is the domain label as [3] and $v_i^{s&#x2F;t}$ are existing graph nodes.</strong><br> 节点级对抗损失如下：</p>
+</blockquote>
+<p>$$<br>\mathcal{L}<em>{NA} &#x3D; - \sum</em>{i&#x3D;1}^{N_s} D \log f_{dc}(f_b(v_i^s)) - \sum_{i&#x3D;1}^{N_t} (1-D) \log f_{dc}(f_b(v_i^t))<br>$$</p>
+<p>其中 $D$ 是域标签（源为 1，目标为 0），$v_i^{s&#x2F;t}$ 是图中的节点表示。</p>
+<p>🔎 解释：这是典型的<strong>对抗训练损失</strong>，希望模型无法区分一个节点来自源域还是目标域，从而实现特征对齐。</p>
+<hr>
+<blockquote>
+<p><strong>Then, the overall optimization objective of the proposed framework is denoted as:</strong><br> 最终，整个框架的优化目标由以下各部分组成：</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/202505130854437.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20250513085438269"></p>
+<h1 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h1><p>我们在三个领域自适应（UDA）实验场景上进行了大量实验，遵循已有文献 [3,12,21,32] 中的标准设置。<br> 我们使用<strong>不同 IoU 阈值下的 mAP（mean Average Precision，mAP_{IoU}）</strong>作为评价指标，<br> 并使用 <strong>SO &#x2F; GAIN</strong> 来评估：</p>
+<ul>
+<li><strong>SO（Source Only）</strong>：仅在源域上训练的模型结果；</li>
+<li><strong>GAIN</strong>：模型在目标域上的适应效果提升（与 SO 结果相比）。</li>
+</ul>
+<p>此外，我们还报告了 GA 方法 [12] 的结果，该方法基于 <strong>FCOS 检测器</strong>进行了全局对齐（global alignment），作为我们的基线模型。</p>
+<h3 id="📍Cityscapes-→-Foggy-Cityscapes"><a href="#📍Cityscapes-→-Foggy-Cityscapes" class="headerlink" title="📍Cityscapes → Foggy Cityscapes"></a>📍Cityscapes → Foggy Cityscapes</h3><p>Cityscapes 是一个街景数据集，在干燥天气下由车载相机拍摄，包含：</p>
+<ul>
+<li>2975 张训练图像；</li>
+<li>500 张验证图像；</li>
+<li>8 个目标类别的标注框。</li>
+</ul>
+<p>Foggy Cityscapes 是在 Cityscapes 基础上合成的，加入了“雾霾”噪声，用于研究天气变化带来的域间差异。</p>
+<hr>
+<h3 id="📍Sim10k-→-Cityscapes"><a href="#📍Sim10k-→-Cityscapes" class="headerlink" title="📍Sim10k → Cityscapes"></a>📍Sim10k → Cityscapes</h3><p>Sim10k 是一个<strong>仿真数据集</strong>，来自电子游戏《GTA V》，与真实世界的 Cityscapes 存在较大的“虚拟-真实”域差异。</p>
+<ul>
+<li>包含约 10,000 张图像；</li>
+<li>仅有 “car（汽车）” 一个类别的标注。</li>
+</ul>
+<p>该任务用于<strong>仿真图像 → 真实图像</strong>的领域自适应。</p>
+<hr>
+<h3 id="📍KITTI-→-Cityscapes"><a href="#📍KITTI-→-Cityscapes" class="headerlink" title="📍KITTI → Cityscapes"></a>📍KITTI → Cityscapes</h3><p>KITTI 是真实交通场景数据集，由车载相机拍摄，但与 Cityscapes 的相机角度不同，存在<strong>跨摄像头视角的域差异</strong>。</p>
+<ul>
+<li>KITTI 共有 7,481 张带有汽车标注的图像；</li>
+<li>用于研究摄像头差异对检测器迁移的影响。</li>
+</ul>
+<h1 id="SIGMA-Improved-Semantic-Complete-Graph-Matching-for-Domain-Adaptive-Object-Detection"><a href="#SIGMA-Improved-Semantic-Complete-Graph-Matching-for-Domain-Adaptive-Object-Detection" class="headerlink" title="SIGMA++: Improved Semantic-Complete Graph Matching for Domain Adaptive Object Detection"></a>SIGMA++: Improved Semantic-Complete Graph Matching for Domain Adaptive Object Detection</h1><p>Sigma ++：改进的域自适应目标检测的语义完整图匹配</p>
+<h2 id="跨图图推理（Cross-Image-Graph-Reasoning）："><a href="#跨图图推理（Cross-Image-Graph-Reasoning）：" class="headerlink" title="跨图图推理（Cross-Image Graph Reasoning）："></a><strong>跨图图推理（Cross-Image Graph Reasoning）</strong>：</h2><p> 由于细粒度节点 $V_{s&#x2F;t}$（源&#x2F;目标域）蕴含了丰富的类条件分布信息，我们在每个域中建立图 $G_{s&#x2F;t}$，用于建模这些内在知识，并捕捉跨图像的语义依赖关系。我们之前的工作 [46] 通过建模节点间的二阶依赖关系，建立了一个通用图 $G^c_{s&#x2F;t}$，该结构可以更好地表示分布，有助于领域自适应。</p>
+<hr>
+<p><strong>超图学习（Hypergraph Learning）</strong>：<br> 由于二阶图 $G^c_{s&#x2F;t}$ 在真实世界中难以建模丰富和鲁棒的语义关系，我们将其扩展为超图 $G^h_{s&#x2F;t}$，用于捕捉高阶关联，进而更好地建模类条件分布。</p>
+<p>超图 $G^h_{s&#x2F;t}$ 由以下三个元素构成：</p>
+<ul>
+<li>节点集 $V_{s&#x2F;t}$</li>
+<li>超边集 $E^h_{s&#x2F;t} &#x3D; {e_i | e_i &#x3D; {v_j}<em>{j&#x3D;1}^K}</em>{i&#x3D;1}^{|E|}$</li>
+<li>对角权重矩阵 $W \in \mathbb{R}^{|E| \times |E|}$，对角元素 $W(e) \in [0, 1]$</li>
+</ul>
+<p>每条超边 $e$ 表示若干节点之间的关系，是否连接通过关联矩阵 $H \in \mathbb{R}^{|V| \times |E|}$ 表示：</p>
+<ul>
+<li>若节点 $v \in e$，则 $H(v,e) &#x3D; 1$</li>
+<li>否则 $H(v,e) &#x3D; 0$</li>
+</ul>
+<p>基于 $H$，可以定义两个对角矩阵：</p>
+<ol>
+<li><strong>超边度矩阵</strong> $D_e$：表示每条超边连接了多少节点；</li>
+<li><strong>节点度矩阵</strong> $D_v$：表示每个节点连接了多少条超边。</li>
+</ol>
+<p>为了构建这个超图，我们使用 <strong>节点嵌入之间的距离</strong> 来建立超边（即使用 KNN 近邻建边）：</p>
+<ul>
+<li>每个节点与它最近的 $K-1$ 个邻居共同构成一条超边；</li>
+<li>总共构建 $|V|$ 条超边（每个节点都有一个超边）；</li>
+<li>所有边权设置为 1（统一对待各类样本，避免偏倚）。</li>
+</ul>
+<p>最终，我们对这个超图 $G^h_{s&#x2F;t}$ 做一层 <strong>超图卷积（Hypergraph Convolution）</strong>，公式如下：<br>$$<br>\tilde{V} &#x3D; D_v^{-1&#x2F;2} H W D_e^{-1} H^\top D_v^{-1&#x2F;2} V \Theta_h<br>$$<br>其中：</p>
+<ul>
+<li>$\Theta_h$ 是可学习的参数；</li>
+<li>最终获得包含跨图像高阶关系的节点表示 $\tilde{V}$。</li>
+</ul>
+<p>相比于传统的二阶图（需要建 $|V| \times |V|$ 条边），超图结构更高效，仅需建 $|V|$ 条超边，并能捕捉更复杂的高阶依赖。</p>
+<h2 id="超图匹配（Hypergraph-Matching）"><a href="#超图匹配（Hypergraph-Matching）" class="headerlink" title="超图匹配（Hypergraph Matching）"></a><strong>超图匹配（Hypergraph Matching）</strong></h2><p> 由于超图天生能建模丰富的高阶依赖，它在表示和对齐跨域分布时起着关键作用，能够适应超边（hyperedges）内的高阶知识。因此，我们将原始的二阶图匹配方法 [46] 拓展到高阶超图空间，来更全面、鲁棒地适应类条件分布 [74]。</p>
+<p>其基于超图的匹配目标函数被公式化为：<br>$$<br>\mathcal{L}<em>{\text{mat}} &#x3D; \sum</em>{i} \frac{1}{N_s} \left[ \max_j \left( \tilde{M}<em>{\text{aff}} \cdot Y_\Pi \right)</em>{i,j} - 1 \right]^2 + \sum_{i,j} \frac{1}{|1 - Y_\Pi|<em>1} \left[ \tilde{M}</em>{\text{aff}} \cdot (1 - Y_\Pi) \right]^2_{i,j} + \frac{1}{N_m} \sum_{e \in \mathcal{E}^h} \left[ \exp\left( -\frac{1}{K} \sum_{q&#x3D;1}^{K} |\sin(\theta^s_q) - \sin(\theta^t_q)| \right)&#x2F;\beta \right]<br>$$<br>其中：</p>
+<ul>
+<li>$Y_\Pi \in \mathbb{R}^{N_s \times N_t}$ 的第 (i, j) 项是 1 表示源节点 $v_i^s$ 与目标节点 $v_j^t$ 属于同一类别 $\omega$，否则为 0；</li>
+<li>$\tilde{M}_{\text{aff}}$ 是归一化后的节点匹配相似度矩阵；</li>
+<li>$N_s &#x3D; |\hat{V}_s|$，为源域图中节点数；</li>
+<li>$N_m &#x3D; \min(|\mathcal{E}_s|, |\mathcal{E}_t|)$，表示用于边对齐的最小超边数；</li>
+<li>$\theta_q$ 是超边中节点形成的角度（参考 Fig. 3(b)）；</li>
+<li>$\beta$ 是缩放因子，设为 0.001（参考 [74]）。</li>
+</ul>
+<hr>
+<p>三个损失项的含义如下：</p>
+<ol>
+<li><strong>第一项</strong>：对已正确匹配的节点对，增强其相似度（True-positive Enhancement，TE）；</li>
+<li><strong>第二项</strong>：对错误匹配的节点对，惩罚其错误激活（False-positive Suppression，FS）；</li>
+<li><strong>第三项</strong>：利用超边间的结构关系进行匹配（结构约束），称为 Structure-aware Matching（SML）。</li>
+</ol>
+<p>我们使用节点匹配相似度 $\tilde{M}_{\text{aff}}$ 来得到一个粗略的匹配，然后对每一对匹配的节点 $(v_i^s, v_j^t)$，找出其在各自超图中的超边 $e_s$、$e_t$（即包括该节点的 K−1 个邻居节点），再通过计算这些邻居之间的夹角 $\theta_q$ 表示超边结构。</p>
+<p>如 Fig. 3(b) 所示，我们比较两个超边中节点间的夹角差异（使用 $\sin(\theta)$ 函数增强鲁棒性），从而对齐高阶结构。</p>
+<h1 id="Source-free-domain-adaptation-for-medical-image-segmentation-with-fourier-style-mining"><a href="#Source-free-domain-adaptation-for-medical-image-segmentation-with-fourier-style-mining" class="headerlink" title="Source free domain adaptation for medical image segmentation with fourier style mining"></a>Source free domain adaptation for medical image segmentation with fourier style mining</h1><p>基于傅里叶风格挖掘的医学图像分割源自由域自适应</p>
+<h2 id="1、什么是BN层？"><a href="#1、什么是BN层？" class="headerlink" title="1、什么是BN层？"></a>1、什么是BN层？</h2><p><strong>BN层</strong>（Batch Normalization，批量归一化层）是深度学习中用于加速训练、提升模型稳定性的核心技术，2015年由Sergey Ioffe和Christian Szegedy提出，现已成为大多数神经网络的标配组件。</p>
+<hr>
+<h3 id="核心原理"><a href="#核心原理" class="headerlink" title="核心原理"></a><strong>核心原理</strong></h3><ol>
+<li><strong>归一化操作</strong><ul>
+<li><strong>输入</strong>：某层的输出激活值（如卷积或全连接层的输出），假设当前批次（batch）中有 <em>N</em> 个样本。</li>
+<li><strong>计算均值和方差</strong>：对每个特征通道（channel）独立计算批次内的均值和方差：<br><em>μ</em>&#x3D;<em>N</em>1​∑<em>i</em>&#x3D;1<em>N</em>​<em>x**i</em>​<br><em>σ</em>2&#x3D;<em>N</em>1​∑<em>i</em>&#x3D;1<em>N</em>​(<em>x**i</em>​−<em>μ</em>)2</li>
+<li><strong>标准化</strong>：将每个特征值减去均值、除以标准差（加小常数 <em>ϵ</em> 防除零）：<br><em>x</em>^<em>i</em>​&#x3D;<em>σ</em>2+<em>ϵ</em>​<em>x**i</em>​−<em>μ</em>​</li>
+</ul>
+</li>
+<li><strong>可学习的缩放与偏移</strong><ul>
+<li>引入参数 <em>γ</em>（缩放）和 <em>β</em>（偏移），恢复数据表达能力：<br><em>y**i</em>​&#x3D;<em>γ</em>⋅<em>x</em>^<em>i</em>​+<em>β</em></li>
+<li><em>γ</em> 和 <em>β</em> 通过反向传播学习，允许模型决定是否保留归一化效果。</li>
+</ul>
+</li>
+</ol>
+<h3 id="步骤解析：生成阶段的噪声优化（Generation-Stage-Noise-Optimization）"><a href="#步骤解析：生成阶段的噪声优化（Generation-Stage-Noise-Optimization）" class="headerlink" title="步骤解析：生成阶段的噪声优化（Generation Stage: Noise Optimization）"></a>步骤解析：<strong>生成阶段的噪声优化（Generation Stage: Noise Optimization）</strong></h3><ul>
+<li><strong>浅层风格损失</strong>：利用低级特征（颜色、纹理）的统计特性（Gram矩阵）约束生成图像的域风格。</li>
+<li><strong>深层内容损失</strong>：通过高级语义特征（形状、结构）保留目标域的内容一致性。</li>
+</ul>
+<h4 id="Coarse-generation-by-BN-constraints——BN约束的粗糙产生"><a href="#Coarse-generation-by-BN-constraints——BN约束的粗糙产生" class="headerlink" title="Coarse generation by BN constraints——BN约束的粗糙产生"></a>Coarse generation by BN constraints——BN约束的粗糙产生</h4><h4 id="Fine-generation-by-mutual-fourier-transform——通过共同傅立叶变换的细化生成结果"><a href="#Fine-generation-by-mutual-fourier-transform——通过共同傅立叶变换的细化生成结果" class="headerlink" title="Fine generation by mutual fourier transform——通过共同傅立叶变换的细化生成结果"></a>Fine generation by mutual fourier transform——通过共同傅立叶变换的细化生成结果</h4><p>Inverse FFT（逆快速傅里叶变换）</p>
+<p>图中的 <strong>“∂L_generation&#x2F;∂z”</strong> 和 <strong>“∂L_generation&#x2F;∂σ²”</strong> 表示对生成损失函数（Lgeneration）的求导过程，其核心目的是<strong>通过反向传播优化初始噪声图像（z），使其生成的图像在风格（Style）和内容（Content）上逼近源域分布</strong>。以下是具体作用：</p>
+<hr>
+<h4 id="1-输入与目标"><a href="#1-输入与目标" class="headerlink" title="1. 输入与目标"></a><strong>1. 输入与目标</strong></h4><ul>
+<li><p><strong>输入</strong>：随机初始化的噪声图像（z），通常服从高斯分布或均匀分布。</p>
+</li>
+<li><p>目标</p>
+<p>：通过调整噪声图像z，使其经过</p>
+<p>冻结的源模型G</p>
+<p>（Frozen source model G）后，满足以下约束：</p>
+<ul>
+<li><strong>风格匹配</strong>：中间层特征（如卷积层C₁₃、C₄₃、C₄₅）的统计特性（均值、方差）与源域对齐（由Lstyle约束）。</li>
+<li><strong>内容保留</strong>：高层特征（如C₄₅）的语义结构与目标域内容一致（由Lcontent约束）。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="2-关键操作"><a href="#2-关键操作" class="headerlink" title="2. 关键操作"></a><strong>2. 关键操作</strong></h4><ol>
+<li><strong>前向传播</strong>：<br>噪声图像z通过冻结的源模型G，提取各层特征（如C₁₃、C₄₃、C₄₅），并计算其<strong>风格统计量</strong>​（Gram矩阵的均值&#x2F;方差）和<strong>内容特征</strong>。</li>
+<li><strong>损失计算</strong>：<ul>
+<li><strong>风格损失（Lstyle）</strong>：<br>在低中层（如C₁₃、C₄₃）计算生成图像与源域风格的差异，例如：<br>Lstyle<em>l</em>​&#x3D;∥<em>μ**l</em>​(<em>z</em>)−<em>μ**l</em>src​∥2+∥<em>σ**l</em>2​(<em>z</em>)−<em>σ**l</em>2,src​∥2<br>其中，<em>μ**l</em>​(<em>z</em>)和<em>σ**l</em>2​(<em>z</em>)是生成图像在第<em>l</em>层的均值和方差，<em>μ**l</em>src​和<em>σ**l</em>2,src​是源模型预存的统计量。</li>
+<li><strong>内容损失（Lcontent）</strong>：<br>在高层（如C₄₅）约束生成图像与目标域内容的一致性，例如：<br>Lcontent<em>l</em>​&#x3D;∥<em>F**l</em>​(<em>z</em>)−<em>F**l</em>​(<em>x</em>target​)∥2<br>其中，<em>F**l</em>​(<em>z</em>)和<em>F**l</em>​(<em>x</em>target​)分别为生成图像和目标图像在第<em>l</em>层的特征图。</li>
+</ul>
+</li>
+<li><strong>反向传播与梯度更新</strong>：<ul>
+<li><strong>对噪声z的梯度（∂L&#x2F;∂z）</strong>：<br>通过链式法则计算损失对噪声z的梯度，指导噪声向减少风格和内容损失的方向更新：<br><em>z</em>←<em>z</em>−<em>η</em>∂<em>z</em>∂Lgeneration​​<br>其中，<em>η</em>为学习率。</li>
+<li><strong>对方差σ²的梯度（∂L&#x2F;∂σ²）</strong>：<br>若模型允许调整源模型的统计量（如自适应BN），可通过梯度更新σ²以增强风格对齐，但图中源模型G是冻结的，因此实际仅优化噪声z。</li>
+</ul>
+</li>
+</ol>
+<h2 id="2、adaption-stage"><a href="#2、adaption-stage" class="headerlink" title="2、adaption stage"></a>2、adaption stage</h2><h3 id="CDD——Contrastive-domain-distillation"><a href="#CDD——Contrastive-domain-distillation" class="headerlink" title="CDD——Contrastive domain distillation"></a>CDD——Contrastive domain distillation</h3><p>对比域蒸馏</p>
+<h4 id="3-2-1-对比域蒸馏（CDD）"><a href="#3-2-1-对比域蒸馏（CDD）" class="headerlink" title="3.2.1 对比域蒸馏（CDD）"></a><strong>3.2.1 对比域蒸馏（CDD）</strong></h4><p>与之前的无监督域适应（UDA）方法（如Tsai等, 2018; Tzeng等, 2017; Hoffman等, 2018）通过对抗学习缩小未配对源域和目标域数据之间的分布差异不同，CDD模块引入了<strong>域蒸馏损失（Ldistill）</strong>和<strong>域对比损失（Lcontrast）</strong>，如图2(c)所示。CDD模块通过迁移<strong>结构关系知识</strong>（relation-based knowledge），比以往迁移<strong>特征知识</strong>（feature-based knowledge）的对抗学习方法（如Gou等, 2021; Peng等, 2019）更稳定且鲁棒。</p>
+<p><strong>“Pull”操作</strong>指通过优化损失函数，<strong>拉近正样本对（Positive Pairs）在特征空间中的距离</strong>，使相似样本的表示更接近。其核心目的是增强模型对语义相似性的捕捉能力。</p>
+<p>具体实现如下：</p>
+<ol>
+<li><p><strong>数据增强</strong>：对目标域图像<em>x**t</em>和生成的源式图像<em>x**g</em>进行增强，构建两个域的数据集{<em>x</em>^<em>t</em>1,<em>x</em>^<em>t</em>2,…,<em>x</em>^<em>t**n</em>}和{<em>x</em>^<em>g</em>1,<em>x</em>^<em>g</em>2,…,<em>x</em>^<em>g**n</em>}。</p>
+</li>
+<li><p><strong>结构距离计算</strong>：定义域内样本对的结构距离：<br><em>ψ</em>(<em>x</em>^<em>i</em>,<em>x</em>^<em>j</em>)&#x3D;∥<em>f</em>^​<em>i</em>−<em>f</em>^​<em>j</em>∥2​<br>其中，<em>x</em>^<em>i</em>和<em>x</em>^<em>j</em>为增强样本，<em>f</em>^​<em>i</em>和<em>f</em>^​<em>j</em>为它们在ResNet-101最后一层的深层特征。</p>
+</li>
+<li><p><strong>域蒸馏损失</strong>：约束跨域结构关系的一致性：<br>Ldistill​&#x3D;∑<em>i</em>&#x3D;1<em>n</em>​∑<em>j</em>\&#x3D;<em>i**j</em>&#x3D;1​<em>n</em>​∥<em>ψ</em>(<em>x</em>^<em>t**i</em>​,<em>x</em>^<em>t**j</em>​)−<em>ψ</em>(<em>x</em>^<em>g**i</em>​,<em>x</em>^<em>g**j</em>​)∥2​</p>
+</li>
+<li><p>域对比损失</p>
+<p>：通过自监督范式缩小域间差异：</p>
+<ul>
+<li><strong>正样本</strong>：同域内样本（如<em>x</em>^<em>t**i</em>与<em>x</em>^<em>t**j</em>）。</li>
+<li><strong>负样本</strong>：跨域样本（如<em>x</em>^<em>t**i</em>与<em>x</em>^<em>g**j</em>）。<br>Lcontrast​&#x3D;∑<em>i</em>&#x3D;1<em>n</em>​∑<em>j</em>&#x3D;<em>i**j</em>&#x3D;1​<em>n</em>​[<em>ψ</em>(<em>x</em>^<em>t**j</em>​,<em>x</em>^<em>g**j</em>​)+∥<em>ψ</em>(<em>x</em>^<em>t**i</em>​,<em>x</em>^<em>g**j</em>​)−<em>ψ</em>(<em>x</em>^<em>t**i</em>​,<em>x</em>^<em>t**j</em>​)∥1​]<br>第一项缩小同内容跨域样本的差异，第二项约束域内与跨域距离的差异。</li>
+</ul>
+</li>
+</ol>
+<p>通过联合优化Ldistill和Lcontrast，CDD模块能在无真实标签监督下，学习到域不变的结构关系表示。</p>
+<h3 id="CADC——Compact-aware-domain-consistency"><a href="#CADC——Compact-aware-domain-consistency" class="headerlink" title="CADC——Compact-aware domain consistency"></a>CADC——Compact-aware domain consistency</h3><p>紧凑型域的一致性</p>
+<p><img src="https://raw.githubusercontent.com/cuixinx/picgo/master/202505131423722.png" srcset="/cblog/img/loading.gif" lazyload alt="image-20250513142330511"></p>
+<h3 id="Reweight（重新加权）的作用"><a href="#Reweight（重新加权）的作用" class="headerlink" title="Reweight（重新加权）的作用"></a><strong>Reweight（重新加权）的作用</strong></h3><p>在医学图像分割的域自适应框架中，<strong>Reweight（重新加权）</strong> 是一种根据伪标签的<strong>紧凑度（Compactness）</strong>调整损失权重的机制，旨在<strong>增强高质量伪标签的影响，抑制低质量（噪声）伪标签的干扰</strong>，从而提升模型训练的鲁棒性和分割精度。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/cblog/categories/%E6%96%87%E7%8C%AE/" class="category-chain-item">文献</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>SIGMA: Semantic-complete Graph Matching for Domain Adaptive Object Detection </div>
+      <div>https://github.com/cuixinx/cblog/2025/05/12/SIGMA-Semantic-complete-Graph-Matching-for-Domain-Adaptive-Object-Detection/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>CuiXin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年5月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/cblog/2025/05/11/Robustness-unsupervised-Domain-Adaptation/" title="Robustness-unsupervised Domain Adaptation">
+                        <span class="hidden-mobile">Robustness-unsupervised Domain Adaptation</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/cblog/js/events.js" ></script>
+<script  src="/cblog/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/cblog/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/cblog/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/cblog/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
